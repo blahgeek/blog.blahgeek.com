@@ -19,3 +19,5 @@ permalink:    pretty
 pygments:     true
 paginate:     5
 disqus:       blahgeekblog
+
+google_analytics: 'UA-37086826-2'

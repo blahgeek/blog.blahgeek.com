@@ -1,0 +1,37 @@
+<script src="//c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js" type= "text/javascript">
+ MathJax.Hub.Config({
+   config: ["MMLorHTML.js"],
+   jax: ["input/TeX","input/MathML","output/HTML-CSS","output/NativeMML"],
+   TeX: { extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"], equationNumbers: { autoNumber: "AMS" } },
+   extensions: ["tex2jax.js","mml2jax.js","MathMenu.js","MathZoom.js"],
+   tex2jax: { 
+     inlineMath: [ ['$','$'] ],
+     displayMath: [ ['$$','$$'] ],
+     processEscapes: true },
+     "HTML-CSS": {
+       styles: { ".MathJax .mo, .MathJax .mi": {color: "black ! important"}}
+     }
+   });
+</script>
+
+<script type="text/javascript">
+    var disqus_shortname = '{{ site.disqus }}';
+
+    (function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//go.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+
+<script type="text/javascript">
+  var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+  document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+  </script>
+  <script type="text/javascript">
+    try {
+      var pageTracker = _gat._getTracker("{{ google_analytics }}");
+      pageTracker._trackPageview();
+    } catch(err) {}
+</script>

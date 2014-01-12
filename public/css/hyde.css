@@ -281,7 +281,8 @@ a:focus {
     left: 0;
   }
   .masthead h1 {
-    font-size: 64px;
+    /*font-size: 64px;*/
+    font-size: 55px;
   }
   .colophon {
     margin-top: 40px;
