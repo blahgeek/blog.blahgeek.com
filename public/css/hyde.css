@@ -166,15 +166,15 @@ blockquote {
 blockquote p {
   margin-bottom: 0;
   color: #7a7a7a;
-  text-indent: -0.4em;
+  /*text-indent: -0.4em;*/
 }
-blockquote p:before {
+/*blockquote p:before {
   content: '\201C';
 }
 blockquote p:after {
   content: '\201D';
 }
-
+*/
 img {
   width: 100%;
   display: block;
