@@ -1,7 +1,8 @@
 title:        'BlahGeek'
 tagline:      "BlahGeek's Blog"
-description:  'This my blog<br/>See <a href="about/">About Me</a>'
+description:  'This my blog<br/>See <a href="/about/">About Me</a>'
 # markdown:     rdiscount
+exclude:      ['makefile']
 author:
   name: BlahGeek
   email: 'i@BlahGeek.com'

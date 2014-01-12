@@ -30,23 +30,84 @@ tags: mac geek
 
 有一个文件叫做`test.png`，由系统截屏产生，`ls -l`可以看到文件属性中有个`@`，表示的是`HFS+`文件系统特有的metadata，通过`ls -l@`可以看到具体数据项：
 
-<script src="https://gist.github.com/8366368.js"></script>
+```
+total 96
+drwxr-xr-x   3 BlahGeek  staff   102B  1 11 10:47 .
+drwxr-xr-x+ 10 BlahGeek  staff   340B  1 11 10:47 ..
+-rw-r--r--@  1 BlahGeek  staff    46K  1 11 10:46 test.png
+    com.apple.FinderInfo      32B 
+    com.apple.metadata:kMDItemIsScreenCapture     42B 
+    com.apple.metadata:kMDItemScreenCaptureType   51B 
+```
 
 通过`xattr -l test.png`可以查看元数据具体数据：
 
-<script src="https://gist.github.com/8366370.js"></script>
+```
+com.apple.FinderInfo:
+00000000  00 00 00 00 00 00 00 00 00 10 00 00 00 00 00 00  |................|
+00000010  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  |................|
+00000020
+com.apple.metadata:kMDItemIsScreenCapture:
+00000000  62 70 6C 69 73 74 30 30 09 08 00 00 00 00 00 00  |bplist00........|
+00000010  01 01 00 00 00 00 00 00 00 01 00 00 00 00 00 00  |................|
+00000020  00 00 00 00 00 00 00 00 00 09                    |..........|
+0000002a
+com.apple.metadata:kMDItemScreenCaptureType:
+00000000  62 70 6C 69 73 74 30 30 59 73 65 6C 65 63 74 69  |bplist00Yselecti|
+00000010  6F 6E 08 00 00 00 00 00 00 01 01 00 00 00 00 00  |on..............|
+00000020  00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00  |................|
+00000030  00 00 12                                         |...|
+00000033
+```
 
 当我们使用预览程序编辑之后，元数据会发生改变：
 
-<script src="https://gist.github.com/8366395.js"></script>
+```
+total 120
+drwxr-xr-x   3 BlahGeek  staff   102B  1 11 10:51 .
+drwxr-xr-x+ 10 BlahGeek  staff   340B  1 11 10:47 ..
+-rw-r--r--@  1 BlahGeek  staff    59K  1 11 10:51 test.png
+    com.apple.FinderInfo      32B 
+    com.apple.metadata:kMDItemIsScreenCapture     42B 
+    com.apple.metadata:kMDItemScreenCaptureType   51B 
+    com.apple.quarantine      22B 
+```
 
-<script src="https://gist.github.com/8366397.js"></script>
+```
+com.apple.FinderInfo:
+00000000  00 00 00 00 00 00 00 00 00 10 00 00 00 00 00 00  |................|
+00000010  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  |................|
+00000020
+com.apple.metadata:kMDItemIsScreenCapture:
+00000000  62 70 6C 69 73 74 30 30 09 08 00 00 00 00 00 00  |bplist00........|
+00000010  01 01 00 00 00 00 00 00 00 01 00 00 00 00 00 00  |................|
+00000020  00 00 00 00 00 00 00 00 00 09                    |..........|
+0000002a
+com.apple.metadata:kMDItemScreenCaptureType:
+00000000  62 70 6C 69 73 74 30 30 59 73 65 6C 65 63 74 69  |bplist00Yselecti|
+00000010  6F 6E 08 00 00 00 00 00 00 01 01 00 00 00 00 00  |on..............|
+00000020  00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00  |................|
+00000030  00 00 12                                         |...|
+00000033
+com.apple.quarantine: 0042;52d0b1c6;Preview;
+```
 
 将其压缩后，查看zip包的文件：
 
-<script src="https://gist.github.com/8366403.js"></script>
+```
+Archive:  test.zip
+  Length     Date   Time    Name
+ --------    ----   ----    ----
+    60582  01-11-14 10:51   test.png
+        0  01-11-14 10:56   __MACOSX/
+      382  01-11-14 10:51   __MACOSX/._test.png
+ --------                   -------
+    60964                   3 files
+```
 
 在PC上解压，`._test.png`文件的内容为：
 
-<script src="https://gist.github.com/blahgeek/8366647.js"></script>
+```
+Mac OS X            2L~ATTR**com.apple.metadata:kMDItemIsScreenCapture23,com.apple.metadata:kMDItemScreenCaptureTypeecom.apple.quarantinebplist00   bplist00Yselectioq/0042;52d0b1c6;Preview;
+```
 
