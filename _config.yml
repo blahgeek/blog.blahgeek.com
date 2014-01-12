@@ -1,0 +1,14 @@
+title:        'BlahGeek'
+tagline:      "BlahGeek's Blog"
+description:  'This my blog<br/>See <a href="about/">About Me</a>'
+# markdown:     rdiscount
+author:
+  name: BlahGeek
+  email: 'i@BlahGeek.com'
+markdown: redcarpet
+redcarpet:
+  extensions: ["fenced_code_blocks", "autolink", "tables", "strikethrough"]
+permalink:    pretty
+pygments:     true
+paginate:     5
+disqus:       blahgeekblog
