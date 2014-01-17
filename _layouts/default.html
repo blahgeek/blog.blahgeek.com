@@ -3,12 +3,7 @@
 
   {% include head.html %}
 
-  <body class="layout-reverse">
-    <script type="text/javascript">
-      var milisecond = (new Date()).getTime();
-      var offset = Math.floor(milisecond/1000/60/5) % 8 + 8; // 5min
-      document.getElementsByTagName('body')[0].className += ' theme-base-0' + offset.toString(16);
-    </script>
+  <body class="layout-reverse theme-base-08">
     <header class="masthead">
       <div class="masthead-inner">
         <h1><a href="/">{{ site.title }}</a></h1>
