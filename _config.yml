@@ -2,7 +2,6 @@ title:        'BlahGeek'
 tagline:      "BlahGeek's Blog"
 name:         "BlahGeek's Blog"
 url:          "http://blog.blahgeek.com"
-description:  'This my blog<br/>See <a href="/about/">About Me</a><br/>And also <a href="/blogroll/">Blogroll</a>'
 
 # markdown:     rdiscount
 exclude:      ['makefile']
