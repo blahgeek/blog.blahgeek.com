@@ -499,3 +499,40 @@ a:focus {
 .theme-base-0f .related-posts li a:hover {
   color: #8f5536;
 }
+
+.content table {
+  margin: 0 auto 20px;
+  text-align: center;
+}
+.content table > thead > tr > th,
+.content table > tbody > tr > th,
+.content table > tfoot > tr > th,
+.content table > thead > tr > td,
+.content table > tbody > tr > td,
+.content table > tfoot > tr > td {
+  padding: 8px;
+  line-height: 1.428571429;
+  vertical-align: top;
+  border-top: 1px solid #ddd;
+}
+.content table > thead > tr > th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #ddd;
+}
+.content table > caption + thead > tr:first-child > th,
+.content table > colgroup + thead > tr:first-child > th,
+.content table > thead:first-child > tr:first-child > th,
+.content table > caption + thead > tr:first-child > td,
+.content table > colgroup + thead > tr:first-child > td,
+.content table > thead:first-child > tr:first-child > td {
+  border-top: 0;
+}
+.content table > tbody + tbody {
+  border-top: 2px solid #ddd;
+}
+.content table table {
+  background-color: #fff;
+}
+.content table {
+    border-collapse: collapse !important;
+}
