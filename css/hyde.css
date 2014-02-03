@@ -1,46 +1,3 @@
-/*
- __                  __
-/\ \                /\ \
-\ \ \___   __  __   \_\ \     __
- \ \  _ `\/\ \/\ \  /'_` \  /'__`\
-  \ \ \ \ \ \ \_\ \/\ \_\ \/\  __/
-   \ \_\ \_\/`____ \ \___,_\ \____\
-    \/_/\/_/`/___/> \/__,_ /\/____/
-               /\___/
-               \/__/
-
-Hyde is an elegant, open source, mobile first theme for Jekyll.  It includes
-lightweight styles and placeholder content to get you up and running with a
-simple blog in no time.
-
-Designed, built, and released under MIT license by @mdo.
-
-Learn more at http://andhyde.com or https://github.com/mdo/hyde.
-
-*/
-
-
-/*
- * Contents
- *
- * Body resets
- * Custom type
- * Links
- * Masthead
- * Container
- * Posts
- * Error page
- * Pagination
- * Themes
- */
-
-
-/*
- * Body resets
- *
- * Update the foundational and global aspects of the page.
- */
-
 * {
   -webkit-box-sizing: border-box;
      -moz-box-sizing: border-box;
@@ -157,7 +114,6 @@ pre code {
   margin-bottom: 0;
 }
 
-/* Quotes */
 blockquote {
   padding: 5px 30px 5px 25px;
   margin: 15px 0;
@@ -166,28 +122,13 @@ blockquote {
 blockquote p {
   margin-bottom: 0;
   color: #7a7a7a;
-  /*text-indent: -0.4em;*/
 }
-/*blockquote p:before {
-  content: '\201C';
-}
-blockquote p:after {
-  content: '\201D';
-}
-*/
 img {
   max-width: 100%;
   display: block;
   margin: 0 0 15px;
   border-radius: 5px;
 }
-
-
-/*
- * Custom type
- *
- * Extend paragraphs with `.lead` for larger introductory text.
- */
 
 .lead {
   font-size: 20px;
@@ -199,14 +140,6 @@ img {
   }
 }
 
-
-/*
- * Links
- *
- * No `:visited` state is required by default (browsers will use `a`). `:focus`
- * is linked to `:hover` for basic accessibility.
- */
-
 a {
   font-weight: 600;
   color: #222;
@@ -217,17 +150,9 @@ a:focus {
   text-decoration: underline;
 }
 
-
-/*
- * Masthead
- *
- * Sidebar banner for housing site name, intro, and colophon (footer).
- */
-
-/* Sidebar masthead */
 .masthead {
   color: #fff;
-  background-color: #2a2a2a;
+  background-color: #ac4142;
 }
 .masthead-inner {
   padding: 20px;
@@ -245,7 +170,6 @@ a:focus {
   color: #fff;
 }
 
-/* Footer area of masthead */
 .colophon {
   margin-top: 20px;
   color: rgba(255,255,255,.5);
@@ -258,18 +182,18 @@ a:focus {
   color: inherit;
 }
 
-/* Responsive masthead */
 @media (min-width: 768px) {
   .masthead-inner {
     padding: 40px;
   }
 }
+
 @media (min-width: 990px) {
-  /* Fix the masthead to the side for impact and awesomeness */
   .masthead {
     position: fixed;
     top: 0;
-    left: 0;
+    left: auto;
+    right: 0;
     bottom: 0;
     width: 25%;
     margin-bottom: 0;
@@ -289,13 +213,6 @@ a:focus {
   }
 }
 
-
-/* Container
- *
- * Align the contents of the site above the proper threshold with some margin-fu
- * with a 25%-wide `.masthead`.
- */
-
 .content {
   padding: 40px 20px;
 }
@@ -307,19 +224,12 @@ a:focus {
   }
   .container {
     width: 55%;
-    margin-left: 30%;
-    margin-right: 10%;
+    margin-left: 10%;
+    margin-right: 35%;
   }
 }
 
 
-/*
- * Posts
- *
- * Each post is wrapped in `.post`. Used on default and post layouts.
- */
-
-/* Single post */
 .post {
   margin-bottom: 40px;
 }
@@ -361,14 +271,6 @@ a:focus {
   color: inherit;
 }
 
-
-/*
- * Pagination
- *
- * Super lightweight (HTML-wise) blog pagination. `span`s are provide for when
- * there are no more previous or next posts to show.
- */
-
 .pagination {
   overflow: hidden; /* clearfix */
   margin-top: 40px;
@@ -400,104 +302,9 @@ a:focus {
   background-color: #f5f5f5;
 }
 
-
-/*
- * Reverse layout
- *
- * Flip the orientation of the page by placing the `.masthead` on the right.
- */
-
-@media (min-width: 990px) {
-  .layout-reverse .masthead {
-    left: auto;
-    right: 0;
-  }
-  .layout-reverse .container {
-    margin-left: 10%;
-    margin-right: 35%;
-  }
-}
-
-
-/*
- * Themes
- *
- * As of v1.1, Hyde includes optional themes to color the sidebar and links
- * within blog posts. To use, add the class of your choosing to the `body`.
- */
-
-/* Base16 (http://chriskempson.github.io/base16/#default) */
-
-/* Red */
-.theme-base-08 .masthead {
-  background-color: #ac4142;
-}
-.theme-base-08 .container a,
-.theme-base-08 .related-posts li a:hover {
+.container a,
+.related-posts li a:hover {
   color: #ac4142;
-}
-
-/* Orange */
-.theme-base-09 .masthead {
-  background-color: #d28445;
-}
-.theme-base-09 .container a,
-.theme-base-09 .related-posts li a:hover {
-  color: #d28445;
-}
-
-/* Yellow */
-.theme-base-0a .masthead {
-  background-color: #f4bf75;
-}
-.theme-base-0a .container a,
-.theme-base-0a .related-posts li a:hover {
-  color: #f4bf75;
-}
-
-/* Green */
-.theme-base-0b .masthead {
-  background-color: #90a959;
-}
-.theme-base-0b .container a,
-.theme-base-0b .related-posts li a:hover {
-  color: #90a959;
-}
-
-/* Cyan */
-.theme-base-0c .masthead {
-  background-color: #75b5aa;
-}
-.theme-base-0c .container a,
-.theme-base-0c .related-posts li a:hover {
-  color: #75b5aa;
-}
-
-/* Blue */
-.theme-base-0d .masthead {
-  background-color: #6a9fb5;
-}
-.theme-base-0d .container a,
-.theme-base-0d .related-posts li a:hover {
-  color: #6a9fb5;
-}
-
-/* Magenta */
-.theme-base-0e .masthead {
-  background-color: #aa759f;
-}
-.theme-base-0e .container a,
-.theme-base-0e .related-posts li a:hover {
-  color: #aa759f;
-}
-
-/* Brown */
-.theme-base-0f .masthead {
-  background-color: #8f5536;
-}
-.theme-base-0f .container a,
-.theme-base-0f .related-posts li a:hover {
-  color: #8f5536;
 }
 
 .content table {
