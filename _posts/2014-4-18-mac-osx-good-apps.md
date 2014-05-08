@@ -4,6 +4,16 @@ title: OS X下极大提升幸福感的应用
 tags: mac osx geek apps
 ---
 
+### [Popclip](https://pilotmoon.com/popclip/)
+
+像iOS的复制粘贴一样，当选中一段文本时出现一些动作如“复制、粘贴”等，更棒的是这些动作可以以插件的形式下载，甚至自己编写。
+
+### [Dash](http://kapeli.com/dash)
+
+API文档浏览器，支持Popclip，各种编辑器等。
+
+![](/images/dashapp.png)
+
 ### [Cloud.app](http://www.getcloudapp.com)
 
 聊天时想要快速分享一个截屏/小文件/文字/代码？想要上传一张图片至网络并且获得直接下载链接？
