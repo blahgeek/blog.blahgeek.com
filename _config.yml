@@ -12,7 +12,7 @@ author:
 
 markdown: redcarpet
 redcarpet:
-  extensions: ["fenced_code_blocks", "autolink", "tables", "strikethrough", "underline"]
+  extensions: ["fenced_code_blocks", "autolink", "tables", "strikethrough", "underline", "footnotes"]
 
 permalink:    pretty
 pygments:     true

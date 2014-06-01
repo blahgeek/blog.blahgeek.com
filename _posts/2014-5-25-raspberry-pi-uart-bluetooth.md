@@ -5,6 +5,8 @@ title: Raspberry Pi UART总线（串口）蓝牙模块使用小记
 tags: raspberrypi hardware uart serial bluetooth
 ---
 
+> *2014/5/25 UPDATE* 旧版本的树莓派Kernel有[Bug](https://github.com/raspberrypi/linux/issues/12)，会在每次打开串口时发送一个多余的`0xF8`字符，改Bug在最新版本的内核中已修复。（如此神Bug…我已经无力吐槽了）
+
 ### 系统准备
 
 树莓派的UART接口默认是用于console的，要用作自己用途首先需要

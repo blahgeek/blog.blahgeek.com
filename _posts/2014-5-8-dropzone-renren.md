@@ -2,7 +2,7 @@
 permalink: dropzone-renren/
 layout: post
 title: 拖拽上传人人照片/快捷发布状态
-tags: dropzone renren ruby mac osx
+tags: dropzone renren ruby
 ---
 
 ![](/images/renren_plus_dropzone.png)
