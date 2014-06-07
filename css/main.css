@@ -1,0 +1,345 @@
+/*! HTML5 Boilerplate v4.3.0 | MIT License | http://h5bp.com/ */
+
+html,
+button,
+input,
+select,
+textarea {
+    color: #222;
+}
+
+html {
+    font-size: 1em;
+    line-height: 1.4;
+}
+
+::-moz-selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+::selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+audio,
+canvas,
+img,
+video {
+    vertical-align: middle;
+}
+
+fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+textarea {
+    resize: vertical;
+}
+
+.browsehappy {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+html, body {
+    width: 100%;
+    height: 100%;
+    color: #979797;
+    font-family: "微软雅黑", "Open Sans", Helvetica, Arial, sans-serif;
+    font-weight: 200;
+}
+
+.toppage {
+    text-align: center;
+    /*font-family: AvenirNext-Regular;*/
+    /*font-family: Lato;*/
+    background: #F8F8F8;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    min-height: 680px;
+}
+
+.toppage .container {
+    width: 860px;
+    margin: 0px auto;
+    padding-top: 50px;
+}
+
+@-webkit-keyframes drop_down{
+    0%{ -webkit-transform: translateY(-15px); }
+    100%{ opacity: 1;-webkit-transform: translateY(0); }
+}
+
+@-webkit-keyframes appear{
+    100%{ opacity: 1; }
+}
+
+@keyframes drop_down{
+    0%{ -webkit-transform: translateY(-15px); }
+    100%{ opacity: 1;-webkit-transform: translateY(0); }
+}
+
+@keyframes appear{
+    100%{ opacity: 1; }
+}
+
+.toppage p.main-text, .toppage p.small-text {
+    opacity: 0;
+    -webkit-animation: drop_down 1.2s ease 1s forwards;
+            animation: drop_down 1.2s ease 1s forwards;
+}
+
+.logo {
+    position: relative;
+    -webkit-animation: appear 1.2s ease forwards;
+            animation: appear 1.2s ease forwards;
+    opacity: 0;
+}
+
+#weixin-qr {
+    display: none;
+    width: 200px;
+    height: 200px;
+    background-image: url('/images/weixin-qr.png');
+    background-size: contain;
+    position: absolute;
+    opacity: 0;
+    -webkit-animation: drop_down 1.2s ease 0.2s forwards;
+            animation: drop_down 1.2s ease 0.2s forwards;
+}
+
+.logo h2 {
+    font-size: 72px;
+    line-height: 82px;
+}
+
+.logo h2 .name {
+    color: #50E3C2;
+    font-weight: normal;
+}
+
+.logo .line {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    border-style: solid;
+    border-width: 1px;
+    position: absolute;
+}
+
+.logo .line#line0 {
+    left: 300px;
+    top: -33px;
+    width: 269px;
+    height: 39px;
+    border-color: #979797 transparent transparent #979797;
+}
+
+.logo .line#line1 {
+    left: 458px;
+    top: 78px;
+    width: 111px;
+    height: 29px;
+    border-color: transparent transparent #979797 #979797;
+}
+
+.logo .text {
+    position: absolute;
+    font-size: 18px;
+    line-height: 26px;
+    text-align: left;
+}
+
+.logo .text#text0 {
+    left: 576px;
+    top: -65px;
+}
+
+.logo .text#text1 {
+    left: 576px;
+    top: 74px;
+}
+
+.toppage .small-text {
+    font-size: 20px;
+    line-height: 27px;
+}
+
+.toppage .small-text.scroll {
+    font-weight: 100;
+    margin-top: 150px;
+}
+
+.toppage .main-text {
+    font-size: 24px;
+    line-height: 33px;
+    margin-top: 38px;
+}
+
+.toppage .main-text a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.toppage .main-text a:hover {
+    text-decoration: none;
+    color: #50E3C2;
+}
+
+.mainpage {
+    position: relative;
+    font-size: 20px;
+    color: #303030;
+}
+
+.mainpage .container {
+    width: 760px;
+    padding: 125px 5px 35px 5px;
+    margin: 0px auto;
+}
+
+.mainpage .header .container {
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.mainpage .navbar {
+    float: right;
+}
+
+.mainpage .header a, .mainpage .share {
+    color: #979797;
+    text-decoration: none;
+}
+
+.mainpage .header a.active {
+    color: #50E3C2;
+}
+
+.mainpage .navbar a:hover {
+    text-decoration: underline;
+}
+
+.mainpage .share a:hover {
+    text-decoration: none;
+    color: #50E3C2;
+}
+
+.header {
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    background-color: rgba(255, 255, 255, 0.97);
+    padding: 30px 0 30px;
+    font-size: 20px;
+    border-bottom: 1px solid #eee;
+    position: absolute;
+}
+
+.header.fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 99;
+}
+
+
+
+
+/* ==========================================================================
+   Media Queries
+   ========================================================================== */
+
+@media only screen and (min-width: 35em) {
+
+}
+
+@media print,
+       (-o-min-device-pixel-ratio: 5/4),
+       (-webkit-min-device-pixel-ratio: 1.25),
+       (min-resolution: 120dpi) {
+
+}
+
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+
+.ir {
+    background-color: transparent;
+    border: 0;
+    overflow: hidden;
+    *text-indent: -9999px;
+}
+
+.ir:before {
+    content: "";
+    display: block;
+    width: 0;
+    height: 150%;
+}
+
+.hidden {
+    display: none !important;
+    visibility: hidden;
+}
+
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+    clip: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    width: auto;
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix {
+    *zoom: 1;
+}

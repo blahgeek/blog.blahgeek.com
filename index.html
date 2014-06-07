@@ -1,49 +1,18 @@
 ---
-layout: default
+layout: none
 ---
 
-<div class="posts">
-  {% for post in paginator.posts %}
-  <div class="post">
-    <h1>
-      <a href="{{ post.url }}">
-        {{ post.title }}
-      </a>
-    </h1>
+{%include head.html%}
+{%include toppage.html%}
+{%include navbar.html active="Home"%}
 
-    <span class="post-date">{{ post.date | date_to_string }}&nbsp;&nbsp;
-    <a href="{{ post.url }}#disqus_thread"></a></span>
+            <div class="container">
+                <div class="post-list">
+                    {% for post in site.posts %}
+                    <h2 class="post-title"><a href="{{ post.url }}">{{ post.title }}</a></h2>
+                    <span class="post-date">Post at {{ post.date | date_to_string }}</span>
+                    {% endfor %}
+                </div>
+            </div>
 
-    {{ post.content }}
-
-  </div>
-  {% endfor %}
-</div>
-
-<!-- Pagination links -->
-<div class="pagination">
-  {% if paginator.next_page %}
-    <a href="/page{{paginator.next_page}}" class="older">Older</a>
-  {% else %}
-    <span class="next">Older</span>
-  {% endif %}
-  {% if paginator.previous_page %}
-    {% if paginator.page == 2 %}
-      <a href="/" class="newer">Newer</a>
-    {% else %}
-      <a href="/page{{paginator.previous_page}}" class="newer">Newer</a>
-    {% endif %}
-  {% else %}
-    <span class="previous">Newer</span>
-  {% endif %}
-</div>
-
-<script type="text/javascript">
-    var disqus_shortname = '{{ site.disqus }}';
-    (function () {
-    var s = document.createElement('script'); s.async = true;
-    s.type = 'text/javascript';
-    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-    }());
-</script>
+{%include tail.html%}

@@ -1,0 +1,220 @@
+.mainpage h1, .mainpage h2, .mainpage h3, .mainpage h4, .mainpage h5, .mainpage h6 {
+  font-family: "PT Sans", Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  color: #313131;
+  letter-spacing: -.025rem;
+}
+.wrap {
+  position: relative;
+  width: 100%;
+}
+
+.page,
+.post {
+  margin-bottom: 4rem;
+}
+
+/* Blog post or page title */
+.page-title,
+.post-title,
+.post-title a {
+  color: #303030;
+}
+.page-title,
+.post-title {
+  margin-top: 0;
+}
+
+/* Meta data line below post title */
+.post-date {
+  display: block;
+  margin-top: -.5rem;
+  margin-bottom: 1rem;
+  color: #9a9a9a;
+}
+
+/* Related posts */
+.related {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  border-top: 1px solid #eee;
+}
+.related-posts {
+  padding-left: 0;
+  list-style: none;
+}
+.related-posts h3 {
+  margin-top: 0;
+}
+.related-posts li small {
+  font-size: 75%;
+  color: #999;
+}
+.related-posts li a:hover {
+  color: #50E3C2;
+  text-decoration: none;
+}
+.related-posts li a:hover small {
+  color: inherit;
+}
+
+/* No `:visited` state is required by default (browsers will use `a`) */
+.mainpage a {
+  color: #313131;
+  text-decoration: none;
+}
+.mainpage .post a {
+  text-decoration: underline;
+}
+/* `:focus` is linked to `:hover` for basic accessibility */
+.mainpage a:hover, .mainpage a:focus {
+  text-decoration: underline;
+}
+
+/* Headings */
+.mainpage h1, .mainpage h2, .mainpage h3, .mainpage h4, .mainpage h5, .mainpage h6 {
+  margin-bottom: .5rem;
+  font-weight: normal;
+  line-height: 1.25;
+  color: #313131;
+  text-rendering: optimizeLegibility;
+}
+.mainpage h1 {
+  font-size: 2.5rem;
+}
+.mainpage h2 {
+  margin-top: 1rem;
+  font-size: 1.75rem;
+}
+.mainpage h3 {
+  margin-top: 1.5rem;
+  font-size: 1.5rem;
+}
+.mainpage h4, h5, h6 {
+  margin-top: 1rem;
+  font-size: 1rem;
+}
+
+/* Body text */
+.mainpage p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.mainpage strong {
+  color: #303030;
+}
+
+
+/* Lists */
+ul, ol, dl {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+dt {
+  font-weight: bold;
+}
+dd {
+  margin-bottom: .5rem;
+}
+
+/* Misc */
+.mainpage hr {
+  position: relative;
+  margin: 2.5rem 0 2.5rem;
+  border: 0;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #fff;
+}
+
+abbr {
+  font-size: 85%;
+  font-weight: bold;
+  color: #555;
+  text-transform: uppercase;
+}
+abbr[title] {
+  cursor: help;
+  border-bottom: 1px dotted #e5e5e5;
+}
+
+/* Code */
+code,
+pre {
+  font-family: Menlo, Monaco, "Courier New", monospace;
+}
+code {
+  padding: .25em .5em;
+  font-size: 85%;
+  color: #bf616a;
+  background-color: #f9f9f9;
+  border-radius: 3px;
+}
+pre {
+  display: block;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  font-size: .8rem;
+  line-height: 1.4;
+  white-space: pre;
+  white-space: pre-wrap;
+  word-break: break-all;
+  word-wrap: break-word;
+  background-color: #f9f9f9;
+}
+pre code {
+  padding: 0;
+  font-size: 100%;
+  color: inherit;
+  background-color: transparent;
+}
+.highlight {
+  margin-bottom: 1rem;
+  border-radius: 4px;
+}
+.highlight pre {
+  margin-bottom: 0;
+}
+
+/* Quotes */
+blockquote {
+  padding: .5rem 1rem;
+  margin: .8rem 0;
+  color: #7a7a7a;
+  border-left: .25rem solid #e5e5e5;
+}
+blockquote p:last-child {
+  margin-bottom: 0;
+}
+@media (min-width: 30rem) {
+  blockquote {
+    padding-right: 5rem;
+    padding-left: 1.25rem;
+  }
+}
+
+.mainpage img {
+  display: block;
+  max-width: 100%;
+  margin: 0 0 1rem;
+  border-radius: 5px;
+}
+
+/* Tables */
+table {
+  margin-bottom: 1rem;
+  width: 100%;
+  border: 1px solid #e5e5e5;
+  border-collapse: collapse;
+}
+td,
+th {
+  padding: .25rem .5rem;
+  border: 1px solid #e5e5e5;
+}
+tbody tr:nth-child(odd) td,
+tbody tr:nth-child(odd) th {
+  background-color: #f9f9f9;
+}

@@ -1,28 +1,32 @@
-<link rel="stylesheet" href="{% minified_css_file %}">
+        </div>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="/js/vendor/jquery-1.11.0.min.js"><\/script>')</script>
 
-<script src="//c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js" type= "text/javascript">
- MathJax.Hub.Config({
-   config: ["MMLorHTML.js"],
-   jax: ["input/TeX","input/MathML","output/HTML-CSS","output/NativeMML"],
-   TeX: { extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"], equationNumbers: { autoNumber: "AMS" } },
-   extensions: ["tex2jax.js","mml2jax.js","MathMenu.js","MathZoom.js"],
-   tex2jax: { 
-     inlineMath: [ ['$','$'] ],
-     displayMath: [ ['$$','$$'] ],
-     processEscapes: true },
-     "HTML-CSS": {
-       styles: { ".MathJax .mo, .MathJax .mi": {color: "black ! important"}}
-     }
-   });
-</script>
+        <script src="/js/main.js"></script>
 
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        <script src="//c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js" type= "text/javascript">
+         MathJax.Hub.Config({
+           config: ["MMLorHTML.js"],
+           jax: ["input/TeX","input/MathML","output/HTML-CSS","output/NativeMML"],
+           TeX: { extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"], equationNumbers: { autoNumber: "AMS" } },
+           extensions: ["tex2jax.js","mml2jax.js","MathMenu.js","MathZoom.js"],
+           tex2jax: { 
+             inlineMath: [ ['$','$'] ],
+             displayMath: [ ['$$','$$'] ],
+             processEscapes: true },
+             "HTML-CSS": {
+               styles: { ".MathJax .mo, .MathJax .mi": {color: "black ! important"}}
+             }
+           });
+        </script>
 
-  ga('create', '{{site.google_analytics}}', 'blahgeek.com');
-  ga('send', 'pageview');
-
-</script>
+        <script>
+            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+            e.src='//www.google-analytics.com/analytics.js';
+            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+            ga('create','{{site.google_analytics}}', 'blahgeek.com');ga('send','pageview');
+        </script>
+    </body>
+</html>
