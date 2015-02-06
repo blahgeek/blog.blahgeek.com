@@ -8,16 +8,18 @@ require 'liquid'
 require 'nokogiri'
 
 module Jekyll
-    module ImgSrcFilter
+    module QiniuCDNFilter
         def cdn_imgsrc(input)
-            cdn = Jekyll.configuration({})['cdn_domain']
+            conf = Jekyll.configuration({})
+            cdn_domain = conf['cdn_domain']
+            cdn_img_suffix = conf['cdn_img_suffix']
             doc = Nokogiri::HTML.fragment(input)
             doc.css("img").each do |img|
-                img.attributes["src"].value = "#{cdn}#{img.attributes["src"].value}"
+                img.attributes["src"].value = "#{cdn_domain}#{img.attributes["src"].value}#{cdn_img_suffix}"
             end
             return doc.to_html
         end
     end
 end
 
-Liquid::Template.register_filter(Jekyll::ImgSrcFilter)
+Liquid::Template.register_filter(Jekyll::QiniuCDNFilter)
