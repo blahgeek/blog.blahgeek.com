@@ -20,3 +20,5 @@ pygments:     true
 disqus:       blahgeekblog
 
 google_analytics: 'UA-37086826-2'
+
+cdn_domain: http://7u2t7h.com1.z0.glb.clouddn.com
