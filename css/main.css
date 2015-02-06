@@ -67,22 +67,23 @@ html, body {
     color: #979797;
     font-family: "微软雅黑", "Open Sans", Helvetica, Arial, sans-serif;
     font-weight: 200;
+    margin: 0;
+    padding: 0;
 }
 
 .toppage {
     text-align: center;
-    /*font-family: AvenirNext-Regular;*/
-    /*font-family: Lato;*/
-    background: #F8F8F8;
+    /*background: #F8F8F8;*/
     margin: 0;
     padding: 0;
-    height: 100%;
-    width: 100%;
-    min-height: 680px;
+    /*height: 100%;*/
+    /*width: 100%;*/
+    /*min-height: 680px;*/
+    border-bottom: 1px solid #eee;
 }
 
 .toppage .container {
-    width: 860px;
+    /*width: 860px;*/
     margin: 0px auto;
     padding-top: 50px;
 }
@@ -105,24 +106,26 @@ html, body {
     100%{ opacity: 1; }
 }
 
-.toppage p.main-text, .toppage p.small-text {
+.toppage .main-text {
     opacity: 0;
-    -webkit-animation: drop_down 1.2s ease 1s forwards;
-            animation: drop_down 1.2s ease 1s forwards;
+    -webkit-animation: appear 1.2s ease 1s forwards;
+            animation: appear 1.2s ease 1s forwards;
 }
 
 .logo {
     position: relative;
-    -webkit-animation: appear 1.2s ease forwards;
-            animation: appear 1.2s ease forwards;
+    -webkit-animation: drop_down 1.2s ease forwards;
+            animation: drop_down 1.2s ease forwards;
     opacity: 0;
 }
 
 #weixin-qr {
+    z-index: 999;
     display: none;
     width: 200px;
     height: 200px;
-    background-image: url('/images/weixin-qr.png');
+    background-image: url('../images/weixin-qr.png');
+    background-color: white;
     background-size: contain;
     position: absolute;
     opacity: 0;
@@ -130,71 +133,19 @@ html, body {
             animation: drop_down 1.2s ease 0.2s forwards;
 }
 
-.logo h2 {
-    font-size: 72px;
-    line-height: 82px;
-}
-
-.logo h2 .name {
-    color: #50E3C2;
-    font-weight: normal;
-}
-
-.logo .line {
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    border-style: solid;
-    border-width: 1px;
-    position: absolute;
-}
-
-.logo .line#line0 {
-    left: 300px;
-    top: -33px;
-    width: 269px;
-    height: 39px;
-    border-color: #979797 transparent transparent #979797;
-}
-
-.logo .line#line1 {
-    left: 458px;
-    top: 78px;
-    width: 111px;
-    height: 29px;
-    border-color: transparent transparent #979797 #979797;
-}
-
-.logo .text {
-    position: absolute;
-    font-size: 18px;
-    line-height: 26px;
-    text-align: left;
-}
-
-.logo .text#text0 {
-    left: 576px;
-    top: -65px;
-}
-
-.logo .text#text1 {
-    left: 576px;
-    top: 74px;
-}
-
-.toppage .small-text {
-    font-size: 20px;
-    line-height: 27px;
-}
-
-.toppage .small-text.scroll {
-    font-weight: 100;
-    margin-top: 150px;
+.logo img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
 }
 
 .toppage .main-text {
-    font-size: 24px;
-    line-height: 33px;
-    margin-top: 38px;
+    font-size: 16px;
+    line-height: 10px;
+    margin-top: 30px;
+    margin-bottom: 35px;
 }
 
 .toppage .main-text a {
@@ -215,7 +166,7 @@ html, body {
 
 .mainpage .container {
     width: 760px;
-    padding: 125px 5px 35px 5px;
+    padding: 25px 5px 35px 5px;
     margin: 0px auto;
 }
 
@@ -224,7 +175,7 @@ html, body {
     padding-bottom: 0px;
 }
 
-.mainpage .navbar {
+.mainpage .share {
     float: right;
 }
 
@@ -250,7 +201,7 @@ html, body {
     width: 100%;
     background-color: rgb(255, 255, 255);
     background-color: rgba(255, 255, 255, 0.97);
-    padding: 30px 0 30px;
+    padding: 25px 0 25px;
     font-size: 20px;
     border-bottom: 1px solid #eee;
     position: absolute;

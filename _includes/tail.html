@@ -1,32 +1,44 @@
-        </div>
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="/js/vendor/jquery-1.11.0.min.js"><\/script>')</script>
+  <script src="//lib.sinaapp.com/js/jquery/2.0.3/jquery-2.0.3.min.js"></script>
+  <script type="text/javascript">window.jQuery || document.write('<script src="/js/vendor/jquery-1.11.0.min.js"><\/script>')</script>
 
-        <script src="/js/main.js"></script>
+  <script type="text/javascript">
+  $(document).ready(function() {
+    var wxpos = $('#weixin-btn').offset();
+    $('#weixin-qr').css({
+      top: wxpos.top + 30,
+      left: wxpos.left - 90,
+    });
+    $('#weixin-btn').hover(function() {
+      $('#weixin-qr').css('display', 'block');
+    }, function() {
+      $('#weixin-qr').css('display', 'none');
+    });
+  });
+  </script>
 
-        <script src="//c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js" type= "text/javascript">
-         MathJax.Hub.Config({
-           config: ["MMLorHTML.js"],
-           jax: ["input/TeX","input/MathML","output/HTML-CSS","output/NativeMML"],
-           TeX: { extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"], equationNumbers: { autoNumber: "AMS" } },
-           extensions: ["tex2jax.js","mml2jax.js","MathMenu.js","MathZoom.js"],
-           tex2jax: { 
-             inlineMath: [ ['$','$'] ],
-             displayMath: [ ['$$','$$'] ],
-             processEscapes: true },
-             "HTML-CSS": {
-               styles: { ".MathJax .mo, .MathJax .mi": {color: "black ! important"}}
-             }
-           });
-        </script>
+  <script type="text/x-mathjax-config">
+   MathJax.Hub.Config({
+     tex2jax: { 
+       inlineMath: [ ['$','$'] ],
+       displayMath: [ ['$$','$$'] ],
+       processEscapes: true 
+     },
+     "HTML-CSS": {
+       styles: {
+        ".MathJax .mo, .MathJax .mi": {color: "black ! important"}
+      }
+     }
+   });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
-        <script>
-            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-            e.src='//www.google-analytics.com/analytics.js';
-            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-            ga('create','{{site.google_analytics}}', 'blahgeek.com');ga('send','pageview');
-        </script>
-    </body>
+  <script type="text/javascript">
+      (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+      function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+      e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+      e.src='//www.google-analytics.com/analytics.js';
+      r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+      ga('create','{{site.google_analytics}}', 'blahgeek.com');ga('send','pageview');
+  </script>
+  </body>
 </html>

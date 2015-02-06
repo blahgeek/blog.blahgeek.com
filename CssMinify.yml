@@ -1,6 +1,5 @@
 files: [
-  'css/normalize.min.css',
-  'css/main.css',
   'css/post.css',
+  'css/main.css',
   'css/syntax.css',
 ]
