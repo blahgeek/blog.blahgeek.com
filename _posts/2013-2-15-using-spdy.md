@@ -27,7 +27,7 @@ SPDY主要的特性有：
 Nginx 1.3.0+ 版本能通过[patch](http://nginx.org/patches/spdy/README.txt)的方式增加对SPDY的支持。
 重新编译安装，略修改配置文件即可。
 
-![](/images/spdy-enable.png)
+![](images/spdy-enable.png)
 
 PS：有时间希望能进行一下载入速度对比测试。
 

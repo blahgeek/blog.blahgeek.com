@@ -26,7 +26,7 @@ tags: bittorrent dropbox mac sync
 后来我想到，既然自己有服务器，干脆一劳永逸地搭建一个适合自己的服务，
 不限流量不用付钱而且分享时界面可以自定义。
 
-![](/images/oc5files.png)
+![](images/oc5files.png)
 
 Google了一阵后，发现了[ownCloud](http://owncloud.org)这个东西，
 功能非常齐全，基本可以代替Dropbox，但是使用了一阵后也发现了很多缺点：
@@ -54,6 +54,6 @@ Google了一阵后，发现了[ownCloud](http://owncloud.org)这个东西，
 
 分享方面，自己写了一小段python代码见[这里](https://github.com/blahgeek/personal-file-sharing-center), 
 
-![](/images/cloud-share-screenshot.png)
+![](images/cloud-share-screenshot.png)
 
 

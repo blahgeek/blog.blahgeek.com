@@ -15,31 +15,31 @@ tags: network linode ping cernet
 
 speedtest.tokyo.linode.com(106.187.96.148):
 
-![](/images/linode_tokyo_ping.png)
+![](images/linode_tokyo_ping.png)
 
 
 speedtest.london.linode.com(176.58.107.39):
 
-![](/images/linode_london_ping.png)
+![](images/linode_london_ping.png)
 
 
 speedtest.newark.linode.com(50.116.57.237):
 
-![](/images/linode_newark_ping.png)
+![](images/linode_newark_ping.png)
 
 
 speedtest.atlanta.linode.com(50.116.39.117):
 
-![](/images/linode_atlanta_ping.png)
+![](images/linode_atlanta_ping.png)
 
 
 speedtest.dallas.linode.com(50.116.25.154):
 
-![](/images/linode_dallas_ping.png)
+![](images/linode_dallas_ping.png)
 
 
 speedtest.fremont.linode.com(50.116.14.9):
 
-![](/images/linode_fremont_ping.png)
+![](images/linode_fremont_ping.png)
 
 

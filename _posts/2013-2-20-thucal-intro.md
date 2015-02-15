@@ -28,5 +28,5 @@ tags: thu google calendar
 
 ###[页面点此进入](http://thucal.blahgeek.com/to_cal/)。感谢使用。
 
-![](/images/thucal_screenshot.png)
+![](images/thucal_screenshot.png)
 

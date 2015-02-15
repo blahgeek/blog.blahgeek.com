@@ -7,7 +7,7 @@ tags: avr hardware raspberrypi boring
 
 > 唔…总之就是一个定时掉落数粒直径2-3毫米球状物体的设备，使用单片机控制，从DS1302模块获得时间。
 
-![](/images/auto-turtle-feeder.jpg)
+![](images/auto-turtle-feeder.jpg)
 
 ### 机械部分
 
@@ -15,7 +15,7 @@ tags: avr hardware raspberrypi boring
 
 “原理图”如下：
 
-![](/images/auto-turtle-feeder2.png)
+![](images/auto-turtle-feeder2.png)
 
 
 旋转的部分是用一块橡皮擦抠出来的，为减小摩擦力需要在表面贴上透明胶布，然后与电机连接。

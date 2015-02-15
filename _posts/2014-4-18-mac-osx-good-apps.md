@@ -12,13 +12,13 @@ tags: mac osx geek apps
 
 API文档浏览器，支持Popclip，各种编辑器等。
 
-![](/images/dashapp.png)
+![](images/dashapp.png)
 
 ### [Cloud.app](http://www.getcloudapp.com)
 
 聊天时想要快速分享一个截屏/小文件/文字/代码？想要上传一张图片至网络并且获得直接下载链接？
 
-![](/images/cloudapp.gif)
+![](images/cloudapp.gif)
 
 > Drag and drop, share the link immediately.
 
@@ -26,13 +26,13 @@ API文档浏览器，支持Popclip，各种编辑器等。
 
 代码、文件夹、图片可视化Diff。
 
-![](/images/kaleidoscope.png)
+![](images/kaleidoscope.png)
 
 ### [Hosts.prefpane](https://github.com/specialunderwear/Hosts.prefpane)
 
 把`/etc/hosts`放到系统偏好设置。
 
-![](/images/hosts.png)
+![](images/hosts.png)
 
 ### [ControlPlane](http://www.controlplaneapp.com)
 
@@ -42,4 +42,4 @@ API文档浏览器，支持Popclip，各种编辑器等。
 
 编辑器。我曾经是个vimer，恩。
 
-![](/images/sublimetext.gif)
+![](images/sublimetext.gif)

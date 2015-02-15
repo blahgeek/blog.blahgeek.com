@@ -5,9 +5,9 @@ title: 拖拽上传人人照片/快捷发布状态(Dropzone 3)
 tags: dropzone renren ruby
 ---
 
-![](/images/dropzone3-renren.png)
+![](images/dropzone3-renren.png)
 
-![](/images/dropzone-renren.gif)
+![](images/dropzone-renren.gif)
 
 # 介绍
 

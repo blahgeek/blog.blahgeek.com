@@ -7,7 +7,7 @@ tags: raspberrypi hardware
 
 >今天是3月14日，派节，入手树莓派一只 :P
 
-![](/images/raspberrypi.jpg)
+![](images/raspberrypi.jpg)
 
 
 ### OS

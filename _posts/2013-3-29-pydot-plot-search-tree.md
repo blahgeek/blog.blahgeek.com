@@ -27,5 +27,5 @@ f为启发函数。
 
 对于N=5，K=3的MC问题，画出来的图大概长这样（每个节点的意义为“（M, C, 方向, 深度）, f”）：
 
-![](/images/pydot-search-tree.png)
+![](images/pydot-search-tree.png)
 

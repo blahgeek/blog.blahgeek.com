@@ -7,7 +7,7 @@ tags: weixin network google calendar
 
 先上效果图：
 
-![](/images/weixin-mp-reply.png)
+![](images/weixin-mp-reply.png)
 
 
 [Fork Me On Github](https://github.com/blahgeek/weixin-mp)
@@ -24,6 +24,6 @@ tags: weixin network google calendar
 
 **WARNING**：这个东西给基友玩玩就可以了，女友用的话...以下为脑补场景：
 
-![](/images/weixin-mp-bzmh.png)
+![](images/weixin-mp-bzmh.png)
 
 

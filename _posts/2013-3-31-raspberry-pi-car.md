@@ -14,9 +14,9 @@ tags: raspberrypi hardware html video javascript
 
 先上图：
 
-![](/images/raspberrypi-car.png)
+![](images/raspberrypi-car.png)
 
-![](/images/raspberrypi-car-control.png)
+![](images/raspberrypi-car-control.png)
 
 ### 功能的实现
 
