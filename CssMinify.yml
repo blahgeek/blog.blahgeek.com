@@ -1,5 +1,5 @@
 files: [
+  'css/syntax.css',
   'css/post.css',
   'css/main.css',
-  'css/syntax.css',
 ]
