@@ -6,7 +6,6 @@ layout: none
 {%include toppage.html%}
 
 <div class="mainpage">
-
   <div class="container">
     <div class="post">
       <h1>{{ page.title }}</h1>
@@ -19,14 +18,9 @@ layout: none
       <h2>Related Posts</h2>
       <ul class="related-posts">
         {% for post in site.related_posts limit:3 %}
-          <li>
-            <h3>
-              <a href="{{ post.url }}">
-                {{ post.title }}
-                <small>{{ post.date | date_to_string }}</small>
-              </a>
-            </h3>
-          </li>
+          <li><h3><a href="{{ post.url }}">
+            {{ post.title }}<small>{{ post.date | date_to_string }}</small>
+          </a></h3></li>
         {% endfor %}
       </ul>
     </div>
@@ -35,7 +29,6 @@ layout: none
     <div id="disqus_thread" class="related"></div>
     <script type="text/javascript">
         var disqus_shortname = '{{ site.disqus }}';
-
         (function() {
             var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
             dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
@@ -46,7 +39,6 @@ layout: none
     <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
   
   </div>
-
 </div>
 
 {%include tail.html%}
