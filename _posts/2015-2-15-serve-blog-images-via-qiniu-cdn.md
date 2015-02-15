@@ -38,7 +38,7 @@ cdn_domain: https://dn-blahgeek-blog-mirror.qbox.me
 cdn_img_suffix: ?imageView2/2/w/800
 ```
 
-即可自动将每篇文章中的图片转换为如上形式。
+最后将template中的`content`改为`content | cdn_imgsrc`，即可自动将每篇文章中的图片转换为如上形式。
 
 ```ruby
 #!/usr/bin/ruby
