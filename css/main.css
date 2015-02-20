@@ -108,29 +108,22 @@ html, body {
 
 .toppage .main-text {
     opacity: 0;
-    -webkit-animation: appear 1.2s ease 1s forwards;
-            animation: appear 1.2s ease 1s forwards;
+    -webkit-animation: drop_down 1.2s ease forwards;
+            animation: drop_down 1.2s ease forwards;
 }
 
 .logo {
     position: relative;
-    -webkit-animation: drop_down 1.2s ease forwards;
-            animation: drop_down 1.2s ease forwards;
     opacity: 0;
+    -webkit-animation: appear 2s linear forwards;
+            animation: appear 2s linear forwards;
 }
 
-#weixin-qr {
-    z-index: 999;
+#weixin {
     display: none;
+    margin: 5px auto;
     width: 200px;
     height: 200px;
-    background-image: url('../images/weixin-qr.png');
-    background-color: white;
-    background-size: contain;
-    position: absolute;
-    opacity: 0;
-    -webkit-animation: drop_down 1.2s ease 0.2s forwards;
-            animation: drop_down 1.2s ease 0.2s forwards;
 }
 
 .logo img {
