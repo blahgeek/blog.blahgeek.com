@@ -3,6 +3,7 @@ permalink: dropzone-renren/
 layout: post
 title: 拖拽上传人人照片/快捷发布状态
 tags: dropzone renren ruby
+github_repo: dropzone-user-scripts
 ---
 
 **[Dropzone 3](https://aptonic.com/dropzone3/)已发布，本插件已更新，详见[本文](/dropzone3-renren)**
