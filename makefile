@@ -1,7 +1,7 @@
 SSH_PORT=22
 OUTPUTDIR=_site
 SSH_USER=blahgeek
-SSH_HOST=nodex.blahgeek.com
+SSH_HOST=blog.blahgeek.com
 SSH_TARGET_DIR=/srv/http/blog.blahgeek.com/
 
 all:
