@@ -1,5 +1,6 @@
 ---
 layout: post
+classification: tech
 title: OpenWRT配置IPv6的NAT（一般结合isatap使用）
 tags: openwrt ipv6 network
 ---

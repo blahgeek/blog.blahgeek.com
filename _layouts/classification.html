@@ -1,0 +1,22 @@
+{%include head.html%}
+{%include toppage.html%}
+
+<div class="mainpage">
+    <div class="container">
+        <div class="navbar"> <ul>
+            <li><a href="/"{% if page.classification == "" %} class="active" {% endif %}>All</a></li>
+            <li><a href="/tech/"{% if page.classification == "tech" %} class="active" {% endif %}>Tech</a></li>
+            <li><a href="/misc/"{% if page.classification == "misc" %} class="active" {% endif %}>Misc</a></li>
+            <li><a href="/project/"{% if page.classification == "project" %} class="active" {% endif %}>Project</a></li>
+            <li><a href="/life/"{% if page.classification == "life" %} class="active" {% endif %}>Life</a></li>
+        </ul> </div>
+        <div class="post-list">
+        {% for post in site.posts %}{% if post.classification == page.classification or page.classification == ""%}
+        <h2 class="post-title"><a href="{{ post.url }}">{{ post.title }}</a></h2>
+        <span class="post-date">Post at {{ post.date | date_to_string }}</span>
+        {% endif %}{% endfor %}
+        </div>
+    </div>
+</div>
+
+{%include tail.html%}

@@ -1,5 +1,6 @@
 ---
 permalink: shi-yong-pydothui-zhi-asuan-fa-sou-suo-tu.html
+classification: tech
 layout: post
 title: 使用Pydot绘制A算法搜索图
 tags: python dot search

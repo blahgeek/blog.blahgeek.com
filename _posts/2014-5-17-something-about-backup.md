@@ -1,7 +1,8 @@
 ---
 layout: post
+classification: tech
 title: 我是怎么存储/同步/备份我的数据的
-tags: 
+tags: network geek backup gfw
 ---
 
 >提醒一下，如果你认为自己是强迫症患者，那么建议你离开这个页面不要往下读了…正如我几个月前在一个英文的博客中看到了某人的备份方案后从此踏上了买硬盘订服务配环境的剁手不归路……

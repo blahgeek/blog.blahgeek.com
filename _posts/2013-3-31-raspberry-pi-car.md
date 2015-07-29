@@ -1,5 +1,6 @@
 ---
 permalink: yong-shu-mei-pai-zuo-yuan-cheng-kong-zhi-xiao-che.html
+classification: project
 layout: post
 title: 用树莓派做远程控制小车...
 tags: raspberrypi hardware html video javascript

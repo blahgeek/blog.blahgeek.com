@@ -1,5 +1,6 @@
 ---
 permalink: fullstack-and-geek/
+classification: life
 title: 全栈工程师、极客和领导者
 layout: post
 tags: thoughts geek leader life

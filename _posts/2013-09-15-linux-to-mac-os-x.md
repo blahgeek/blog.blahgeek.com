@@ -1,5 +1,6 @@
 ---
 permalink: cong-linuxdao-mac-os-x.html
+classification: misc
 layout: post
 title: 从Linux到Mac OS X
 tags: linux mac

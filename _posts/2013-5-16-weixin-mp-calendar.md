@@ -1,8 +1,10 @@
 ---
 permalink: shi-yong-wei-xin-gong-zhong-ping-tai-zi-dong-hui-fu-xing-cheng-shi-yao-de.html
+classification: project
 layout: post
 title: 使用微信公众平台自动回复行程什么的
 tags: weixin network google calendar
+github_repo: weixin-mp
 ---
 
 先上效果图：

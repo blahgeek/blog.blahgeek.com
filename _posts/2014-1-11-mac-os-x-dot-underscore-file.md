@@ -1,5 +1,6 @@
 ---
 permalink: mac-os-x-dot-underscore.html
+classification: tech
 layout: post
 title: 关于Mac OS X中的.DS_STORE、._xxx文件
 tags: mac geek

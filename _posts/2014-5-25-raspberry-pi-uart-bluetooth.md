@@ -1,5 +1,6 @@
 ---
 permalink: raspberry-pi-uartzong-xian-chuan-kou-lan-ya-mo-kuai-shi-yong-xiao-ji.html
+classification: tech
 layout: post
 title: Raspberry Pi UART总线（串口）蓝牙模块使用小记
 tags: raspberrypi hardware uart serial bluetooth

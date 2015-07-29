@@ -1,5 +1,6 @@
 ---
 permalink: shi-yong-bittorrent-syncda-jian-zi-ji-de-dropbox.html
+classification: tech
 layout: post
 title: 使用BitTorrent Sync搭建自己的Dropbox
 tags: bittorrent dropbox mac sync

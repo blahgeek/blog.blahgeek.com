@@ -1,5 +1,6 @@
 ---
 permalink: raspberry-piru-shou-xiao-ji.html
+classification: tech
 layout: post
 title: Raspberry Pi入手小记
 tags: raspberrypi hardware

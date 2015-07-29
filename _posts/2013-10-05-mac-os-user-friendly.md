@@ -1,5 +1,6 @@
 ---
 permalink: hua-shuo-mac-os-xru-he-tong-shi-zuo-dao-dui-xiao-bai-he-geekyou-hao.html
+classification: misc
 layout: post
 title: 话说Mac OS X如何同时做到对小白和Geek友好
 tags: mac geek

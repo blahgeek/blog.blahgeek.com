@@ -151,6 +151,36 @@ html, body {
     color: #50E3C2;
 }
 
+.navbar {
+    border-bottom: 1px solid #eee;
+    font-size: 16px;
+    color: #979797;
+}
+.navbar ul {
+    clear: both;
+    display: table;
+    list-style: none;
+    margin: 5px auto 5px;
+    padding: 0;
+}
+.navbar li {
+    float: left;
+    padding: 0 8px 0 8px;
+    display: block;
+}
+.mainpage .navbar a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.mainpage .navbar a:hover {
+    text-decoration: none;
+    color: #50E3C2;
+}
+.mainpage .navbar a.active {
+    color: #50E3C2;
+}
+
 .mainpage {
     position: relative;
     font-size: 20px;
@@ -159,8 +189,11 @@ html, body {
 
 .mainpage .container {
     width: 760px;
-    padding: 25px 5px 35px 5px;
+    padding: 0 5px 35px 5px;
     margin: 0px auto;
+}
+.mainpage .post-list {
+    padding-top: 25px;
 }
 
 .mainpage .header .container {

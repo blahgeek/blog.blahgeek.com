@@ -24,3 +24,5 @@ google_analytics: 'UA-37086826-2'
 #cdn_domain: http://7u2t7h.com1.z0.glb.clouddn.com
 cdn_domain: https://dn-blahgeek-blog-mirror.qbox.me
 cdn_img_suffix: ?imageView2/2/w/800
+
+classifications: ["", "tech", "misc", "project", "life"]

@@ -1,5 +1,6 @@
 ---
 permalink: interactive-debug-in-python.html
+classification: tech
 layout: post
 title: 设置“断点”调试Python代码
 tags: python debug ipython

@@ -1,5 +1,6 @@
 ---
 permalink: bei-jing-jiao-yu-wang-zhi-linodege-ce-su-fu-wu-qi-quan-tian-pingzhi-tong-ji.html
+classification: tech
 layout: post
 title: 北京教育网至Linode各测速服务器全天Ping值统计
 tags: network linode ping cernet

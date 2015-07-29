@@ -1,5 +1,6 @@
 ---
 layout: post
+classification: tech
 tags: geek blog cdn network
 permalink: qiniu-cdn-serve-static/
 title: 使用七牛CDN加速博客静态文件访问

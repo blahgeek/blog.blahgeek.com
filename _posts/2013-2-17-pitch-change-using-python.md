@@ -1,5 +1,6 @@
 ---
 permalink: yong-pythonba-zhou-jie-lun-bian-wei-zhou-jie-lun.html
+classification: tech
 layout: post
 title: 用Python把周杰伦变为周婕纶
 tags: python numpy wave jay song

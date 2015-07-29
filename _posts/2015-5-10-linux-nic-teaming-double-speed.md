@@ -1,5 +1,6 @@
 ---
 permalink: linux-NIC-teaming/
+classification: tech
 title: 使用NIC Teaming配置多个网络接口提升带宽
 layout: post
 tags: network linux

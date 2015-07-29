@@ -1,5 +1,6 @@
 ---
 permalink: zai-google-mapsshang-ding-ge-da-tou-zhen-neng-zha-si-duo-shao-ren.html
+classification: misc
 layout: post
 title: 在Google Maps上定一个大头针，能扎死多少人？
 tags: boring google zhihu

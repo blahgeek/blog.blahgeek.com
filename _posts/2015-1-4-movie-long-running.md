@@ -1,5 +1,6 @@
 ---
 layout: post
+classification: life
 title: 人生中第一次拍摄的微电影：《长跑》
 tags: geek life movie
 ---

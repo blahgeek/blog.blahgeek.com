@@ -1,5 +1,6 @@
 ---
 permalink: dropzone-renren/
+classification: project
 layout: post
 title: 拖拽上传人人照片/快捷发布状态
 tags: dropzone renren ruby

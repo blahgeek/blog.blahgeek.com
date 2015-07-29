@@ -1,5 +1,6 @@
 ---
 permalink: mac-os-xxia-pei-zhi-isatapbao-gua-zai-nathou.html
+classification: tech
 layout: post
 title: Mac OS X下配置ISATAP（包括在NAT后）
 tags: mac isatap ipv6 nat

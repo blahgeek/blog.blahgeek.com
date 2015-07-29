@@ -1,5 +1,6 @@
 ---
 layout: post
+classification: tech
 permalink: gitlab-ci-build-multi-repo/
 title: GitLab CI＋Git submodule：自动发布包含多个组件的代码
 tags: git gitlab ci linux build c++ c

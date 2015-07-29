@@ -1,5 +1,6 @@
 ---
 permalink: raspberry-pi-i2czong-xian-shi-yong-xiao-ji.html
+classification: tech
 layout: post
 title: Raspberry Pi I2C总线使用小记
 tags: raspberrypi hardware i2c compass

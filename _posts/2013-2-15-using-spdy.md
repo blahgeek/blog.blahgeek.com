@@ -1,5 +1,6 @@
 ---
 permalink: ben-zhan-kai-shi-zhi-chi-spdy.html
+classification: misc
 layout: post
 title: 本站开始支持SPDY
 tags: spdy google http network

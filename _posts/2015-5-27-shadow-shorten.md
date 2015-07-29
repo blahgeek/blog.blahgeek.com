@@ -1,5 +1,6 @@
 ---
 layout: post
+classification: project
 title: ShadowShorten：科学的自带代理短网址服务
 tags: geek nginx proxy gfw lua
 permalink: ShadowShorten/

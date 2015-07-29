@@ -1,5 +1,6 @@
 ---
 permalink: glibc-and-symbol-versioning/
+classification: tech
 layout: post
 title: glibc和Symbol Versioning
 tags: linux glibc gcc c c++

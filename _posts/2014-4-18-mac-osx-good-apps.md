@@ -1,5 +1,6 @@
 ---
 layout: post
+classification: misc
 title: OS X下极大提升幸福感的应用
 tags: mac osx geek apps
 ---
