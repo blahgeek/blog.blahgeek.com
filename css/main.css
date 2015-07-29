@@ -88,7 +88,7 @@ html, body {
     padding-top: 50px;
 }
 
-@-webkit-keyframes drop_down{
+/*@-webkit-keyframes drop_down{
     0%{ -webkit-transform: translateY(-15px); }
     100%{ opacity: 1;-webkit-transform: translateY(0); }
 }
@@ -105,8 +105,8 @@ html, body {
 @keyframes appear{
     100%{ opacity: 1; }
 }
-
-.toppage .main-text {
+*/
+/*.toppage .main-text {
     opacity: 0;
     -webkit-animation: drop_down 1.2s ease forwards;
             animation: drop_down 1.2s ease forwards;
@@ -118,7 +118,7 @@ html, body {
     -webkit-animation: appear 2s linear forwards;
             animation: appear 2s linear forwards;
 }
-
+*/
 #weixin {
     display: none;
     margin: 5px auto;
