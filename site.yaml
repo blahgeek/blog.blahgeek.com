@@ -1,0 +1,16 @@
+title:        'BlahGeek'
+tagline:      "BlahGeek's Blog"
+name:         "BlahGeek's Blog"
+url:          "http://blog.blahgeek.com"
+
+author:
+  name: BlahGeek
+  email: 'i@BlahGeek.com'
+
+disqus:       blahgeekblog
+
+google_analytics: 'UA-37086826-2'
+
+#cdn_domain: http://7u2t7h.com1.z0.glb.clouddn.com
+cdn_domain: https://dn-blahgeek-blog-mirror.qbox.me
+cdn_img_suffix: ?imageView2/2/w/800
