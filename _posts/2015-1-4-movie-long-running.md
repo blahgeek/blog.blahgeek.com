@@ -3,6 +3,7 @@ layout: post
 classification: life
 title: 人生中第一次拍摄的微电影：《长跑》
 tags: geek life movie
+permalink: 2015/01/04/movie-long-running/
 ---
 
 我的Bucket List上一直有一项心愿：“编写/导演/拍摄一部微电影“。趁着大四狗比较空，选了“微电影创作”这门课，作为课程的大作业完成了一部微电影《长跑》，终于达成了这个愿望…

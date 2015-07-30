@@ -3,6 +3,7 @@ layout: post
 classification: misc
 title: OS X下极大提升幸福感的应用
 tags: mac osx geek apps
+permalink: 2014/04/18/mac-osx-good-apps/
 ---
 
 ### [Popclip](https://pilotmoon.com/popclip/)
