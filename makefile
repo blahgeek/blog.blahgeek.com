@@ -47,6 +47,16 @@ $(BUILD_DIR)/%.yaml: $(BUILD_DIR)/posts.yaml
 	@true
 
 #################################
+# Template Dependency
+#################################
+
+$(TEMPLATE_DIR)/index.html: $(TEMPLATE_DIR)/base.html
+	touch $@
+
+$(TEMPLATE_DIR)/post.html: $(TEMPLATE_DIR)/index.html
+	touch $@
+
+#################################
 # Index Pages
 #################################
 define indexpagerule
@@ -117,7 +127,7 @@ $(foreach folder,$(STATIC_FOLDERS),$(eval $(call staticrule,$(folder))))
 define postrule
 $$(TARGET_DIR)/$(2): $$(BUILD_DIR)/$(1).html \
 							$$(CONFIG) $$(BUILD_DIR)/$(3).yaml \
-							$$(TEMPLATE_DIR)/post.html $$(TEMPLATE_DIR)/index.html \
+							$$(TEMPLATE_DIR)/post.html \
 							$$(RENDER)
 	@echo "Building" $(2) $(3)
 	@mkdir -pv $$(dir $$@)
@@ -132,7 +142,6 @@ endef
 postrule_wrap=$(call postrule,$(1),$(shell grep "permalink:" "$(1)" | sed -e "s/.*:[ ]*//" -e "s/\/\$$/\/index.html/"),$(shell dirname "$(1)")/$(shell basename "$(1)" .md))
 
 $(foreach post,$(POSTS),$(eval $(call postrule_wrap,$(post))))
-
 
 #################################
 # Other Rules

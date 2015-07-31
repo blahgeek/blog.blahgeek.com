@@ -1,77 +1,15 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>
-          {% if page.title %}{{ page.title }} &middot; {% endif %}
-          {{ site.tagline }}
-        </title>
-        <meta name="description" content="{{ site.tagline }}">
+{% extends "base.html" %}
 
-        <link rel="shortcut icon" href="/images/gravatar.jpeg">
-        <link rel="alternate" type="application/rss+xml" title="RSS" href="/feeds/all.rss.xml">
-
-        <link rel="stylesheet" type="text/css" href="/css/min.css">
-        <link rel="stylesheet" type="text/css" href="{{ site.cdn_domain }}/css/font-awesome-4.3.0/css/font-awesome.min.css">
-
-    </head>
-    <body>
-        <!--[if lt IE 9]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-
-<div class="toppage">
-    <div class="container">
-        <div class="logo">
-            <a href="/"><img src="https://dn-blahgeek-blog-mirror.qbox.me/images/gravatar.jpeg"></a>
-        </div>
-        <div class="main-text">
-            <p>I'm 赵一开/BlahGeek, a CS&T Student @ Tsinghua U.</p>
-            <p>Get in touch: 
-                <a href="mailto:i@blahgeek.com?subject=Hello"><i class="fa fa-envelope-o"></i></a>
-                <a href="https://github.com/blahgeek"><i class="fa fa-github"></i></a>
-                <a href="http://www.renren.com/381135165"><i class="fa fa-renren"></i></a>
-                <a id="weixin-btn" href="#" onclick="document.getElementById('weixin').style.display='block';return false;">
-                    <i class="fa fa-wechat"></i>
-                </a>
-            </p>
-            <p><img id="weixin" src="https://dn-blahgeek-blog-mirror.qbox.me/images/weixin-qr.png"></p>
-        </div>
-    </div>
-</div>
-
-{% block body %}
-<div class="mainpage">
-    <div class="container">
-        <div class="navbar"> <ul>
-            <li><a href="/"{% if not page.classification %} class="active" {% endif %}>All</a></li>
-            <li><a href="/tech/"{% if page.classification == "tech" %} class="active" {% endif %}>Tech</a></li>
-            <li><a href="/misc/"{% if page.classification == "misc" %} class="active" {% endif %}>Misc</a></li>
-            <li><a href="/project/"{% if page.classification == "project" %} class="active" {% endif %}>Project</a></li>
-            <li><a href="/life/"{% if page.classification == "life" %} class="active" {% endif %}>Life</a></li>
-        </ul> </div>
-        <div class="post-list">
-        {% for post in posts %}{% if post.classification == page.classification or not page.classification %}
-        <h2 class="post-title"><a href="/{{ post.permalink }}">{{ post.title }}</a></h2>
-        <span class="post-date">Post at {{ post.date_human }}</span>
-        {% endif %}{% endfor %}
-        </div>
-    </div>
-</div>
+{% block title %}
+  {% if page.title %}{{ page.title }} &middot; {% endif %}
+  {{ site.tagline }}
 {% endblock %}
 
-<script src="{{site.cdn_domain}}/js/instantclick.min.js" data-no-instant></script>
-<script data-no-instant>InstantClick.init();</script>
-
-<script>
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-ga('create', '{{site.google_analytics}}', 'auto');
-ga('send', 'pageview');
-</script>
-
-  </body>
-</html>
+{% block content %}
+  <div class="post-list">
+    {% for post in posts %}{% if post.classification == page.classification or not page.classification %}
+    <h2 class="post-title"><a href="/{{ post.permalink }}">{{ post.title }}</a></h2>
+    <span class="post-date">Post at {{ post.date_human }}</span>
+    {% endif %}{% endfor %}
+  </div>
+{% endblock %}
