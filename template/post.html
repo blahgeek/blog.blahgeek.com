@@ -1,37 +1,29 @@
----
-layout: none
----
+{% extends "index.html" %}
 
-{%include head.html%}
-{%include toppage.html%}
-
-<div class="mainpage">
-  <div class="container">
+{% block content %}
     <div class="post">
       <h1>{{ page.title }}</h1>
       <div class="post-info">
-        <span class="post-date"> {{ page.date | date_to_string }} </span>
+        <span class="post-date"> {{ page.date_human }} </span>
         {% if page.github_repo %}
         <span class="post-github">
           <iframe src="https://ghbtns.com/github-btn.html?user=blahgeek&repo={{page.github_repo}}&type=star&count=true" frameborder="0" scrolling="0" width="170px" height="20px"></iframe>
         </span>
         {% endif %}
       </div>
-      {{ content | cdn_imgsrc }}
+      {{ page.body }}
     </div>
 
-    {% if site.related_posts != empty %}
     <div class="related">
       <h2>Related Posts</h2>
       <ul class="related-posts">
-        {% for post in site.related_posts limit:3 %}
-          <li><h3><a href="{{ post.url }}">
-            {{ post.title }}<small>{{ post.date | date_to_string }}</small>
+        {% for post in page.related %}
+          <li><h3><a href="/{{ post.permalink }}">
+            {{ post.title }}<small> {{ post.date_human }}</small>
           </a></h3></li>
         {% endfor %}
       </ul>
     </div>
-    {% endif %}
 
     <div id="disqus_thread" class="related"></div>
     <script type="text/javascript">
@@ -45,7 +37,4 @@ layout: none
     <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
   
-  </div>
-</div>
-
-{%include tail.html%}
+{% endblock %}

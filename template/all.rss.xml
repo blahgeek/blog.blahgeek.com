@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>{{ site.name }}</title>
+        <link>{{ site.url }}</link>
+        <atom:link href="{{ site.url }}/feeds/all.rss.xml" rel="self" type="application/rss+xml" />
+        {% for post in posts[:20] %}
+        <item>
+            <title>{{ post.title | e }}</title>
+            <description>{{ post.body | e }}</description>
+            <pubDate>{{ post.date_human }}</pubDate>
+            <link>{{ site.url }}/{{ post.permalink }}</link>
+            <guid isPermaLink="true">{{ site.url }}/{{ post.permalink }}</guid>
+        </item>
+        {% endfor %}
+    </channel>
+</rss>

@@ -41,3 +41,6 @@ validation-report.json
 node_modules
 
 _ssl
+
+site
+build
