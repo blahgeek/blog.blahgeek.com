@@ -7,10 +7,10 @@
         {% for post in posts[:20] %}
         <item>
             <title>{{ post.title | e }}</title>
-            <description>{{ post.content | cdn_imgsrc | xml_escape }}</description>
-            <pubDate>{{ post.date | date: "%a, %d %b %Y %H:%M:%S %z" }}</pubDate>
-            <link>{{ site.url }}/{{ post.url }}</link>
-            <guid isPermaLink="true">{{ site.url }}{{ post.url }}</guid>
+            <description>{{ post.body | e }}</description>
+            <pubDate>{{ post.date_human }}</pubDate>
+            <link>{{ site.url }}/{{ post.permalink }}</link>
+            <guid isPermaLink="true">{{ site.url }}/{{ post.permalink }}</guid>
         </item>
         {% endfor %}
     </channel>

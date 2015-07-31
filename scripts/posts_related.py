@@ -37,6 +37,9 @@ def populate_related_posts(posts):
                               related)
 
 populate_related_posts(ret)
-ret.sort(key=lambda x: x['date'], reverse=True)
+for i, yaml_file in enumerate(sys.argv[1:]):
+    with open(yaml_file.replace('.yaml.raw', '.yaml'), 'w') as f:
+        f.write(yaml.dump(ret[i], default_flow_style=False))
 
+ret.sort(key=lambda x: x['date'], reverse=True)
 print yaml.dump(ret, default_flow_style=False)

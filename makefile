@@ -24,19 +24,32 @@ POSTS_MDHTML = $(POSTS_YAML:.yaml=.md.html)
 RENDER = ./scripts/render.py
 
 #################################
+# Markdown to HTML
+#################################
+$(BUILD_DIR)/%.md.html: %.md
+	@mkdir -pv $(dir $@)
+	pandoc $< -t html -o $@
+
+#################################
 # Post Metadata
 #################################
-YAML_ADD_DATE = ./scripts/posts_date.py
 YAML_CALC_RELATED = ./scripts/posts_related.py
+YAML_ADD_BODY = ./scripts/posts_addbody.py
 
 POSTS_YAML = $(addprefix $(BUILD_DIR)/,$(POSTS:.md=.yaml))
-$(BUILD_DIR)/%.yaml: %.md
+POSTS_YAML_RAW = $(addprefix $(BUILD_DIR)/,$(POSTS:.md=.yaml.raw))
+# Extract metadata from post source, and date from filename
+$(BUILD_DIR)/%.yaml.raw: %.md $(BUILD_DIR)/%.md.html $(YAML_ADD_BODY)
 	@mkdir -pv $(dir $@)
-	sed -e '1d' -e '/---/q' "$<" | sed -e 's/---//' > $@.raw
-	$(YAML_ADD_DATE) $@.raw > $@
+	echo "date: "$$(date -j -f %Y-%m-%d $$(basename "$<") +%Y-%m-%d 2> /dev/null) > $@
+	echo "date_human: "$$(date -j -f "%Y-%m-%d" $$(basename "$<") "+%d %b %Y" 2> /dev/null) >> $@
+	sed -e '1d' -e '/---/q' "$<" | sed -e 's/---//' >> $@
+	$(YAML_ADD_BODY) $@ $(word 2,$^)
 
-$(BUILD_DIR)/posts.yaml: $(POSTS_YAML) $(YAML_CALC_RELATED)
-	$(YAML_CALC_RELATED) $(POSTS_YAML) > $@
+$(BUILD_DIR)/posts.yaml: $(POSTS_YAML_RAW) $(YAML_CALC_RELATED)
+	$(YAML_CALC_RELATED) $(POSTS_YAML_RAW) > $(BUILD_DIR)/posts.yaml
+
+$(BUILD_DIR)/%.yaml: $(BUILD_DIR)/posts.yaml
 
 #################################
 # Index Pages
@@ -65,11 +78,13 @@ $(eval $(call indexpagerule,life))
 
 site: indexpages
 
-
 #################################
 # Feed XML
 #################################
-$(TARGET_DIR)/all.rss.xml: feeds/all.rss.xml
+$(TARGET_DIR)/feeds/all.rss.xml: template/all.rss.xml $(CONFIG) $(BUILD_DIR)/posts.yaml
+	@mkdir -pv $(dir $@)
+	$(RENDER) --data site:$(CONFIG) posts:$(BUILD_DIR)/posts.yaml \
+		--template "$<" > $@
 
 ##################################
 # Static Files
@@ -93,11 +108,6 @@ endef
 
 $(foreach post,$(POSTS),$(eval $(call postrule,$(post))))
 
-
-
-$(BUILD_DIR)/%.md.html: %.md
-	@mkdir -pv $(dir $@)
-	pandoc $< -t html -o $@
 
 mdhtml: $(POSTS_MDHTML)
 
