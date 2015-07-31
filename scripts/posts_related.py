@@ -33,7 +33,8 @@ def populate_related_posts(posts):
             related_scores.append((other, score))
         related = sorted(related_scores, key=lambda x: x[1], reverse=True)[:3]
         post['related'] = map(lambda x: {"permalink": x[0]["permalink"], 
-                                         "title": x[0]["title"]},
+                                         "title": x[0]["title"],
+                                         "date_human": x[0]["date_human"]},
                               related)
 
 populate_related_posts(ret)

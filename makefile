@@ -20,6 +20,7 @@ TEMPLATE_DIR = template
 CONFIG = site.yaml
 POSTS = $(shell find _posts -name "*.md")
 POSTS_MDHTML = $(POSTS_YAML:.yaml=.md.html)
+POSTS_DEP = $(POSTS_YAML:.yaml=.d)
 
 RENDER = ./scripts/render.py
 
@@ -61,7 +62,7 @@ $$(BUILD_DIR)/indexpage-$(1)-page.yaml:
 
 $$(TARGET_DIR)/$(1)/index.html: $$(CONFIG) $$(BUILD_DIR)/posts.yaml \
 								$$(BUILD_DIR)/indexpage-$(1)-page.yaml \
-								$$(TEMPLATE_DIR)/index.html 
+								$$(TEMPLATE_DIR)/index.html $$(RENDER)
 	@mkdir -pv $$(dir $$@)
 	$(RENDER) --data site:$$(CONFIG) posts:$$(BUILD_DIR)/posts.yaml \
 			page:$$(BUILD_DIR)/indexpage-$(1)-page.yaml \
@@ -81,7 +82,8 @@ site: indexpages
 #################################
 # Feed XML
 #################################
-$(TARGET_DIR)/feeds/all.rss.xml: template/all.rss.xml $(CONFIG) $(BUILD_DIR)/posts.yaml
+$(TARGET_DIR)/feeds/all.rss.xml: template/all.rss.xml $(CONFIG) \
+								$(BUILD_DIR)/posts.yaml $(RENDER)
 	@mkdir -pv $(dir $@)
 	$(RENDER) --data site:$(CONFIG) posts:$(BUILD_DIR)/posts.yaml \
 		--template "$<" > $@
@@ -96,17 +98,25 @@ $(TARGET_DIR)/$(CSS_TARGET): $(CSS_SRCS)
 	@mkdir -pv $(dir $@)
 	minify $^ > $@
 
+#################################
+# Posts
+#################################
 define postrule
-_TARGET=$$(shell grep "permalink:" "$(1)" | sed -e "s/.*:[ \t]*//" -e "s/\/\$$$$/\/index.html/")
-$$(TARGET_DIR)/$$(_TARGET): $$(BUILD_DIR)/$(1).html
-	@echo "Building" $$(_TARGET)
+$$(TARGET_DIR)/$(2): $$(BUILD_DIR)/$(1).html \
+							$$(CONFIG) $$(BUILD_DIR)/$(3).yaml \
+							$$(TEMPLATE_DIR)/post.html $$(RENDER)
+	@echo "Building" $(2) $(3)
 	@mkdir -pv $$(dir $$@)
-	echo "Prefix" > $$@  # TODO
-	cat $$< >> $$@
-site: $$(TARGET_DIR)/$$(_TARGET)
+	$$(RENDER) --data site:$$(CONFIG) page:$$(BUILD_DIR)/$(3).yaml \
+		--template $$(TEMPLATE_DIR)/post.html > $$@
+
+site: $$(TARGET_DIR)/$(2)
+
 endef
 
-$(foreach post,$(POSTS),$(eval $(call postrule,$(post))))
+postrule_wrap=$(call postrule,$(1),$(shell grep "permalink:" "$(1)" | sed -e "s/.*:[ \t]*//" -e "s/\/\$$/\/index.html/"),$(shell dirname "$(1)")/$(shell basename "$(1)" .md))
+
+$(foreach post,$(POSTS),$(eval $(call postrule_wrap,$(post))))
 
 
 mdhtml: $(POSTS_MDHTML)
