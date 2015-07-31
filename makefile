@@ -1,14 +1,4 @@
-SSH_PORT=22
-OUTPUTDIR=_site
-SSH_USER=blahgeek
-SSH_HOST=blog.blahgeek.com
-SSH_TARGET_DIR=/srv/http/blog.blahgeek.com/
-
-# all:
-# 	rsync -e "ssh -p $(SSH_PORT)" -P -rvz --no-p --delete $(OUTPUTDIR) $(SSH_USER)@$(SSH_HOST):$(SSH_TARGET_DIR)
-
-# .PHONY: all
-
+all: site
 
 ##################################
 # Directories
@@ -27,9 +17,12 @@ RENDER = ./scripts/render.py
 #################################
 # Markdown to HTML
 #################################
-$(BUILD_DIR)/%.md.html: %.md
+CDN_FILTER = ./scripts/cdn_filter.py
+$(BUILD_DIR)/%.md.html: %.md $(CONFIG)
 	@mkdir -pv $(dir $@)
-	pandoc $< -t html -o $@
+	pandoc $< -f markdown-auto_identifiers-implicit_figures \
+		-t html -o $@
+	$(CDN_FILTER) $@ $(CONFIG) 2> /dev/null
 
 #################################
 # Post Metadata
@@ -51,6 +44,7 @@ $(BUILD_DIR)/posts.yaml: $(POSTS_YAML_RAW) $(YAML_CALC_RELATED)
 	$(YAML_CALC_RELATED) $(POSTS_YAML_RAW) > $(BUILD_DIR)/posts.yaml
 
 $(BUILD_DIR)/%.yaml: $(BUILD_DIR)/posts.yaml
+	@true
 
 #################################
 # Index Pages
@@ -58,7 +52,7 @@ $(BUILD_DIR)/%.yaml: $(BUILD_DIR)/posts.yaml
 define indexpagerule
 $$(BUILD_DIR)/indexpage-$(1)-page.yaml:
 	@mkdir -pv $$(dir $$@)
-	echo "page:\n  classification: $(1)\n" > $$@
+	echo "classification: $(1)" > $$@
 
 $$(TARGET_DIR)/$(1)/index.html: $$(CONFIG) $$(BUILD_DIR)/posts.yaml \
 								$$(BUILD_DIR)/indexpage-$(1)-page.yaml \
@@ -82,21 +76,38 @@ site: indexpages
 #################################
 # Feed XML
 #################################
-$(TARGET_DIR)/feeds/all.rss.xml: template/all.rss.xml $(CONFIG) \
-								$(BUILD_DIR)/posts.yaml $(RENDER)
+RSS_FEED = feeds/all.rss.xml
+$(TARGET_DIR)/$(RSS_FEED): template/all.rss.xml $(CONFIG) \
+							$(BUILD_DIR)/posts.yaml $(RENDER)
 	@mkdir -pv $(dir $@)
 	$(RENDER) --data site:$(CONFIG) posts:$(BUILD_DIR)/posts.yaml \
 		--template "$<" > $@
+
+site: $(TARGET_DIR)/$(RSS_FEED)
 
 ##################################
 # Static Files
 ##################################
 CSS_SRCS = css/syntax.css css/post.css css/main.css
-CSS_TARGET = min.css
+CSS_TARGET = css/min.css
 
 $(TARGET_DIR)/$(CSS_TARGET): $(CSS_SRCS)
 	@mkdir -pv $(dir $@)
 	minify $^ > $@
+
+site: $(TARGET_DIR)/$(CSS_TARGET)
+
+STATIC_FOLDERS = js files images favicon.png
+define staticrule
+$$(TARGET_DIR)/$(1): $(1)
+	@mkdir -pv $$(dir $$@)
+	cp -r $$< $$@
+
+site: $$(TARGET_DIR)/$(1)
+
+endef
+
+$(foreach folder,$(STATIC_FOLDERS),$(eval $(call staticrule,$(folder))))
 
 #################################
 # Posts
@@ -114,11 +125,25 @@ site: $$(TARGET_DIR)/$(2)
 
 endef
 
-postrule_wrap=$(call postrule,$(1),$(shell grep "permalink:" "$(1)" | sed -e "s/.*:[ \t]*//" -e "s/\/\$$/\/index.html/"),$(shell dirname "$(1)")/$(shell basename "$(1)" .md))
+postrule_wrap=$(call postrule,$(1),$(shell grep "permalink:" "$(1)" | sed -e "s/.*:[ ]*//" -e "s/\/\$$/\/index.html/"),$(shell dirname "$(1)")/$(shell basename "$(1)" .md))
 
 $(foreach post,$(POSTS),$(eval $(call postrule_wrap,$(post))))
 
 
-mdhtml: $(POSTS_MDHTML)
+#################################
+# Other Rules
+#################################
 
-.PHONY: deps mdhtml site indexpages
+clean:
+	rm -rf $(BUILD_DIR) $(TARGET_DIR)
+
+SSH_PORT=22
+SSH_USER=blahgeek
+SSH_HOST=blog.blahgeek.com
+SSH_TARGET_DIR=/srv/http/blog.blahgeek.com/
+
+love:
+	rsync -e "ssh -p $(SSH_PORT)" -P -rvz --delete $(TARGET_DIR) $(SSH_USER)@$(SSH_HOST):$(SSH_TARGET_DIR)
+
+
+.PHONY: site indexpages clean all love
