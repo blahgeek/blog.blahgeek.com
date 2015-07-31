@@ -21,7 +21,7 @@ CDN_FILTER = ./scripts/cdn_filter.py
 $(BUILD_DIR)/%.md.html: %.md $(CONFIG)
 	@mkdir -pv $(dir $@)
 	pandoc $< -f markdown-auto_identifiers-implicit_figures \
-		-t html -o $@
+		-t html --mathml -o $@
 	$(CDN_FILTER) $@ $(CONFIG) 2> /dev/null
 
 #################################
@@ -115,7 +115,8 @@ $(foreach folder,$(STATIC_FOLDERS),$(eval $(call staticrule,$(folder))))
 define postrule
 $$(TARGET_DIR)/$(2): $$(BUILD_DIR)/$(1).html \
 							$$(CONFIG) $$(BUILD_DIR)/$(3).yaml \
-							$$(TEMPLATE_DIR)/post.html $$(RENDER)
+							$$(TEMPLATE_DIR)/post.html $$(TEMPLATE_DIR)/index.html \
+							$$(RENDER)
 	@echo "Building" $(2) $(3)
 	@mkdir -pv $$(dir $$@)
 	$$(RENDER) --data site:$$(CONFIG) page:$$(BUILD_DIR)/$(3).yaml \
