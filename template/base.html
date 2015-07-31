@@ -40,11 +40,11 @@
   <div class="container">
   {% block navbar %}
     <div class="navbar"> <ul>
-      <li><a href="/"{% if not page.classification %} class="active" {% endif %}>All</a></li>
-      <li><a href="/tech/"{% if page.classification == "tech" %} class="active" {% endif %}>Tech</a></li>
-      <li><a href="/misc/"{% if page.classification == "misc" %} class="active" {% endif %}>Misc</a></li>
-      <li><a href="/project/"{% if page.classification == "project" %} class="active" {% endif %}>Project</a></li>
-      <li><a href="/life/"{% if page.classification == "life" %} class="active" {% endif %}>Life</a></li>
+      <li><a href="/"{% if page and not page.classification %} class="active" {% endif %}>All</a></li>
+      <li><a href="/tech/"{% if page and page.classification == "tech" %} class="active" {% endif %}>Tech</a></li>
+      <li><a href="/misc/"{% if page and page.classification == "misc" %} class="active" {% endif %}>Misc</a></li>
+      <li><a href="/project/"{% if page and page.classification == "project" %} class="active" {% endif %}>Project</a></li>
+      <li><a href="/life/"{% if page and page.classification == "life" %} class="active" {% endif %}>Life</a></li>
     </ul> </div>
   {% endblock %}
   {% block content %}

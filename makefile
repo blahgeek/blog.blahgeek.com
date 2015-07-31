@@ -84,6 +84,17 @@ $(eval $(call indexpagerule,life))
 
 site: indexpages
 
+
+$(TARGET_DIR)/404/index.html: $(TEMPLATE_DIR)/404.html $(RENDER) $(CONFIG)
+	@mkdir -pv $(dir $@)
+	$(RENDER) --dir $(TEMPLATE_DIR) \
+		--data site:$(CONFIG) --template 404.html > $@
+
+$(TEMPLATE_DIR)/404.html: $(TEMPLATE_DIR)/base.html
+	touch $@
+
+site: $(TARGET_DIR)/404/index.html
+
 #################################
 # Feed XML
 #################################
@@ -113,6 +124,7 @@ STATIC_FOLDERS = js files images favicon.png
 define staticrule
 $$(TARGET_DIR)/$(1): $(1)
 	@mkdir -pv $$(dir $$@)
+	rm -rf $$@
 	cp -r $$< $$@
 
 site: $$(TARGET_DIR)/$(1)
