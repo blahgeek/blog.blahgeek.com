@@ -21,10 +21,10 @@ class FilePathLoader(jinja2.BaseLoader):
 
         # Read
         try:
-            with open(template, 'r') as f:
+            with open(filename, 'r') as f:
                 contents = f.read().decode(self.encoding)
         except IOError:
-            raise jinja2.TemplateNotFound(template)
+            raise jinja2.TemplateNotFound(filename)
 
         # Finish
         uptodate = lambda: False
@@ -43,6 +43,7 @@ def render_template(cwd, template_path, context):
 def main():
     parser = argparse.ArgumentParser()
 
+    parser.add_argument('--dir', default='.', help='Template directory')
     parser.add_argument('--data', nargs='*', help='One or more YAML data file')
     parser.add_argument('--template', help='Template file to process')
     parser.add_argument('--body', help='Body content')
@@ -56,7 +57,7 @@ def main():
         context['body'] = open(args.body).read().decode('utf8')
 
     return render_template(
-        os.getcwd(),
+        args.dir,
         args.template,
         context
     )

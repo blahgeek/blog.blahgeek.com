@@ -58,9 +58,10 @@ $$(TARGET_DIR)/$(1)/index.html: $$(CONFIG) $$(BUILD_DIR)/posts.yaml \
 								$$(BUILD_DIR)/indexpage-$(1)-page.yaml \
 								$$(TEMPLATE_DIR)/index.html $$(RENDER)
 	@mkdir -pv $$(dir $$@)
-	$(RENDER) --data site:$$(CONFIG) posts:$$(BUILD_DIR)/posts.yaml \
+	$(RENDER) --dir $(TEMPLATE_DIR) \
+			--data site:$$(CONFIG) posts:$$(BUILD_DIR)/posts.yaml \
 			page:$$(BUILD_DIR)/indexpage-$(1)-page.yaml \
-			--template $$(TEMPLATE_DIR)/index.html > $$@
+			--template index.html > $$@
 
 indexpages: $$(TARGET_DIR)/$(1)/index.html
 endef
@@ -77,11 +78,12 @@ site: indexpages
 # Feed XML
 #################################
 RSS_FEED = feeds/all.rss.xml
-$(TARGET_DIR)/$(RSS_FEED): template/all.rss.xml $(CONFIG) \
+$(TARGET_DIR)/$(RSS_FEED): $(TEMPLATE_DIR)/all.rss.xml $(CONFIG) \
 							$(BUILD_DIR)/posts.yaml $(RENDER)
 	@mkdir -pv $(dir $@)
-	$(RENDER) --data site:$(CONFIG) posts:$(BUILD_DIR)/posts.yaml \
-		--template "$<" > $@
+	$(RENDER) --dir $(TEMPLATE_DIR) \
+		--data site:$(CONFIG) posts:$(BUILD_DIR)/posts.yaml \
+		--template all.rss.xml > $@
 
 site: $(TARGET_DIR)/$(RSS_FEED)
 
@@ -119,8 +121,9 @@ $$(TARGET_DIR)/$(2): $$(BUILD_DIR)/$(1).html \
 							$$(RENDER)
 	@echo "Building" $(2) $(3)
 	@mkdir -pv $$(dir $$@)
-	$$(RENDER) --data site:$$(CONFIG) page:$$(BUILD_DIR)/$(3).yaml \
-		--template $$(TEMPLATE_DIR)/post.html > $$@
+	$$(RENDER) --dir $$(TEMPLATE_DIR) \
+		--data site:$$(CONFIG) page:$$(BUILD_DIR)/$(3).yaml \
+		--template post.html > $$@
 
 site: $$(TARGET_DIR)/$(2)
 
