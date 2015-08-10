@@ -32,6 +32,8 @@
     <div id="disqus_thread" class="related"></div>
     <script type="text/javascript">
         var disqus_shortname = '{{ site.disqus }}';
+        var disqus_identifier = '{{ page.permalink }}';
+        var disqus_url = '{{ site.url }}/{{ page.permalink }}';
         (function() {
             var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
             dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
