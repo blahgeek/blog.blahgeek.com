@@ -53,7 +53,7 @@ $(BUILD_DIR)/%.yaml: $(BUILD_DIR)/posts.yaml
 $(TEMPLATE_DIR)/index.html: $(TEMPLATE_DIR)/base.html
 	touch $@
 
-$(TEMPLATE_DIR)/post.html: $(TEMPLATE_DIR)/index.html
+$(TEMPLATE_DIR)/post.html: $(TEMPLATE_DIR)/base.html
 	touch $@
 
 #################################
@@ -154,6 +154,27 @@ endef
 postrule_wrap=$(call postrule,$(1),$(shell grep "permalink:" "$(1)" | sed -e "s/.*:[ ]*//" -e "s/\/\$$/\/index.html/"),$(shell dirname "$(1)")/$(shell basename "$(1)" .md))
 
 $(foreach post,$(POSTS),$(eval $(call postrule_wrap,$(post))))
+
+################################
+# Badges
+################################
+
+BADGES = $(shell find badges -name "*.txt")
+BADGES_SVG = $(addprefix $(TARGET_DIR)/,$(BADGES:.txt=.svg))
+
+$(TARGET_DIR)/badges/%.svg: badges/%.txt
+	@mkdir -pv $(dir $@)
+	cat $< | xargs wget -O $@
+	touch $@
+
+$(TARGET_DIR)/badges/posts-number.svg: $(BUILD_DIR)/posts.yaml $(RENDER) \
+								       badges/posts-number.txt.jinja2
+	@mkdir -pv $(dir $@)
+	$(RENDER) --dir badges --data posts:$< \
+		--template posts-number.txt.jinja2 | xargs wget -O $@
+	touch $@
+
+site: $(BADGES_SVG) $(TARGET_DIR)/badges/posts-number.svg
 
 #################################
 # Other Rules

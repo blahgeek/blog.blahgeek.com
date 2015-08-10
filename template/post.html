@@ -1,4 +1,8 @@
-{% extends "index.html" %}
+{% extends "base.html" %}
+
+{% block title %}
+  {{ page.title }} &middot; {{ site.tagline }}
+{% endblock %}
 
 {% block content %}
     <div class="post">

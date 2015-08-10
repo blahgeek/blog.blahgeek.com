@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 
 {% block title %}
-  {% if page.title %}{{ page.title }} &middot; {% endif %}
   {{ site.tagline }}
 {% endblock %}
 
@@ -11,5 +10,11 @@
     <h2 class="post-title"><a href="/{{ post.permalink }}">{{ post.title }}</a></h2>
     <span class="post-date">Post at {{ post.date_human }}</span>
     {% endif %}{% endfor %}
+  </div>
+  <div class="badges">
+    <a href="https://www.linode.com/?r={{ site.linode_referral }}"><img src="/badges/hosted-in-Linode.svg" /></a>
+    <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img src="/badges/license-cc-by.svg" /></a>
+    <img src="/badges/posts-number.svg" />
+    <img src="/badges/awesome.svg" />
   </div>
 {% endblock %}

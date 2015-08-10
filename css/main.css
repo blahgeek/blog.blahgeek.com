@@ -194,6 +194,14 @@ html, body {
 }
 .mainpage .post-list {
     padding-top: 25px;
+    padding-bottom: 35px;
+    border: 0;
+    border-bottom: 1px solid #eee;
+}
+
+.mainpage .badges {
+    text-align: center;
+    margin: 25px auto 15px;
 }
 
 .mainpage .header .container {
