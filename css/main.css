@@ -198,6 +198,10 @@ html, body {
     border: 0;
     border-bottom: 1px solid #eee;
 }
+.mainpage .post-list .post-meta {
+    color: #949494;
+    font-size: 18px;
+}
 
 .mainpage .badges {
     text-align: center;

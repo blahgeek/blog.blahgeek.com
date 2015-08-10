@@ -8,7 +8,7 @@
     <link rel="shortcut icon" href="/images/gravatar.jpeg">
     <link rel="alternate" type="application/rss+xml" title="RSS" href="/feeds/all.rss.xml">
     <link rel="stylesheet" type="text/css" href="/css/min.css">
-    <link rel="stylesheet" type="text/css" href="{{site.cdn_domain}}/css/font-awesome-4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/font-awesome-4.4.0/css/font-awesome.min.css">
   </head>
   <body>
   <!--[if lt IE 9]>
@@ -55,14 +55,40 @@
 
 <script src="{{site.cdn_domain}}/js/instantclick.min.js" data-no-instant></script>
 
+<script type="text/javascript">
+  var disqus_shortname = '{{ site.disqus }}';
+  {% if page %}
+  var disqus_identifier = '{{ page.permalink }}';
+  var disqus_url = '{{ site.url }}/{{ page.permalink }}';
+  {% else %}
+  var disqus_identifier = '';
+  var disqus_url = '';
+  {% endif %}
+</script>
+<script type="text/javascript" src="/js/disqus-count.js" data-no-instant></script>
+<script type="text/javascript" src="/js/disqus-embed.js" data-no-instant></script>
+
 <script data-no-instant>
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-InstantClick.on('change', function(){
+InstantClick.on('change', function(isInitialLoad){
   ga('create', '{{site.google_analytics}}', 'auto');
   ga('send', 'pageview');
+  if(!isInitialLoad) {
+    DISQUSWIDGETS.forum = disqus_shortname;
+    DISQUSWIDGETS.getCount({reset: 1});
+    if(disqus_identifier.length > 0) {
+      DISQUS.reset({
+        reload: true,
+        config: function () {  
+          this.page.identifier = disqus_identifier;
+          this.page.url = disqus_url;
+        }
+      });
+    }
+  }
 });
 InstantClick.init();
 </script>

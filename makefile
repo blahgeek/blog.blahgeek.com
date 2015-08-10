@@ -120,12 +120,12 @@ $(TARGET_DIR)/$(CSS_TARGET): $(CSS_SRCS)
 
 site: $(TARGET_DIR)/$(CSS_TARGET)
 
-STATIC_FOLDERS = js files images favicon.png
+STATIC_FOLDERS = js files images favicon.png css/font-awesome-4.4.0
 define staticrule
-$$(TARGET_DIR)/$(1): $(1)
+$$(TARGET_DIR)/$(1): .FORCE
 	@mkdir -pv $$(dir $$@)
 	rm -rf $$@
-	cp -r $$< $$@
+	cp -r $(1) $$@
 
 site: $$(TARGET_DIR)/$(1)
 
@@ -192,4 +192,6 @@ love:
 	rsync -e "ssh -p $(SSH_PORT)" -P -rvz --delete $(TARGET_DIR) $(SSH_USER)@$(SSH_HOST):$(SSH_TARGET_DIR)
 
 
-.PHONY: site indexpages clean all love
+.FORCE:
+
+.PHONY: site indexpages clean all love .FORCE

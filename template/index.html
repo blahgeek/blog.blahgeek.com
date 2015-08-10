@@ -8,7 +8,13 @@
   <div class="post-list">
     {% for post in posts %}{% if post.classification == page.classification or not page.classification %}
     <h2 class="post-title"><a href="/{{ post.permalink }}">{{ post.title }}</a></h2>
-    <span class="post-date">Post at {{ post.date_human }}</span>
+    <span class="post-date">Post at {{ post.date_human }}</span>&nbsp;
+    <span class="post-meta">
+    {% if post.github_repo %}<i class="fa fa-github"></i>{% endif %}
+    <!-- <i class="fa fa-thumbs-o-up"></i> -->
+    <i class="fa fa-commenting-o"></i>
+    </span>
+    <span class="disqus-comment-count post-meta" data-disqus-identifier="{{post.permalink}}"></span>
     {% endif %}{% endfor %}
   </div>
   <div class="badges">
