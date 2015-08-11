@@ -3,12 +3,13 @@
     <channel>
         <title>{{ site.name }}</title>
         <link>{{ site.url }}</link>
+        <description>{{ site.tagline }}</description>
         <atom:link href="{{ site.url }}/feeds/all.rss.xml" rel="self" type="application/rss+xml" />
         {% for post in posts[:20] %}
         <item>
             <title>{{ post.title | e }}</title>
             <description>{{ post.body | e }}</description>
-            <pubDate>{{ post.date_human }}</pubDate>
+            <pubDate>{{ post.date_rss }}</pubDate>
             <link>{{ site.url }}/{{ post.permalink }}</link>
             <guid isPermaLink="true">{{ site.url }}/{{ post.permalink }}</guid>
         </item>

@@ -37,6 +37,7 @@ $(BUILD_DIR)/%.yaml.raw: %.md $(BUILD_DIR)/%.md.html $(YAML_ADD_BODY)
 	@mkdir -pv $(dir $@)
 	echo "date: "$$(date -j -f %Y-%m-%d $$(basename "$<") +%Y-%m-%d 2> /dev/null) > $@
 	echo "date_human: "$$(date -j -f "%Y-%m-%d" $$(basename "$<") "+%d %b %Y" 2> /dev/null) >> $@
+	echo "date_rss: "$$(date -j -f "%Y-%m-%d" $$(basename "$<") "+%a, %d %b %Y %H:%M:%S %Z" 2> /dev/null) >> $@
 	sed -e '1d' -e '/---/q' "$<" | sed -e 's/---//' >> $@
 	$(YAML_ADD_BODY) $@ $(word 2,$^)
 
