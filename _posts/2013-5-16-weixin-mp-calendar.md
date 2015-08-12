@@ -5,6 +5,7 @@ layout: post
 title: 使用微信公众平台自动回复行程什么的
 tags: weixin network google calendar
 github_repo: weixin-mp
+expired: true
 ---
 
 先上效果图：

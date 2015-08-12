@@ -4,6 +4,7 @@ classification: misc
 layout: post
 title: 博客移出Tumblr 改用Pelican生成
 tags: tumblr pelican blog python
+expired: true
 ---
 
 ###为什么移出Tumblr

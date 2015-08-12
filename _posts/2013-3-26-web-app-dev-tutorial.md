@@ -4,6 +4,7 @@ classification: project
 layout: post
 title: 如何写一个树洞
 tags: django python treehole thu
+expired: true
 ---
 
 >其实这篇文章的标题应该大概是“一个简单的网页应用是如何搞出来的”，
