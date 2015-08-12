@@ -52,7 +52,10 @@ def main():
     context = dict()
     for data_f in args.data:
         key, filename = data_f.split(':')
-        context[key] = yaml.load(open(filename).read())
+        if filename:
+            context[key] = yaml.load(open(filename).read())
+        else:
+            context[key] = {'_': True}
     if args.body:
         context['body'] = open(args.body).read().decode('utf8')
 

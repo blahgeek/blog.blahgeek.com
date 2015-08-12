@@ -74,7 +74,16 @@ $$(TARGET_DIR)/$(1)/index.html: $$(CONFIG) $$(BUILD_DIR)/posts.yaml \
 			page:$$(BUILD_DIR)/indexpage-$(1)-page.yaml \
 			--template index.html > $$@
 
-indexpages: $$(TARGET_DIR)/$(1)/index.html
+$$(TARGET_DIR)/_pjax/$(1)/index.html: $$(CONFIG) $$(BUILD_DIR)/posts.yaml \
+									$$(BUILD_DIR)/indexpage-$(1)-page.yaml \
+									$$(TEMPLATE_DIR)/index.html $$(RENDER)
+	@mkdir -pv $$(dir $$@)
+	$(RENDER) --dir $(TEMPLATE_DIR) \
+			--data site:$$(CONFIG) posts:$$(BUILD_DIR)/posts.yaml \
+			page:$$(BUILD_DIR)/indexpage-$(1)-page.yaml pjax: \
+			--template index.html > $$@
+
+indexpages: $$(TARGET_DIR)/$(1)/index.html $$(TARGET_DIR)/_pjax/$(1)/index.html
 endef
 
 $(eval $(call indexpagerule,))  # All
@@ -148,7 +157,17 @@ $$(TARGET_DIR)/$(2): $$(BUILD_DIR)/$(1).html \
 		--data site:$$(CONFIG) page:$$(BUILD_DIR)/$(3).yaml \
 		--template post.html > $$@
 
-site: $$(TARGET_DIR)/$(2)
+$$(TARGET_DIR)/_pjax/$(2): $$(BUILD_DIR)/$(1).html \
+							$$(CONFIG) $$(BUILD_DIR)/$(3).yaml \
+							$$(TEMPLATE_DIR)/post.html \
+							$$(RENDER)
+	@echo "Building pjax" $(2) $(3)
+	@mkdir -pv $$(dir $$@)
+	$$(RENDER) --dir $$(TEMPLATE_DIR) \
+		--data site:$$(CONFIG) page:$$(BUILD_DIR)/$(3).yaml pjax: \
+		--template post.html > $$@
+
+site: $$(TARGET_DIR)/$(2) $$(TARGET_DIR)/_pjax/$(2)
 
 endef
 
