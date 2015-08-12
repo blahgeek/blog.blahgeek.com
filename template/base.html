@@ -44,6 +44,7 @@
   <div class="container">
   {% block navbar %}
     <div class="navbar"> <ul>
+      <li><a href="/search/"{% if search %} class="active" {% endif %}data-no-instant><i class="fa fa-search"></i></a></li>
       <li><a href="/"{% if page and not page.classification %} class="active" {% endif %}>All</a></li>
       <li><a href="/tech/"{% if page and page.classification == "tech" %} class="active" {% endif %}>Tech</a></li>
       <li><a href="/misc/"{% if page and page.classification == "misc" %} class="active" {% endif %}>Misc</a></li>

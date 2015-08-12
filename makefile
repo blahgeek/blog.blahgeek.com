@@ -95,15 +95,27 @@ $(eval $(call indexpagerule,life))
 site: indexpages
 
 
-$(TARGET_DIR)/404/index.html: $(TEMPLATE_DIR)/404.html $(RENDER) $(CONFIG)
-	@mkdir -pv $(dir $@)
-	$(RENDER) --dir $(TEMPLATE_DIR) \
-		--data site:$(CONFIG) --template 404.html > $@
+define extrapagerule
+$$(TARGET_DIR)/$(1)/index.html: $$(TEMPLATE_DIR)/$(1).html $$(RENDER) $$(CONFIG)
+	@mkdir -pv $$(dir $$@)
+	$$(RENDER) --dir $$(TEMPLATE_DIR) \
+		--data site:$$(CONFIG) $(1): --template $(1).html > $$@
 
-$(TEMPLATE_DIR)/404.html: $(TEMPLATE_DIR)/base.html
-	touch $@
+$$(TARGET_DIR)/_pjax/$(1)/index.html: $$(TEMPLATE_DIR)/$(1).html $$(RENDER) $$(CONFIG)
+	@mkdir -pv $$(dir $$@)
+	$$(RENDER) --dir $$(TEMPLATE_DIR) \
+		--data site:$$(CONFIG) $(1): pjax: --template $(1).html > $$@
 
-site: $(TARGET_DIR)/404/index.html
+$$(TEMPLATE_DIR)/$(1).html: $$(TEMPLATE_DIR)/base.html
+	touch $$@
+
+extrapages: $$(TARGET_DIR)/$(1)/index.html $$(TARGET_DIR)/_pjax/$(1)/index.html
+endef
+
+$(eval $(call extrapagerule,404))
+$(eval $(call extrapagerule,search))
+
+site: extrapages
 
 #################################
 # Feed XML
