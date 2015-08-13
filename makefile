@@ -19,10 +19,11 @@ RENDER = ./scripts/render.py
 #################################
 CDN_FILTER = ./scripts/cdn_filter.py
 $(BUILD_DIR)/%.md.html: %.md $(CONFIG)
+	@echo "[PANDOC]" "$<"
 	@mkdir -pv $(dir $@)
-	pandoc $< -f markdown-auto_identifiers-implicit_figures \
+	@pandoc $< -f markdown-auto_identifiers-implicit_figures \
 		-t html --mathml -o $@
-	$(CDN_FILTER) $@ $(CONFIG) 2> /dev/null
+	@$(CDN_FILTER) $@ $(CONFIG) 2> /dev/null
 
 #################################
 # Post Metadata
@@ -34,15 +35,17 @@ POSTS_YAML = $(addprefix $(BUILD_DIR)/,$(POSTS:.md=.yaml))
 POSTS_YAML_RAW = $(addprefix $(BUILD_DIR)/,$(POSTS:.md=.yaml.raw))
 # Extract metadata from post source, and date from filename
 $(BUILD_DIR)/%.yaml.raw: %.md $(BUILD_DIR)/%.md.html $(YAML_ADD_BODY)
+	@echo "[YAML]" "$<"
 	@mkdir -pv $(dir $@)
-	echo "date: "$$(date -j -f %Y-%m-%d $$(basename "$<") +%Y-%m-%d 2> /dev/null) > $@
-	echo "date_human: "$$(date -j -f "%Y-%m-%d" $$(basename "$<") "+%d %b %Y" 2> /dev/null) >> $@
-	echo "date_rss: "$$(date -j -f "%Y-%m-%d" $$(basename "$<") "+%a, %d %b %Y %H:%M:%S %Z" 2> /dev/null) >> $@
-	sed -e '1d' -e '/---/q' "$<" | sed -e 's/---//' >> $@
-	$(YAML_ADD_BODY) $@ $(word 2,$^)
+	@echo "date: "$$(date -j -f %Y-%m-%d $$(basename "$<") +%Y-%m-%d 2> /dev/null) > $@
+	@echo "date_human: "$$(date -j -f "%Y-%m-%d" $$(basename "$<") "+%d %b %Y" 2> /dev/null) >> $@
+	@echo "date_rss: "$$(date -j -f "%Y-%m-%d" $$(basename "$<") "+%a, %d %b %Y %H:%M:%S %Z" 2> /dev/null) >> $@
+	@sed -e '1d' -e '/---/q' "$<" | sed -e 's/---//' >> $@
+	@$(YAML_ADD_BODY) $@ $(word 2,$^)
 
 $(BUILD_DIR)/posts.yaml: $(POSTS_YAML_RAW) $(YAML_CALC_RELATED)
-	$(YAML_CALC_RELATED) $(POSTS_YAML_RAW) > $(BUILD_DIR)/posts.yaml
+	@echo "[YAML] All Posts"
+	@$(YAML_CALC_RELATED) $(POSTS_YAML_RAW) > $(BUILD_DIR)/posts.yaml
 
 $(BUILD_DIR)/%.yaml: $(BUILD_DIR)/posts.yaml
 	@true
@@ -52,10 +55,10 @@ $(BUILD_DIR)/%.yaml: $(BUILD_DIR)/posts.yaml
 #################################
 
 $(TEMPLATE_DIR)/index.html: $(TEMPLATE_DIR)/base.html
-	touch $@
+	@touch $@
 
 $(TEMPLATE_DIR)/post.html: $(TEMPLATE_DIR)/base.html
-	touch $@
+	@touch $@
 
 #################################
 # Index Pages
@@ -63,13 +66,14 @@ $(TEMPLATE_DIR)/post.html: $(TEMPLATE_DIR)/base.html
 define indexpagerule
 $$(BUILD_DIR)/indexpage-$(1)-page.yaml:
 	@mkdir -pv $$(dir $$@)
-	echo "classification: $(1)" > $$@
+	@echo "classification: $(1)" > $$@
 
 $$(TARGET_DIR)/$(1)/index.html: $$(CONFIG) $$(BUILD_DIR)/posts.yaml \
 								$$(BUILD_DIR)/indexpage-$(1)-page.yaml \
 								$$(TEMPLATE_DIR)/index.html $$(RENDER)
+	@echo "[RENDER] Index" "$(1)"
 	@mkdir -pv $$(dir $$@)
-	$(RENDER) --dir $(TEMPLATE_DIR) \
+	@$(RENDER) --dir $(TEMPLATE_DIR) \
 			--data site:$$(CONFIG) posts:$$(BUILD_DIR)/posts.yaml \
 			page:$$(BUILD_DIR)/indexpage-$(1)-page.yaml \
 			--template index.html > $$@
@@ -77,8 +81,9 @@ $$(TARGET_DIR)/$(1)/index.html: $$(CONFIG) $$(BUILD_DIR)/posts.yaml \
 $$(TARGET_DIR)/_pjax/$(1)/index.html: $$(CONFIG) $$(BUILD_DIR)/posts.yaml \
 									$$(BUILD_DIR)/indexpage-$(1)-page.yaml \
 									$$(TEMPLATE_DIR)/index.html $$(RENDER)
+	@echo "[RENDER PJAX] Index" "$(1)"
 	@mkdir -pv $$(dir $$@)
-	$(RENDER) --dir $(TEMPLATE_DIR) \
+	@$(RENDER) --dir $(TEMPLATE_DIR) \
 			--data site:$$(CONFIG) posts:$$(BUILD_DIR)/posts.yaml \
 			page:$$(BUILD_DIR)/indexpage-$(1)-page.yaml pjax: \
 			--template index.html > $$@
@@ -97,17 +102,19 @@ site: indexpages
 
 define extrapagerule
 $$(TARGET_DIR)/$(1)/index.html: $$(TEMPLATE_DIR)/$(1).html $$(RENDER) $$(CONFIG)
+	@echo "[Render] Page" "$(1)"
 	@mkdir -pv $$(dir $$@)
-	$$(RENDER) --dir $$(TEMPLATE_DIR) \
+	@$$(RENDER) --dir $$(TEMPLATE_DIR) \
 		--data site:$$(CONFIG) $(1): --template $(1).html > $$@
 
 $$(TARGET_DIR)/_pjax/$(1)/index.html: $$(TEMPLATE_DIR)/$(1).html $$(RENDER) $$(CONFIG)
+	@echo "[Render PJAX] Page" "$(1)"
 	@mkdir -pv $$(dir $$@)
-	$$(RENDER) --dir $$(TEMPLATE_DIR) \
+	@$$(RENDER) --dir $$(TEMPLATE_DIR) \
 		--data site:$$(CONFIG) $(1): pjax: --template $(1).html > $$@
 
 $$(TEMPLATE_DIR)/$(1).html: $$(TEMPLATE_DIR)/base.html
-	touch $$@
+	@touch $$@
 
 extrapages: $$(TARGET_DIR)/$(1)/index.html $$(TARGET_DIR)/_pjax/$(1)/index.html
 endef
@@ -123,8 +130,9 @@ site: extrapages
 RSS_FEED = feeds/all.rss.xml
 $(TARGET_DIR)/$(RSS_FEED): $(TEMPLATE_DIR)/all.rss.xml $(CONFIG) \
 							$(BUILD_DIR)/posts.yaml $(RENDER)
+	@echo "[RENDER] all.rss.xml"
 	@mkdir -pv $(dir $@)
-	$(RENDER) --dir $(TEMPLATE_DIR) \
+	@$(RENDER) --dir $(TEMPLATE_DIR) \
 		--data site:$(CONFIG) posts:$(BUILD_DIR)/posts.yaml \
 		--template all.rss.xml > $@
 
@@ -137,17 +145,19 @@ CSS_SRCS = css/syntax.css css/post.css css/main.css
 CSS_TARGET = css/min.css
 
 $(TARGET_DIR)/$(CSS_TARGET): $(CSS_SRCS)
+	@echo "[MINIFY]" "$^" "->" "$@"
 	@mkdir -pv $(dir $@)
-	minify $^ > $@
+	@minify $^ > $@
 
 site: $(TARGET_DIR)/$(CSS_TARGET)
 
 STATIC_FOLDERS = js files images favicon.png css/font-awesome-4.4.0
 define staticrule
 $$(TARGET_DIR)/$(1): .FORCE
+	@echo "[CP]" "$(1)"
 	@mkdir -pv $$(dir $$@)
-	rm -rf $$@
-	cp -r $(1) $$@
+	@rm -rf $$@
+	@cp -r $(1) $$@
 
 site: $$(TARGET_DIR)/$(1)
 
@@ -163,9 +173,9 @@ $$(TARGET_DIR)/$(2): $$(BUILD_DIR)/$(1).html \
 							$$(CONFIG) $$(BUILD_DIR)/$(3).yaml \
 							$$(TEMPLATE_DIR)/post.html \
 							$$(RENDER)
-	@echo "Building" $(2) $(3)
+	@echo "[RENDER]" "$(2)"
 	@mkdir -pv $$(dir $$@)
-	$$(RENDER) --dir $$(TEMPLATE_DIR) \
+	@$$(RENDER) --dir $$(TEMPLATE_DIR) \
 		--data site:$$(CONFIG) page:$$(BUILD_DIR)/$(3).yaml \
 		--template post.html > $$@
 
@@ -173,9 +183,9 @@ $$(TARGET_DIR)/_pjax/$(2): $$(BUILD_DIR)/$(1).html \
 							$$(CONFIG) $$(BUILD_DIR)/$(3).yaml \
 							$$(TEMPLATE_DIR)/post.html \
 							$$(RENDER)
-	@echo "Building pjax" $(2) $(3)
+	@echo "[RENDER PJAX]" "$(2)"
 	@mkdir -pv $$(dir $$@)
-	$$(RENDER) --dir $$(TEMPLATE_DIR) \
+	@$$(RENDER) --dir $$(TEMPLATE_DIR) \
 		--data site:$$(CONFIG) page:$$(BUILD_DIR)/$(3).yaml pjax: \
 		--template post.html > $$@
 
@@ -195,16 +205,18 @@ BADGES = $(shell find badges -name "*.txt")
 BADGES_SVG = $(addprefix $(TARGET_DIR)/,$(BADGES:.txt=.svg))
 
 $(TARGET_DIR)/badges/%.svg: badges/%.txt
+	@echo "[WGET]" "$<"
 	@mkdir -pv $(dir $@)
-	cat $< | xargs wget -O $@
-	touch $@
+	@cat $< | xargs wget -O $@ 2> /dev/null
+	@touch $@
 
 $(TARGET_DIR)/badges/posts-number.svg: $(BUILD_DIR)/posts.yaml $(RENDER) \
 								       badges/posts-number.txt.jinja2
+	@echo "[WGET]" "badges/posts-number.txt"
 	@mkdir -pv $(dir $@)
-	$(RENDER) --dir badges --data posts:$< \
-		--template posts-number.txt.jinja2 | xargs wget -O $@
-	touch $@
+	@$(RENDER) --dir badges --data posts:$< \
+		--template posts-number.txt.jinja2 | xargs wget -O $@ 2> /dev/null
+	@touch $@
 
 site: $(BADGES_SVG) $(TARGET_DIR)/badges/posts-number.svg
 
