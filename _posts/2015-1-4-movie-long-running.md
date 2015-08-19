@@ -14,6 +14,9 @@ permalink: 2015/01/04/movie-long-running/
 
 ----
 
-吐槽完毕，片子见下（[墙内镜像](http://pan.baidu.com/s/1i3Fw2o9)），欢迎指正。
+吐槽完毕，片子见下，欢迎指正。
 
-<iframe width="640" height="360" src="//www.youtube.com/embed/dQf-lTpRmR8" frameborder="0" allowfullscreen></iframe>
+<video controls width="100%">
+<source src="http://7xkuyk.dl1.z0.glb.clouddn.com/blog/长跑-720p.mp4" type="video/mp4">
+浏览器无法播放视频，请移步[Youtube](https://www.youtube.com/embed/dQf-lTpRmR8)或者[墙内镜像](http://pan.baidu.com/s/1i3Fw2o9)
+</video>
