@@ -18,7 +18,7 @@ RENDER = ./scripts/render.py
 # Markdown to HTML
 #################################
 CDN_FILTER = ./scripts/cdn_filter.py
-$(BUILD_DIR)/%.md.html: %.md $(CONFIG)
+$(BUILD_DIR)/%.md.html: %.md $(CONFIG) $(CDN_FILTER)
 	@echo "[PANDOC]" "$<"
 	@mkdir -pv $(dir $@)
 	@pandoc $< -f markdown-auto_identifiers-implicit_figures \

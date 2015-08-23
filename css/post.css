@@ -204,7 +204,7 @@ blockquote p:last-child {
   }
 }
 
-.mainpage .post img {
+.mainpage .post img, .mainpage .post video {
   display: block;
   max-width: 100%;
   margin: 0 0 1rem;

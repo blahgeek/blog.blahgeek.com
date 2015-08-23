@@ -12,6 +12,7 @@ soup = BeautifulSoup(open(sys.argv[1]).read())
 for img in soup.findAll('img'):
     img_src = '/' + img['src']
     link = soup.new_tag('a', href=img_src)
+    link['data-no-instant'] = "1"
     img.insert_before(link)
     link.append(img)
     img['src'] = site['cdn_domain'] + '/' + img['src'] + site['cdn_img_suffix']
