@@ -227,10 +227,10 @@ site: $(BADGES_SVG) $(TARGET_DIR)/badges/posts-number.svg
 clean:
 	rm -rf $(BUILD_DIR) $(TARGET_DIR)
 
-SSH_PORT=22
-SSH_USER=blahgeek
-SSH_HOST=blog.blahgeek.com
-SSH_TARGET_DIR=/srv/http/blog.blahgeek.com/
+SSH_PORT ?= 22
+SSH_USER ?= blahgeek
+SSH_HOST ?= blog.blahgeek.com
+SSH_TARGET_DIR ?= /srv/http/blog.blahgeek.com/
 
 love:
 	rsync -e "ssh -p $(SSH_PORT)" -P -rvz --delete $(TARGET_DIR) $(SSH_USER)@$(SSH_HOST):$(SSH_TARGET_DIR)
