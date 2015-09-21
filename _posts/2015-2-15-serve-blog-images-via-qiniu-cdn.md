@@ -76,3 +76,5 @@ end
 
 Liquid::Template.register_filter(Jekyll::QiniuCDNFilter)
 ```
+
+最后，欢迎使用我的[Referral](https://portal.qiniu.com/signup?code=3lift6tliwmz6)
