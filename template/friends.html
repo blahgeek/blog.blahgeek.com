@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}友情链接 &middot; {{ site.tagline }}{% endblock %}
+
+{% block content %}
+
+<style type="text/css">
+
+.friend-list {
+    margin: 0 60px;
+}
+    
+.friend {
+    display: block;
+    width: 143px;
+    height: 200px;
+    float: left;
+    background-color: #f6f6f4;
+    padding: 25px;
+    margin: 25px 10px 10px 10px;
+    border-radius: 7px;
+    text-align: center;
+    color: #444;
+}
+
+.friend img {
+    border-radius: 50%;
+    width: 75px;
+    height: 75px;
+    margin: 0px auto 20px;
+    display: block; 
+}
+
+.friend .name {
+    font-size: 1.1em;
+    letter-spacing: .03em;
+    font-weight: 700;
+    margin-bottom: 0px;
+}
+
+.friend .homepage {
+    font-weight: 300;
+    font-size: 0.8em;    
+    margin-bottom: 0px;
+}
+
+</style>
+
+<div class="friend-list">
+    {% for friend in friends %}
+    <a href="http://{{friend.homepage}}/">
+        <div class="friend">
+            <img src="{{friend.gravatar}}" />
+            <p class="name">{{friend.name}}</p>
+            <p class="homepage">{{friend.homepage}}</p>
+        </div>
+    </a>
+    {% endfor %}
+</div>
+{% endblock %}
+

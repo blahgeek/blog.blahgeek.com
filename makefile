@@ -60,6 +60,29 @@ $(TEMPLATE_DIR)/index.html: $(TEMPLATE_DIR)/base.html
 $(TEMPLATE_DIR)/post.html: $(TEMPLATE_DIR)/base.html
 	@touch $@
 
+$(TEMPLATE_DIR)/friends.html: $(TEMPLATE_DIR)/base.html
+	@touch $@
+
+#################################
+# Friends Page
+#################################
+$(TARGET_DIR)/friends/index.html: $(TEMPLATE_DIR)/friends.html friends.yaml
+	@echo "[RENDER] Friends"
+	@mkdir -pv $(dir $@)
+	@$(RENDER) --dir $(TEMPLATE_DIR) \
+		--data site:$(CONFIG) friends:friends.yaml \
+		--template friends.html > $@
+
+$(TARGET_DIR)/_pjax/friends/index.html: $(TEMPLATE_DIR)/friends.html friends.yaml
+	@echo "[RENDER PJAX] Friends"
+	@mkdir -pv $(dir $@)
+	@$(RENDER) --dir $(TEMPLATE_DIR) \
+		--data site:$(CONFIG) friends:friends.yaml pjax: \
+		--template friends.html > $@
+
+indexpages: $(TARGET_DIR)/friends/index.html
+indexpages: $(TARGET_DIR)/_pjax/friends/index.html
+
 #################################
 # Index Pages
 #################################
