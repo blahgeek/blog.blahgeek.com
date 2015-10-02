@@ -1,0 +1,1 @@
+https://img.shields.io/badge/CDN%20by-七牛-blue.svg
