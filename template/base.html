@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>{% block title %}{{site.tagline}}{% endblock %}</title>
     <meta name="description" content="{{ site.tagline }}">
     {% if not pjax %}
@@ -33,8 +34,8 @@
             <i class="fa fa-wechat"></i>
           </a> &nbsp;
           See more:
-          <a href="/feeds/all.rss.xml"><i class="fa fa-rss"></i>
-          <a href="/friends/"><i class="fa fa-users"></i>
+          <a href="/feeds/all.rss.xml"><i class="fa fa-rss"></i></a>
+          <a href="/friends/"><i class="fa fa-users"></i></a>
         </p>
         <p><img id="weixin" src="{{site.cdn_domain}}/images/weixin-qr.png"></p>
       </div>

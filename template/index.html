@@ -8,7 +8,7 @@
   <div class="post-list">
     {% for post in posts %}{% if post.classification == page.classification or not page.classification %}
     <h2 class="post-title"><a href="/{{ post.permalink }}">{{ post.title }}</a></h2>
-    <span class="post-date">Post at {{ post.date_human }}</span>&nbsp;
+    <span class="post-date">{{ post.date_human }}</span>&nbsp;
     <span class="post-meta">
     {% if post.expired %}<i class="fa fa-calendar-times-o"></i>{% endif %}
     {% if post.github_repo %}<i class="fa fa-github"></i>{% endif %}

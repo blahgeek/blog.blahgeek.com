@@ -85,7 +85,7 @@ html, body {
 .toppage .container {
     /*width: 860px;*/
     margin: 0px auto;
-    padding-top: 50px;
+    padding: 25px 10px 0;
 }
 
 /*@-webkit-keyframes drop_down{
@@ -136,9 +136,12 @@ html, body {
 
 .toppage .main-text {
     font-size: 16px;
-    line-height: 10px;
-    margin-top: 30px;
-    margin-bottom: 35px;
+    margin-top: 20px;
+    margin-bottom: 25px;
+}
+
+.toppage .main-text p {
+    margin: 6px auto 6px;
 }
 
 .toppage .main-text a {
@@ -188,15 +191,19 @@ html, body {
 }
 
 .mainpage .container {
-    width: 760px;
-    padding: 0 5px 35px 5px;
+    max-width: 760px;
+    padding: 0 8px 35px;
     margin: 0px auto;
 }
 .mainpage .post-list {
-    padding-top: 25px;
-    padding-bottom: 35px;
+    padding-top: 15px;
+    padding-bottom: 25px;
     border: 0;
     border-bottom: 1px solid #eee;
+}
+.mainpage .post-list .post-title {
+    margin: 1rem 0 0;
+    font-size: 1.5rem;
 }
 .mainpage .post-meta {
     color: #949494;
