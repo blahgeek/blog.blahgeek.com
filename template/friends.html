@@ -7,32 +7,33 @@
 <style type="text/css">
 
 .friend-list {
-    margin: 0 60px;
+    margin: 10px auto;
 }
     
 .friend {
     display: block;
-    width: 143px;
-    height: 200px;
-    float: left;
+    max-width: 300px;
     background-color: #f6f6f4;
-    padding: 25px;
-    margin: 25px 10px 10px 10px;
+    padding: 15px 25px;
+    margin: 15px auto;
     border-radius: 7px;
-    text-align: center;
     color: #444;
 }
 
 .friend img {
     border-radius: 50%;
-    width: 75px;
-    height: 75px;
-    margin: 0px auto 20px;
+    width: 45px;
+    height: 45px;
     display: block; 
+    float: left;
+}
+
+.friend .text {
+    float: left;
+    margin-left: 15px;
 }
 
 .friend .name {
-    font-size: 1.1em;
     letter-spacing: .03em;
     font-weight: 700;
     margin-bottom: 0px;
@@ -42,6 +43,7 @@
     font-weight: 300;
     font-size: 0.8em;    
     margin-bottom: 0px;
+    line-height: 0.8em;
 }
 
 </style>
@@ -49,13 +51,20 @@
 <div class="friend-list">
     {% for friend in friends %}
     <a href="http://{{friend.homepage}}/">
-        <div class="friend">
+        <div class="friend clearfix">
             <img src="{{friend.gravatar}}" />
-            <p class="name">{{friend.name}}</p>
-            <p class="homepage">{{friend.homepage}}</p>
+            <div class="text">
+                <p class="name">{{friend.name}}</p>
+                <p class="homepage">{{friend.homepage}}</p>
+            </div>
         </div>
     </a>
     {% endfor %}
 </div>
+
+<div id="disqus_thread" class="related"></div>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
 {% endblock %}
 

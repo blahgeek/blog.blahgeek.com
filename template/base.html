@@ -68,8 +68,8 @@
   var disqus_identifier = '{{ page.permalink }}';
   var disqus_url = '{{ site.url }}/{{ page.permalink }}';
   {% else %}
-  var disqus_identifier = '';
-  var disqus_url = '';
+  var disqus_identifier = 'generic';
+  var disqus_url = '{{ site.url }}';
   {% endif %}
 </script>
 
