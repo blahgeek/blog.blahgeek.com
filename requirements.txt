@@ -1,3 +1,4 @@
 pyyaml
 beautifulsoup4
 jinja2
+csscompressor

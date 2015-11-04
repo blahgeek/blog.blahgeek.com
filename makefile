@@ -167,7 +167,7 @@ site: $(TARGET_DIR)/$(RSS_FEED)
 ##################################
 CSS_SRCS = css/syntax.css css/post.css css/main.css
 CSS_TARGET = css/min.css
-MINIFY = ./node_modules/.bin/minify
+MINIFY = python -m csscompressor
 
 $(TARGET_DIR)/$(CSS_TARGET): $(CSS_SRCS)
 	$(V)echo "[MINIFY]" "$^" "->" "$@"
