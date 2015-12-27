@@ -176,7 +176,7 @@ $(TARGET_DIR)/$(CSS_TARGET): $(CSS_SRCS)
 
 site: $(TARGET_DIR)/$(CSS_TARGET)
 
-STATIC_FOLDERS = js files images favicon.png css/font-awesome-4.4.0
+STATIC_FOLDERS = js files images favicon.png css/font-awesome-4.4.0 .well-known
 define staticrule
 $$(TARGET_DIR)/$(1): .FORCE
 	$(V)echo "[CP]" "$(1)"

@@ -1,0 +1,70 @@
+==================================================================
+https://keybase.io/blahgeek
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://blahgeek.com
+  * I am blahgeek (https://keybase.io/blahgeek) on keybase.
+  * I have a public key with fingerprint A74A F69A 8CC3 B7F2 28FA  3074 6D7E C222 C6DE 82BF
+
+To do so, I am signing this object:
+
+{
+    "body": {
+        "client": {
+            "name": "keybase.io node.js client",
+            "version": "0.8.25"
+        },
+        "key": {
+            "eldest_kid": "01017dc92d5854b001609bb24cc086ebd92b6cfdc5b239a1f2359ba893dd75733a110a",
+            "fingerprint": "a74af69a8cc3b7f228fa30746d7ec222c6de82bf",
+            "host": "keybase.io",
+            "key_id": "6d7ec222c6de82bf",
+            "kid": "01017dc92d5854b001609bb24cc086ebd92b6cfdc5b239a1f2359ba893dd75733a110a",
+            "uid": "3cf807a05e2f93e3d4c6c4e177ce8519",
+            "username": "blahgeek"
+        },
+        "service": {
+            "hostname": "blahgeek.com",
+            "protocol": "https:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1451192292,
+    "expire_in": 157680000,
+    "prev": "bd54c2dac39ed39220005a04bb7242b7006cad65e47597a7f56f032889edcabe",
+    "seqno": 27,
+    "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+
+owGtkl1IFFEUx3ezzIwoox7MIBmyh23ZZu583JmtIKOgoig0IgLZ7tforLsz685o
+Sd9iD0VEkhZ9UBlFRQ+JlSH60HdimURCD0JElBRBZh8kqdVcs4eix+7T5Z7f/5z/
+OecempIRyA42X8w8sDYZuhR8+BYHNuxyXm0TsEOrheg2gSQsZnv8ZqMkE6JCOavG
+yGURy8m3HcoicTd/jAkLVSztWo7tU2JEjwBV2BHmPFezBGWuFyu3KI9KogQpMQBV
+dVXBoihpooExUAgRdY1hagCsEZMSFQPZQJIJZNXASDdkSqEKZRlJkoj8gqZll7J0
+Km1xiwKCCjI1A+mEyBiaAOgmkkWoaBQyAgAgGmU6wKYvLHNc749mhFGnsVF7/+D/
+s+/K0XQyMXURIlFlwDRkJlOFaERhEoSE6apkcNBl6bHB4wQqK2WsnA/Vf62yCOOD
+5Z38RUSIk/S1qbTjOcRJ+JEyz0u5Ua70qlMc3cJwbCxJDFs29ef4a3/Hfi1Q8lHi
+WTytpKiSZABggLDAtqasNItZnFChpov+4YVYFS9PVYUAiohsMCr7Cj+oIlHBGAIF
+YCiKGkFUU5kCVQMiaKqaKcpA132cIMwE3leF7QhRAH2jqNTP6VqlNvIq00zYsS84
+e3wgmB3InDCOf9FA9qRpv//tjMsTv+dPHh58FFr/suFUsj247mjn3fcNq493zs0d
+OLc9Wn7uyYSz2YW7l4bub+wseXz3cNGb9u4F395d/LRx5DpZcabvaHtGNF60uP5O
+Y+bK+frzl5l4zbyviZ6nbdO1J00XcnJra4S1ajzx8eqX/R96CuzXdbd7p7D7xUu2
+Xwh9fvb4XfeL4rriZHjxTMEeOpI/qc+dJejdeacXDnT0DuX1LAgVQSmVGGwnJXv7
+G3MWpXbGs5qHb7eeCrSe3fSl/17LSHxPR/xOX0fFtzOtP2oeTD+Y27LzVv3A+Wtt
+N48XzGluyqqfXBKS8zaHT/YPr6u9eaOiq29529TcVcu6vpaNGy5sbLky2z3xEw==
+=AGKZ
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/blahgeek
+
+==================================================================
