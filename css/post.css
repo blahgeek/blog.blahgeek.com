@@ -14,6 +14,24 @@
   margin-bottom: 4rem;
 }
 
+.post-expire {
+  padding: 15px;
+  margin: 20px 0;
+  border: 1px solid #eee;
+  border-left-width: 5px;
+  border-left-color: red;
+  border-radius: 3px
+}
+
+.post-expire h3 {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.post-expire p {
+  margin-bottom: 0;
+}
+
 /* Blog post or page title */
 .page-title,
 .post-title,

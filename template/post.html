@@ -11,7 +11,6 @@
         <span class="post-date"> {{ page.date_human }} </span>&nbsp;
         <span class="post-meta">
           <a data-no-instant href="/_sig/{{ page.permalink }}"><i class="fa fa-check-square-o"></i></a>
-          {% if page.expired %}<i class="fa fa-calendar-times-o"></i> Old Post{% endif %}
         </span>
         {% if page.github_repo %}
         <span class="post-github">
@@ -19,6 +18,12 @@
         </span>
         {% endif %}
       </div>
+      {% if page.expired %}
+        <div class="post-expire">
+          <h3><i class="fa fa-calendar-times-o"></i>&nbsp;本文已被标记为过时</h3>
+          <p>文中提到的相关信息可能已经发生了很大的变化，请谨慎以本篇文章的内容作为参考做任何事情。</p>
+        </div>
+      {% endif %}
       {{ page.body }}
     </div>
 
