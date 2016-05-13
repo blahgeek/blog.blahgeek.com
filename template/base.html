@@ -29,14 +29,20 @@
         <p>Get in touch: 
           <a href="mailto:i@blahgeek.com?subject=Hello"><i class="fa fa-envelope-o"></i></a>
           <a href="https://github.com/blahgeek"><i class="fa fa-github"></i></a>
-          <a id="weixin-btn" href="#" onclick="document.getElementById('weixin').style.display='block';return false;">
-            <i class="fa fa-wechat"></i>
-          </a> &nbsp;
+          <a id="weixin-btn" href="#"><i class="fa fa-wechat"></i></a>
+          <a href="https://keybase.io/blahgeek/key.asc"><i class="fa fa-key"></i></a>
+          &nbsp;
           See more:
           <a href="/feeds/all.rss.xml" data-no-instant><i class="fa fa-rss"></i></a>
           <a href="/friends/"><i class="fa fa-users"></i></a>
         </p>
-        <p><img id="weixin" src="/images/weixin-qr.png"></p>
+        <p><img id="weixin" src="/images/weixin-qr.png" class="hidden"></p>
+        <script>
+        document.getElementById("weixin-btn").onclick = function() {
+          document.getElementById("weixin").classList.toggle("hidden");
+          return false;
+        };
+        </script>
       </div>
     </div>
   </div>

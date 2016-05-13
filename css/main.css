@@ -88,6 +88,24 @@ html, body {
     padding: 25px 10px 0;
 }
 
+a { text-decoration: none; }
+
+a i.fa {
+    text-decoration: none;
+    color: #979797;
+}
+
+a:hover i.fa {
+    text-decoration: none;
+    color: #50E3C2;
+}
+
+a.active i.fa {
+    text-decoration: none;
+    color: #50E3C2;
+}
+
+
 /*@-webkit-keyframes drop_down{
     0%{ -webkit-transform: translateY(-15px); }
     100%{ opacity: 1;-webkit-transform: translateY(0); }
@@ -120,7 +138,6 @@ html, body {
 }
 */
 #weixin {
-    display: none;
     margin: 5px auto;
     width: 200px;
     height: 200px;
@@ -144,20 +161,9 @@ html, body {
     margin: 6px auto 6px;
 }
 
-.toppage .main-text a {
-    text-decoration: none;
-    color: inherit;
-}
-
-.toppage .main-text a:hover {
-    text-decoration: none;
-    color: #50E3C2;
-}
-
 .navbar {
     border-bottom: 1px solid #eee;
     font-size: 16px;
-    color: #979797;
 }
 .navbar ul {
     clear: both;
@@ -174,14 +180,6 @@ html, body {
 .mainpage .navbar a {
     text-decoration: none;
     color: inherit;
-}
-
-.mainpage .navbar a:hover {
-    text-decoration: none;
-    color: #50E3C2;
-}
-.mainpage .navbar a.active {
-    color: #50E3C2;
 }
 
 .mainpage {
@@ -205,8 +203,8 @@ html, body {
     margin: 1rem 0 0;
     font-size: 1.5rem;
 }
-.mainpage .post-meta i {
-    color: #949494;
+.mainpage .post-meta {
+    color: #979797;
     font-size: 18px;
     text-decoration: none;
 }
@@ -231,15 +229,6 @@ html, body {
 }
 
 .mainpage .header a.active {
-    color: #50E3C2;
-}
-
-.mainpage .navbar a:hover {
-    text-decoration: underline;
-}
-
-.mainpage .share a:hover {
-    text-decoration: none;
     color: #50E3C2;
 }
 
