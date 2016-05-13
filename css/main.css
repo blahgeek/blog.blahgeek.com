@@ -88,20 +88,13 @@ html, body {
     padding: 25px 10px 0;
 }
 
-a { text-decoration: none; }
+a, a:hover { text-decoration: none; }
 
 a i.fa {
-    text-decoration: none;
     color: #979797;
 }
 
 a:hover i.fa {
-    text-decoration: none;
-    color: #50E3C2;
-}
-
-a.active i.fa {
-    text-decoration: none;
     color: #50E3C2;
 }
 
@@ -164,6 +157,7 @@ a.active i.fa {
 .navbar {
     border-bottom: 1px solid #eee;
     font-size: 16px;
+    color: #979797;
 }
 .navbar ul {
     clear: both;
@@ -178,8 +172,13 @@ a.active i.fa {
     display: block;
 }
 .mainpage .navbar a {
-    text-decoration: none;
     color: inherit;
+}
+.mainpage .navbar a.active {
+    color: #50E3C2;
+}
+.mainpage .navbar a:hover {
+    color: #50E3C2;
 }
 
 .mainpage {
