@@ -205,9 +205,10 @@ html, body {
     margin: 1rem 0 0;
     font-size: 1.5rem;
 }
-.mainpage .post-meta {
+.mainpage .post-meta i {
     color: #949494;
     font-size: 18px;
+    text-decoration: none;
 }
 
 .mainpage .badges {

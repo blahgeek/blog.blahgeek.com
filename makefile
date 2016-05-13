@@ -13,6 +13,8 @@ POSTS = $(shell find _posts -name "*.md")
 POSTS_MDHTML = $(POSTS_YAML:.yaml=.md.html)
 POSTS_DEP = $(POSTS_YAML:.yaml=.d)
 
+GPG = gpg2
+
 RENDER = ./scripts/render.py
 
 #################################
@@ -25,6 +27,14 @@ $(BUILD_DIR)/%.md.html: %.md $(CONFIG) $(CDN_FILTER)
 	$(V)pandoc $< -f markdown-auto_identifiers-implicit_figures \
 		-t html --mathml -o $@
 	$(V)$(CDN_FILTER) $@ $(CONFIG) 2> /dev/null
+
+#################################
+# GPG Sign content
+#################################
+
+$(BUILD_DIR)/%.md.asc: %.md
+	$(V)echo "[GPG]" "$<" "..."
+	$(V)$(GPG) --sign -a -o $@ $<
 
 #################################
 # Post Metadata
@@ -89,15 +99,15 @@ indexpages: $(TARGET_DIR)/_pjax/friends/index.html
 #################################
 define indexpagerule
 $$(BUILD_DIR)/indexpage-$(1)-page.yaml:
-	$(V)mkdir -pv $$(dir $$@)
-	$(V)echo "classification: $(1)" > $$@
+	$$(V)mkdir -pv $$(dir $$@)
+	$$(V)echo "classification: $(1)" > $$@
 
 $$(TARGET_DIR)/$(1)/index.html: $$(CONFIG) $$(BUILD_DIR)/posts.yaml \
 								$$(BUILD_DIR)/indexpage-$(1)-page.yaml \
 								$$(TEMPLATE_DIR)/index.html $$(RENDER)
-	$(V)echo "[RENDER] Index" "$(1)"
-	$(V)mkdir -pv $$(dir $$@)
-	$(V)$(RENDER) --dir $(TEMPLATE_DIR) \
+	$$(V)echo "[RENDER] Index" "$(1)"
+	$$(V)mkdir -pv $$(dir $$@)
+	$$(V)$(RENDER) --dir $(TEMPLATE_DIR) \
 			--data site:$$(CONFIG) posts:$$(BUILD_DIR)/posts.yaml \
 			page:$$(BUILD_DIR)/indexpage-$(1)-page.yaml \
 			--template index.html > $$@
@@ -105,9 +115,9 @@ $$(TARGET_DIR)/$(1)/index.html: $$(CONFIG) $$(BUILD_DIR)/posts.yaml \
 $$(TARGET_DIR)/_pjax/$(1)/index.html: $$(CONFIG) $$(BUILD_DIR)/posts.yaml \
 									$$(BUILD_DIR)/indexpage-$(1)-page.yaml \
 									$$(TEMPLATE_DIR)/index.html $$(RENDER)
-	$(V)echo "[RENDER PJAX] Index" "$(1)"
-	$(V)mkdir -pv $$(dir $$@)
-	$(V)$(RENDER) --dir $(TEMPLATE_DIR) \
+	$$(V)echo "[RENDER PJAX] Index" "$(1)"
+	$$(V)mkdir -pv $$(dir $$@)
+	$$(V)$(RENDER) --dir $(TEMPLATE_DIR) \
 			--data site:$$(CONFIG) posts:$$(BUILD_DIR)/posts.yaml \
 			page:$$(BUILD_DIR)/indexpage-$(1)-page.yaml pjax: \
 			--template index.html > $$@
@@ -126,19 +136,19 @@ site: indexpages
 
 define extrapagerule
 $$(TARGET_DIR)/$(1)/index.html: $$(TEMPLATE_DIR)/$(1).html $$(RENDER) $$(CONFIG)
-	$(V)echo "[Render] Page" "$(1)"
-	$(V)mkdir -pv $$(dir $$@)
-	$(V)$$(RENDER) --dir $$(TEMPLATE_DIR) \
+	$$(V)echo "[Render] Page" "$(1)"
+	$$(V)mkdir -pv $$(dir $$@)
+	$$(V)$$(RENDER) --dir $$(TEMPLATE_DIR) \
 		--data site:$$(CONFIG) $(1): --template $(1).html > $$@
 
 $$(TARGET_DIR)/_pjax/$(1)/index.html: $$(TEMPLATE_DIR)/$(1).html $$(RENDER) $$(CONFIG)
-	$(V)echo "[Render PJAX] Page" "$(1)"
-	$(V)mkdir -pv $$(dir $$@)
-	$(V)$$(RENDER) --dir $$(TEMPLATE_DIR) \
+	$$(V)echo "[Render PJAX] Page" "$(1)"
+	$$(V)mkdir -pv $$(dir $$@)
+	$$(V)$$(RENDER) --dir $$(TEMPLATE_DIR) \
 		--data site:$$(CONFIG) $(1): pjax: --template $(1).html > $$@
 
 $$(TEMPLATE_DIR)/$(1).html: $$(TEMPLATE_DIR)/base.html
-	$(V)touch $$@
+	$$(V)touch $$@
 
 extrapages: $$(TARGET_DIR)/$(1)/index.html $$(TARGET_DIR)/_pjax/$(1)/index.html
 endef
@@ -179,10 +189,10 @@ site: $(TARGET_DIR)/$(CSS_TARGET)
 STATIC_FOLDERS = js files images favicon.png css/font-awesome-4.4.0 .well-known
 define staticrule
 $$(TARGET_DIR)/$(1): .FORCE
-	$(V)echo "[CP]" "$(1)"
-	$(V)mkdir -pv $$(dir $$@)
-	$(V)rm -rf $$@
-	$(V)cp -r $(1) $$@
+	$$(V)echo "[CP]" "$(1)"
+	$$(V)mkdir -pv $$(dir $$@)
+	$$(V)rm -rf $$@
+	$$(V)cp -r $(1) $$@
 
 site: $$(TARGET_DIR)/$(1)
 
@@ -198,9 +208,9 @@ $$(TARGET_DIR)/$(2): $$(BUILD_DIR)/$(1).html \
 							$$(CONFIG) $$(BUILD_DIR)/$(3).yaml \
 							$$(TEMPLATE_DIR)/post.html \
 							$$(RENDER)
-	$(V)echo "[RENDER]" "$(2)"
-	$(V)mkdir -pv $$(dir $$@)
-	$(V)$$(RENDER) --dir $$(TEMPLATE_DIR) \
+	$$(V)echo "[RENDER]" "$(2)"
+	$$(V)mkdir -pv $$(dir $$@)
+	$$(V)$$(RENDER) --dir $$(TEMPLATE_DIR) \
 		--data site:$$(CONFIG) page:$$(BUILD_DIR)/$(3).yaml \
 		--template post.html > $$@
 
@@ -208,13 +218,21 @@ $$(TARGET_DIR)/_pjax/$(2): $$(BUILD_DIR)/$(1).html \
 							$$(CONFIG) $$(BUILD_DIR)/$(3).yaml \
 							$$(TEMPLATE_DIR)/post.html \
 							$$(RENDER)
-	$(V)echo "[RENDER PJAX]" "$(2)"
-	$(V)mkdir -pv $$(dir $$@)
-	$(V)$$(RENDER) --dir $$(TEMPLATE_DIR) \
+	$$(V)echo "[RENDER PJAX]" "$(2)"
+	$$(V)mkdir -pv $$(dir $$@)
+	$$(V)$$(RENDER) --dir $$(TEMPLATE_DIR) \
 		--data site:$$(CONFIG) page:$$(BUILD_DIR)/$(3).yaml pjax: \
 		--template post.html > $$@
 
-site: $$(TARGET_DIR)/$(2) $$(TARGET_DIR)/_pjax/$(2)
+$$(TARGET_DIR)/_sig/$(2): $$(BUILD_DIR)/$(1).asc \
+							$$(TEMPLATE_DIR)/sig.html \
+							$$(RENDER)
+	$$(V)echo "[RENDER SIG]" "$(2)"
+	$$(V)mkdir -pv $$(dir $$@)
+	$$(V)$$(RENDER) --dir $$(TEMPLATE_DIR) \
+		--body $$< --template sig.html > $$@
+
+site: $$(TARGET_DIR)/$(2) $$(TARGET_DIR)/_pjax/$(2) $$(TARGET_DIR)/_sig/$(2)
 
 endef
 

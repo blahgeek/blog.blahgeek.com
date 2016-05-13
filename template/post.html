@@ -10,7 +10,8 @@
       <div class="post-info">
         <span class="post-date"> {{ page.date_human }} </span>&nbsp;
         <span class="post-meta">
-        {% if page.expired %}<i class="fa fa-calendar-times-o"></i> Old Post{% endif %}
+          <a data-no-instant href="/_sig/{{ page.permalink }}"><i class="fa fa-key"></i></a>
+          {% if page.expired %}<i class="fa fa-calendar-times-o"></i> Old Post{% endif %}
         </span>
         {% if page.github_repo %}
         <span class="post-github">
