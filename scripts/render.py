@@ -50,7 +50,7 @@ def main():
     args = parser.parse_args()
 
     context = dict()
-    for data_f in args.data:
+    for data_f in args.data if args.data else []:
         key, filename = data_f.split(':')
         if filename:
             context[key] = yaml.load(open(filename).read())
