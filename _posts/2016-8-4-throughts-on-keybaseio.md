@@ -78,7 +78,7 @@ appending to this document.
 
 重要的事情说三遍。
 
-当然，我也知道他说SaltPack是基于[NaCl](http://nacl.cr.yp.to)开发的，也算是一个well known的、成熟的库。但是我如何才能信任SaltPack，以及这个 **用来验证proof的在github上只有16个star的[工具](https://github.com/oconnor663/clinacl)**，即使它只是一个wrapper？“不要发明自己的加密算法”，其意义不仅仅在于发明的算法本身是否又漏洞，另一方面意义在于用户信任一个加密工具是需要很高的成本的，即使它使用了可信任的库。（诚然，大多数用户，包括我，并没有阅读过OpenGPG的代码，但我信任它，这并不矛盾，就像大多数人并没有环游过世界，但大多数人都可以信任“地球是圆的”这一命题。）
+当然，我也知道他说SaltPack是基于[NaCl](http://nacl.cr.yp.to)开发的，也算是一个well known的、成熟的库。但是我如何才能信任SaltPack，以及这个 **用来验证proof的在github上只有16个star的[工具](https://github.com/oconnor663/clinacl)**，即使它只是一个wrapper？“不要发明自己的加密算法”，其意义不仅仅在于发明的算法本身是否又漏洞，另一方面意义在于用户信任一个加密工具是需要很高的成本的，即使它使用了可信任的库。（诚然，大多数用户，包括我，并没有阅读过GnuPG的代码，但我信任它，这并不矛盾，就像大多数人并没有环游过世界，但大多数人都可以信任“地球是圆的”这一命题。）
 
 # 4
 
@@ -92,4 +92,6 @@ appending to this document.
 
 回到最开始所说的核心思想，其实并不需要一个中心化的服务，也并不需要重新发明任何算法，仅仅几段调用gpg的bash脚本用于生成和验证即可，一个公开的索引平台也算是bonus，但却绝对不是现在的越来越中心化、越来越难以被信任的Keybase.io所提供的。
 
-PS：通过`npm`安装的旧版`keybase`工具还依旧仅仅使用GPG制作proof，没有KBFS功能，还是可以作为替代方案使用的。
+PS：<del>通过`npm`安装的旧版`keybase`工具还依旧仅仅使用GPG制作proof，没有KBFS功能，还是可以作为替代方案使用的。</del> **呵呵**
+
+![](./images/keybaseio-client-unsupported.png)
