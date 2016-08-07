@@ -26,11 +26,11 @@
       </div>
       <div class="main-text">
         <p>I'm 赵一开/BlahGeek, a CS&amp;T Student @ Tsinghua U.</p>
-        <p>Get in touch: 
+        <p>Get in touch:
           <a href="mailto:i@blahgeek.com?subject=Hello"><i class="fa fa-envelope-o"></i></a>
           <a href="https://github.com/blahgeek"><i class="fa fa-github"></i></a>
           <a id="weixin-btn" href="#"><i class="fa fa-wechat"></i></a>
-          <a href="https://keybase.io/blahgeek/key.asc"><i class="fa fa-key"></i></a>
+          <a href="https://pgp.mit.edu/pks/lookup?op=get&search=0x6D7EC222C6DE82BF"><i class="fa fa-key"></i></a>
           &nbsp;
           See more:
           <a href="/feeds/all.rss.xml" data-no-instant><i class="fa fa-rss"></i></a>
@@ -111,7 +111,7 @@ InstantClick.on('change', function(isInitialLoad){
     if(disqus_identifier.length > 0) {
       DISQUS.reset({
         reload: true,
-        config: function () {  
+        config: function () {
           this.page.identifier = disqus_identifier;
           this.page.url = disqus_url;
         }
