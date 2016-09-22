@@ -92,7 +92,7 @@ InstantClick.on('fetch', function(url){
   var parser = document.createElement('a');
   parser.href = url;
   parser.pathname = "/_pjax" + parser.pathname;
-  return parser.href;
+  return parser.href + "?_=" + new Date().getTime();
 });
 InstantClick.on('receive', function(url, body, title) {
   var toppage = document.getElementById('toppage');
