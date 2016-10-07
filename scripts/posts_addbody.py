@@ -7,7 +7,7 @@ import sys
 
 if __name__ == '__main__':
     data = yaml.load(open(sys.argv[1]).read())
-    body = open(sys.argv[2]).read().decode('utf8')
+    body = open(sys.argv[2]).read()
     data['body'] = body
     with open(sys.argv[1], 'w') as f:
         f.write(yaml.dump(data, default_flow_style=False))

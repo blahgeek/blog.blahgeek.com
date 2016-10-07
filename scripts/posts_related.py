@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # Created by i@BlahGeek.com at 2015-07-30
 
@@ -12,6 +12,7 @@ for yaml_file in sys.argv[1:]:
     yaml_data = yaml.load(open(yaml_file).read())
     ret.append(yaml_data)
 
+
 # calculate related posts
 def populate_related_posts(posts):
     tags = defaultdict(int)
@@ -19,7 +20,7 @@ def populate_related_posts(posts):
         post['tags'] = post['tags'].strip().split(' ')
         for tag in post['tags']:
             tags[tag] += 1
-    highest_freq = max(tags.itervalues())
+    highest_freq = max(tags.values())
     for post in posts:
         related_scores = list()
         for other in posts:
@@ -32,10 +33,11 @@ def populate_related_posts(posts):
                 score += (1 + highest_freq - tags[tag])
             related_scores.append((other, score))
         related = sorted(related_scores, key=lambda x: x[1], reverse=True)[:3]
-        post['related'] = map(lambda x: {"permalink": x[0]["permalink"], 
+        post['related'] = map(lambda x: {"permalink": x[0]["permalink"],
                                          "title": x[0]["title"],
                                          "date_human": x[0]["date_human"]},
                               related)
+        post['related'] = list(post['related'])
 
 populate_related_posts(ret)
 for i, yaml_file in enumerate(sys.argv[1:]):
@@ -43,4 +45,4 @@ for i, yaml_file in enumerate(sys.argv[1:]):
         f.write(yaml.dump(ret[i], default_flow_style=False))
 
 ret.sort(key=lambda x: x['date'], reverse=True)
-print yaml.dump(ret, default_flow_style=False)
+print(yaml.dump(ret, default_flow_style=False))

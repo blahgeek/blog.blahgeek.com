@@ -1,19 +1,19 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # Created by i@BlahGeek.com at 2015-07-30
 
-import os, sys
+import os
 import argparse
 import yaml
 
 import jinja2
 
+
 class FilePathLoader(jinja2.BaseLoader):
     """ Custom Jinja2 template loader which just loads a single template file """
 
-    def __init__(self, cwd, encoding='utf-8'):
+    def __init__(self, cwd):
         self.cwd = cwd
-        self.encoding = encoding
 
     def get_source(self, environment, template):
         # Path
@@ -22,7 +22,7 @@ class FilePathLoader(jinja2.BaseLoader):
         # Read
         try:
             with open(filename, 'r') as f:
-                contents = f.read().decode(self.encoding)
+                contents = f.read()
         except IOError:
             raise jinja2.TemplateNotFound(filename)
 
@@ -36,8 +36,7 @@ def render_template(cwd, template_path, context):
 
     return env \
         .get_template(template_path) \
-        .render(context) \
-        .encode('utf-8')
+        .render(context)
 
 
 def main():
@@ -57,7 +56,7 @@ def main():
         else:
             context[key] = {'_': True}
     if args.body:
-        context['body'] = open(args.body).read().decode('utf8')
+        context['body'] = open(args.body).read()
 
     return render_template(
         args.dir,
@@ -66,4 +65,4 @@ def main():
     )
 
 if __name__ == '__main__':
-    sys.stdout.write(main())
+    print(main())
