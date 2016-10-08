@@ -25,7 +25,7 @@ permalink: yubikey-intro/
 - OTP: `KEY_ID+AES(AES_KEY, SECRET, COUNT++)`即生成的密码包含明文的KEY_ID和对称加密的SECRET和计数器。第一次使用前需要把KEY_ID，AES_KEY，SECRET提交至验证服务器（Yubico提供或者自己搭建），之后应用程序每次通过服务器验证密码的可靠性（解码后SECRET对应、COUNT增大（防止重放攻击））。
 - Static: 静态密码。顾名思义，每次生成固定的一串密码（并没有什么用）。
 - Challenge-Response: `HMAC(SECRET, INPUT)`即可以通过HID接口给定一个输入，输入HMAC的计算结果。输入需要本地代码实现。
-- HTOP: `HMAC(SECRET, COUNTER++)`算法与Challenge-Response类似，然而使用累加计数器代替了输入，并且HTOP是一个[标准协议](https://twofactorauth.org/)，许多网站和设备都兼容该标准。
+- HOTP: `HMAC(SECRET, COUNTER++)`算法与Challenge-Response类似，然而使用累加计数器代替了输入，并且HTOP是一个[标准协议](https://twofactorauth.org/)，许多网站和设备都兼容该标准。
 
 在YubiKey中包含两个configuration slot，每一个slot可以单独配置以上模式中的其中一种，通过短触和长触来选择输入。
 
