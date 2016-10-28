@@ -1,1 +1,0 @@
-https://img.shields.io/badge/Hosted%20in-阿里云-brightgreen.svg
