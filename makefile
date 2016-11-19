@@ -48,9 +48,9 @@ POSTS_YAML_RAW = $(addprefix $(BUILD_DIR)/,$(POSTS:.md=.yaml.raw))
 $(BUILD_DIR)/%.yaml.raw: %.md $(BUILD_DIR)/%.md.html $(YAML_ADD_BODY)
 	$(V)echo "[YAML]" "$<"
 	$(V)mkdir -pv $(dir $@)
-	$(V)echo "date: "$$(date -j -f %Y-%m-%d $$(basename "$<") +%Y-%m-%d 2> /dev/null) > $@
-	$(V)echo "date_human: "$$(date -j -f "%Y-%m-%d" $$(basename "$<") "+%d %b %Y" 2> /dev/null) >> $@
-	$(V)echo "date_rss: "$$(date -j -f "%Y-%m-%d" $$(basename "$<") "+%a, %d %b %Y %H:%M:%S %Z" 2> /dev/null) >> $@
+	$(V)echo "date: "$$(date -d $$(basename "$<" | cut -d - -f 1-3) +%Y-%m-%d 2> /dev/null) > $@
+	$(V)echo "date_human: "$$(date -d $$(basename "$<" | cut -d - -f 1-3) "+%d %b %Y" 2> /dev/null) >> $@
+	$(V)echo "date_rss: "$$(date -d $$(basename "$<" | cut -d - -f 1-3) "+%a, %d %b %Y %H:%M:%S %Z" 2> /dev/null) >> $@
 	$(V)sed -e '1d' -e '/---/q' "$<" | sed -e 's/---//' >> $@
 	$(V)$(YAML_ADD_BODY) $@ $(word 2,$^)
 
@@ -186,7 +186,7 @@ $(TARGET_DIR)/$(CSS_TARGET): $(CSS_SRCS)
 
 site: $(TARGET_DIR)/$(CSS_TARGET)
 
-STATIC_FOLDERS = js files images favicon.png css/font-awesome-4.4.0 .well-known
+STATIC_FOLDERS = js files/ images/ favicon.png css/font-awesome-4.4.0 .well-known
 define staticrule
 $$(TARGET_DIR)/$(1): .FORCE
 	$$(V)echo "[CP]" "$(1)"
