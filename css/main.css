@@ -9,7 +9,7 @@ textarea {
 }
 
 html {
-    font-size: 1em;
+    font-size: 100%;
     line-height: 1.4;
 }
 
@@ -66,7 +66,7 @@ html, body {
     height: 100%;
     color: #979797;
     font-family: "微软雅黑", "Open Sans", Helvetica, Arial, sans-serif;
-    font-weight: 200;
+    font-weight: normal;
     margin: 0;
     padding: 0;
 }
@@ -145,18 +145,18 @@ a:hover i.fa {
 }
 
 .toppage .main-text {
-    font-size: 16px;
+    font-size: 0.8rem;
     margin-top: 20px;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
 }
 
 .toppage .main-text p {
-    margin: 6px auto 6px;
+    margin: 4px auto 4px;
 }
 
 .navbar {
     border-bottom: 1px solid #eee;
-    font-size: 16px;
+    font-size: 0.8rem;
     color: #979797;
 }
 .navbar ul {
@@ -183,7 +183,6 @@ a:hover i.fa {
 
 .mainpage {
     position: relative;
-    font-size: 20px;
     color: #303030;
 }
 
@@ -204,7 +203,6 @@ a:hover i.fa {
 }
 .mainpage .post-meta {
     color: #979797;
-    font-size: 18px;
     text-decoration: none;
 }
 
@@ -236,7 +234,7 @@ a:hover i.fa {
     background-color: rgb(255, 255, 255);
     background-color: rgba(255, 255, 255, 0.97);
     padding: 25px 0 25px;
-    font-size: 20px;
+    font-size: 1.5rem;
     border-bottom: 1px solid #eee;
     position: absolute;
 }

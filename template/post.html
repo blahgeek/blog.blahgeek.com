@@ -28,12 +28,12 @@
     </div>
 
     <div class="related">
-      <h2>Related Posts</h2>
+      <h3>Related Posts</h3>
       <ul class="related-posts">
         {% for post in page.related %}
-          <li><h3><a href="/{{ post.permalink }}">
+          <li><h4><a href="/{{ post.permalink }}">
             {{ post.title }}<small> {{ post.date_human }}</small>
-          </a></h3></li>
+          </a></h4></li>
         {% endfor %}
       </ul>
     </div>
