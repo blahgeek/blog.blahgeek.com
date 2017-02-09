@@ -50,5 +50,4 @@ Fastmail的帮助文档是我见过给用户的最棒的文档，没有之一。
 
 总之在我看来，Fastmail唯一的缺点就是略贵，使用自定义域名＋15G容量的plan价格是$40/yr。不过话又说回来，[If you’re not paying for it, you’re the product being sold](http://www.metafilter.com/95152/Userdriven-discontent#3256046)。
 
-最后，如果你也想尝试一下的话，欢迎使用我的[Referral link](http://www.fastmail.com/?STKI=14918785)～
-
+最后，如果你也想尝试一下的话，欢迎使用我的[Referral link](http://www.fastmail.com/?STKI=14918785)（使用Referral link你可以得到10%的discount噢，详见[帮助页面](https://www.fastmail.com/help/account/referrals.html?u=9158414d)）～

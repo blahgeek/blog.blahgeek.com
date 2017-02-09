@@ -12,7 +12,7 @@ tags: linux geek macos osx macbook xps
 
 ![blahxps-desktop](images/blahxps-desktop.png)
 
-XPS 15 9550，FHD（1920x1080），i7 6700HQ，8G RAM（更换至16G），256G SSD（可更换+增加），56Whr（小电池版，留出一个硬盘位)，GTX 960M。
+XPS 15 9550，FHD（1920x1080），i7 6700HQ，8G RAM（双条，可更换），256G NVME SSD（可更换），56Whr（小电池版，留出一个2.5寸硬盘位)，GTX 960M；内存更换为16G，加一个1T HDD，与SSD做LVM Caching。
 
 Arch Linux，i3wm。
 
