@@ -11,7 +11,7 @@ permalink: airpods-in-linux/
 ![](./images/airpods-linux.jpg)
 
 
-1. Linux在XPS 15上的蓝牙固件有问题，导致可以找到设备但是无法配对，<del>照[此贴](https://bbs.archlinux.org/viewtopic.php?id=204739)下载固件</del>从AUR安装`bcm20703a1-firmware`即可。
+1. Linux在XPS 15上的蓝牙固件有问题，导致可以找到设备但是无法配对，<del>从AUR安装`bcm20703a1-firmware`即可</del>照[此贴](https://bbs.archlinux.org/viewtopic.php?id=204739)下载固件。
 2. 标准[蓝牙耳机配置流程](https://wiki.archlinux.org/index.php/Bluetooth_headset)。关键词：`bluetoothctl`, `pulseaudio-bluetooth`, `uinput`。
 
 我另外使用一台iPhone，一起使用的效果如下（第一次都先连接一遍，在Linux上trust该蓝牙设备）：
