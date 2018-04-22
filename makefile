@@ -17,6 +17,34 @@ GPG = gpg2
 
 RENDER = ./scripts/render.py
 
+##################################
+# Static Files
+##################################
+CSS_SRCS = css/syntax.css css/markdown.css css/post.css css/main.css
+CSS_TARGET = $(TARGET_DIR)/css/min.css
+MINIFY = python -m csscompressor
+
+$(CSS_TARGET): $(CSS_SRCS)
+	$(V)echo "[MINIFY]" "$^" "->" "$@"
+	$(V)mkdir -pv $(dir $@)
+	$(V)$(MINIFY) $^ > $@
+
+site: $(CSS_TARGET)
+
+STATIC_FOLDERS = js files/ images/ favicon.png css/font-awesome-4.4.0 .well-known
+define staticrule
+$$(TARGET_DIR)/$(1): .FORCE
+	$$(V)echo "[CP]" "$(1)"
+	$$(V)mkdir -pv $$(dir $$@)
+	$$(V)rm -rf $$@
+	$$(V)cp -r $(1) $$@
+
+site: $$(TARGET_DIR)/$(1)
+
+endef
+
+$(foreach folder,$(STATIC_FOLDERS),$(eval $(call staticrule,$(folder))))
+
 #################################
 # Markdown to HTML
 #################################
@@ -77,7 +105,7 @@ $(TEMPLATE_DIR)/friends.html: $(TEMPLATE_DIR)/base.html
 #################################
 # Friends Page
 #################################
-$(TARGET_DIR)/friends/index.html: $(TEMPLATE_DIR)/friends.html friends.yaml
+$(TARGET_DIR)/friends/index.html: $(TEMPLATE_DIR)/friends.html friends.yaml $(CSS_TARGET)
 	$(V)echo "[RENDER] Friends"
 	$(V)mkdir -pv $(dir $@)
 	$(V)$(RENDER) --dir $(TEMPLATE_DIR) \
@@ -104,7 +132,7 @@ $$(BUILD_DIR)/indexpage-$(1)-page.yaml:
 
 $$(TARGET_DIR)/$(1)/index.html: $$(CONFIG) $$(BUILD_DIR)/posts.yaml \
 								$$(BUILD_DIR)/indexpage-$(1)-page.yaml \
-								$$(TEMPLATE_DIR)/index.html $$(RENDER)
+								$$(TEMPLATE_DIR)/index.html $$(RENDER) $$(CSS_TARGET)
 	$$(V)echo "[RENDER] Index" "$(1)"
 	$$(V)mkdir -pv $$(dir $$@)
 	$$(V)$(RENDER) --dir $(TEMPLATE_DIR) \
@@ -135,7 +163,7 @@ site: indexpages
 
 
 define extrapagerule
-$$(TARGET_DIR)/$(1)/index.html: $$(TEMPLATE_DIR)/$(1).html $$(RENDER) $$(CONFIG)
+$$(TARGET_DIR)/$(1)/index.html: $$(TEMPLATE_DIR)/$(1).html $$(RENDER) $$(CONFIG) $$(CSS_TARGET)
 	$$(V)echo "[Render] Page" "$(1)"
 	$$(V)mkdir -pv $$(dir $$@)
 	$$(V)$$(RENDER) --dir $$(TEMPLATE_DIR) \
@@ -172,34 +200,6 @@ $(TARGET_DIR)/$(RSS_FEED): $(TEMPLATE_DIR)/all.rss.xml $(CONFIG) \
 
 site: $(TARGET_DIR)/$(RSS_FEED)
 
-##################################
-# Static Files
-##################################
-CSS_SRCS = css/syntax.css css/markdown.css css/post.css css/main.css
-CSS_TARGET = css/min.css
-MINIFY = python -m csscompressor
-
-$(TARGET_DIR)/$(CSS_TARGET): $(CSS_SRCS)
-	$(V)echo "[MINIFY]" "$^" "->" "$@"
-	$(V)mkdir -pv $(dir $@)
-	$(V)$(MINIFY) $^ > $@
-
-site: $(TARGET_DIR)/$(CSS_TARGET)
-
-STATIC_FOLDERS = js files/ images/ favicon.png css/font-awesome-4.4.0 .well-known
-define staticrule
-$$(TARGET_DIR)/$(1): .FORCE
-	$$(V)echo "[CP]" "$(1)"
-	$$(V)mkdir -pv $$(dir $$@)
-	$$(V)rm -rf $$@
-	$$(V)cp -r $(1) $$@
-
-site: $$(TARGET_DIR)/$(1)
-
-endef
-
-$(foreach folder,$(STATIC_FOLDERS),$(eval $(call staticrule,$(folder))))
-
 #################################
 # Posts
 #################################
@@ -207,7 +207,7 @@ define postrule
 $$(TARGET_DIR)/$(2): $$(BUILD_DIR)/$(1).html \
 							$$(CONFIG) $$(BUILD_DIR)/$(3).yaml \
 							$$(TEMPLATE_DIR)/post.html \
-							$$(RENDER)
+							$$(RENDER) $$(CSS_TARGET)
 	$$(V)echo "[RENDER]" "$(2)"
 	$$(V)mkdir -pv $$(dir $$@)
 	$$(V)$$(RENDER) --dir $$(TEMPLATE_DIR) \
