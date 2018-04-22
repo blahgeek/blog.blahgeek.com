@@ -175,7 +175,7 @@ site: $(TARGET_DIR)/$(RSS_FEED)
 ##################################
 # Static Files
 ##################################
-CSS_SRCS = css/syntax.css css/post.css css/main.css
+CSS_SRCS = css/syntax.css css/markdown.css css/post.css css/main.css
 CSS_TARGET = css/min.css
 MINIFY = python -m csscompressor
 

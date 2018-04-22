@@ -158,6 +158,7 @@ a:hover i.fa {
     border-bottom: 1px solid #eee;
     font-size: 0.8rem;
     color: #979797;
+    margin-bottom: 15px;
 }
 .navbar ul {
     clear: both;
@@ -192,14 +193,16 @@ a:hover i.fa {
     margin: 0px auto;
 }
 .mainpage .post-list {
-    padding-top: 15px;
     padding-bottom: 25px;
     border: 0;
     border-bottom: 1px solid #eee;
 }
-.mainpage .post-list .post-title {
+.post-title {
     margin: 1rem 0 0;
     font-size: 1.5rem;
+    font-weight: normal;
+    line-height: 1.25;
+    text-rendering: optimizeLegibility;
 }
 .mainpage .post-meta {
     color: #979797;

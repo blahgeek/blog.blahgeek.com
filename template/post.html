@@ -5,19 +5,19 @@
 {% endblock %}
 
 {% block content %}
-    <div class="post">
-      <h2>{{ page.title }}</h2>
-      <div class="post-info">
+    <h2 class="post-title">{{ page.title }}</h2>
+    <div class="post-info">
         <span class="post-date"> {{ page.date_human }} </span>&nbsp;
         <span class="post-meta">
-          <a data-no-instant href="/_sig/{{ page.permalink }}"><i class="fa fa-check-square-o"></i></a>
+            <a data-no-instant href="/_sig/{{ page.permalink }}"><i class="fa fa-check-square-o"></i></a>
         </span>
         {% if page.github_repo %}
         <span class="post-github">
-          <iframe src="https://ghbtns.com/github-btn.html?user=blahgeek&repo={{page.github_repo}}&type=star&count=true" frameborder="0" scrolling="0" width="170px" height="20px"></iframe>
+            <iframe src="https://ghbtns.com/github-btn.html?user=blahgeek&repo={{page.github_repo}}&type=star&count=true" frameborder="0" scrolling="0" width="170px" height="20px"></iframe>
         </span>
         {% endif %}
-      </div>
+    </div>
+    <div class="post hack">
       {% if page.expired %}
         <div class="post-expire">
           <h3><i class="fa fa-calendar-times-o"></i>&nbsp;本文已被标记为过时</h3>
@@ -31,9 +31,9 @@
       <h3>Related Posts</h3>
       <ul class="related-posts">
         {% for post in page.related %}
-          <li><h4><a href="/{{ post.permalink }}">
+          <li><a href="/{{ post.permalink }}">
             {{ post.title }}<small> {{ post.date_human }}</small>
-          </a></h4></li>
+          </a></li>
         {% endfor %}
       </ul>
     </div>
