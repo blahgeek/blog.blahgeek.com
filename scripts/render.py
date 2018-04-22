@@ -5,7 +5,7 @@
 import os
 import argparse
 import yaml
-import time
+from datetime import datetime
 
 import jinja2
 
@@ -58,7 +58,7 @@ def main():
             context[key] = {'_': True}
     if args.body:
         context['body'] = open(args.body).read()
-    context.setdefault('time', time.time())
+    context.setdefault('now', datetime.now())
 
     return render_template(
         args.dir,

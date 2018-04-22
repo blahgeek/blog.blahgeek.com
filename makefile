@@ -246,6 +246,7 @@ $(foreach post,$(POSTS),$(eval $(call postrule_wrap,$(post))))
 
 BADGES = $(shell find badges -name "*.txt")
 BADGES_SVG = $(addprefix $(TARGET_DIR)/,$(BADGES:.txt=.svg))
+BADGES_TEMPLATE = $(shell find badges -name "*.txt.jinja2")
 
 $(TARGET_DIR)/badges/%.svg: badges/%.txt
 	$(V)echo "[WGET]" "$<"
@@ -253,15 +254,22 @@ $(TARGET_DIR)/badges/%.svg: badges/%.txt
 	$(V)cat $< | xargs wget -O $@ 2> /dev/null
 	$(V)touch $@
 
-$(TARGET_DIR)/badges/posts-number.svg: $(BUILD_DIR)/posts.yaml $(RENDER) \
-								       badges/posts-number.txt.jinja2
-	$(V)echo "[WGET]" "badges/posts-number.txt"
-	$(V)mkdir -pv $(dir $@)
-	$(V)$(RENDER) --dir badges --data posts:$< \
-		--template posts-number.txt.jinja2 | xargs wget -O $@ 2> /dev/null
-	$(V)touch $@
+site: $(BADGES_SVG)
 
-site: $(BADGES_SVG) $(TARGET_DIR)/badges/posts-number.svg
+define badgerule
+$$(TARGET_DIR)/$(1).svg: $$(BUILD_DIR)/posts.yaml $$(RENDER) \
+							$(1).txt.jinja2
+	$$(V)echo "[WGET]" "$(1)"
+	$$(V)mkdir -pv $$(dir $$@)
+	$$(V)$$(RENDER) --data posts:$$< \
+		--template $(1).txt.jinja2 | xargs wget -O $$@ 2> /dev/null
+	$$(V)touch $$@
+
+site: $$(TARGET_DIR)/$(1).svg
+
+endef
+
+$(foreach badge,$(BADGES_TEMPLATE:.txt.jinja2=),$(eval $(call badgerule,$(badge))))
 
 #################################
 # Other Rules
