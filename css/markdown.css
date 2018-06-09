@@ -152,11 +152,11 @@
 /* .hack code { */
 /*   font-weight: 700; */
 /* } */
-/* .hack code:before, */
-/* .hack code:after { */
-/*   content: "`"; */
-/*   display: inline; */
-/* } */
+.hack code:before,
+.hack code:after {
+  content: "`";
+  display: inline;
+}
 
 .hack hr {
   position: relative;
