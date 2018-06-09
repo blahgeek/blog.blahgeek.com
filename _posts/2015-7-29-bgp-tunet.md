@@ -1,7 +1,7 @@
 ---
 layout: post
 classification: tech
-title: Learning BGP：Tunet国际出口分析
+title: Tunet国际出口分析
 tags: geek gfw network tunet linode
 permalink: bgp-tunet/
 ---

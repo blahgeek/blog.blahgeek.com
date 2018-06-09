@@ -2,7 +2,7 @@
 permalink: jian-yi-zi-dong-wei-gui-ji-wei-shi-yao-zhe-ye-hui-gu-du-sheng.html
 classification: project
 layout: post
-title: 简易自动喂龟机…（为什么这也会孤独一生！）
+title: 简易自动喂龟机…
 tags: avr hardware raspberrypi boring
 ---
 

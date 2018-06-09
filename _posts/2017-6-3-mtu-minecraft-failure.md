@@ -6,15 +6,11 @@ tags: minecraft network mtu tinc vpn udp linux
 permalink: minecraft-unable-to-connect-debug/
 ---
 
-> 好久没写博客，找点事情写一下…
-
 ### 无法连接服务器
 
 之前和女朋友入坑了Minecraft PE (iOS version)但是由于搭多人游戏Server体验并不十分友好（主要是懒…）加上轻微3D眩晕一直没怎么玩。今天发现新版本已经增加了Minecraft Realm（即官方版本的Server）于是又准备开坑玩一玩。
 
 然后就遇到了蛋疼的事情：登录，购买，新建Realm，邀请好友，上传地图，一切顺利，然而点击开始后一直无法载入；更加扯淡的是当我切换会公共WiFi连接时竟然可以载入，无法载入的问题仅发生在我的（可翻墙的）个人WiFi上。
-
-### 这不科学
 
 ![](./images/vpn-network-diagram.png)
 
@@ -24,7 +20,7 @@ permalink: minecraft-unable-to-connect-debug/
 
 这就非常神奇了，这个网络结构已经稳定使用几年了，并且其他各种链接不管是墙内还是墙外都依然正常，就单单是Minecraft Realm无法连接。
 
-### 抓包之
+### 抓包
 
 先在Home Router上抓。看到手机和服务器之间既有TCP又有UDP连接，均有大量来回，只是从某一刻开始UDP包就变成了只发不收，大概就是这样造成了连接超时；但是从结果来看并没有发现其他异样，看起来更像是程序（或服务器）的BUG而不是网络问题。
 
@@ -36,7 +32,7 @@ permalink: minecraft-unable-to-connect-debug/
 
 问题就在这里。某个从服务器发来的UDP包太大了，超过了VPN链路的MTU（VPN链路由于存在额外的开销，MTU往往小于以太网MTU）；但是ICMP通知发送后并没有发生变化，服务器依然尝试发送同样太大的包，这就造成了从某个时刻以后client就再也没有收到来自服务器的UDP包了，也就造成了超时。不过话说回来，为什么之前从来没有在其他应用/网站上遇到过这样的问题呢？
 
-### 然而这依然不科学
+### 这不科学
 
 网络中处理MTU的事情的正常协议是这样的：
 
