@@ -52,8 +52,7 @@ CDN_FILTER = ./scripts/cdn_filter.py
 $(BUILD_DIR)/%.md.html: %.md $(CONFIG) $(CDN_FILTER)
 	$(V)echo "[PANDOC]" "$<"
 	$(V)mkdir -pv $(dir $@)
-	$(V)pandoc $< -f markdown-auto_identifiers-implicit_figures \
-		-t html --mathml -o $@
+	$(V)markdown2 -x metadata,fenced-code-blocks $< > $@
 	$(V)$(CDN_FILTER) $@ $(CONFIG) 2> /dev/null
 
 #################################
@@ -62,7 +61,7 @@ $(BUILD_DIR)/%.md.html: %.md $(CONFIG) $(CDN_FILTER)
 
 $(BUILD_DIR)/%.md.asc: %.md
 	$(V)echo "[GPG]" "$<" "..."
-	$(V)$(GPG) --sign -a -o $@ $<
+	$(V)$(GPG) --yes --sign -a -o $@ $<
 
 #################################
 # Post Metadata
@@ -72,13 +71,14 @@ YAML_ADD_BODY = ./scripts/posts_addbody.py
 
 POSTS_YAML = $(addprefix $(BUILD_DIR)/,$(POSTS:.md=.yaml))
 POSTS_YAML_RAW = $(addprefix $(BUILD_DIR)/,$(POSTS:.md=.yaml.raw))
+CONVERT_DATETIME = ./scripts/convert_datetime.py
 # Extract metadata from post source, and date from filename
 $(BUILD_DIR)/%.yaml.raw: %.md $(BUILD_DIR)/%.md.html $(YAML_ADD_BODY)
 	$(V)echo "[YAML]" "$<"
 	$(V)mkdir -pv $(dir $@)
-	$(V)echo "date: "$$(date -d $$(basename "$<" | cut -d - -f 1-3) +%Y-%m-%d 2> /dev/null) > $@
-	$(V)echo "date_human: "$$(date -d $$(basename "$<" | cut -d - -f 1-3) "+%d %b %Y" 2> /dev/null) >> $@
-	$(V)echo "date_rss: "$$(date -d $$(basename "$<" | cut -d - -f 1-3) "+%a, %d %b %Y %H:%M:%S %Z" 2> /dev/null) >> $@
+	$(V)echo "date: "$$(basename "$<" | cut -d - -f 1-3 | $(CONVERT_DATETIME) "%Y-%m-%d" "%Y-%m-%d" 2> /dev/null) > $@
+	$(V)echo "date_human: "$$(basename "$<" | cut -d - -f 1-3 | $(CONVERT_DATETIME) "%Y-%m-%d" "%d %b %Y" 2> /dev/null) >> $@
+	$(V)echo "date_rss: "$$(basename "$<" | cut -d - -f 1-3 | $(CONVERT_DATETIME) "%Y-%m-%d" "%a, %d %b %Y %H:%M:%S %Z" 2> /dev/null) >> $@
 	$(V)sed -e '1d' -e '/---/q' "$<" | sed -e 's/---//' >> $@
 	$(V)$(YAML_ADD_BODY) $@ $(word 2,$^)
 
