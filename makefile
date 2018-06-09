@@ -89,6 +89,39 @@ $(BUILD_DIR)/posts.yaml: $(POSTS_YAML_RAW) $(YAML_CALC_RELATED)
 $(BUILD_DIR)/%.yaml: $(BUILD_DIR)/posts.yaml
 	$(V)true
 
+################################
+# Badges
+################################
+
+BADGES = $(shell find badges -name "*.txt")
+BADGES_SVG = $(addprefix $(BUILD_DIR)/,$(BADGES:.txt=.svg))
+BADGES_TEMPLATE = $(shell find badges -name "*.txt.jinja2")
+
+$(BUILD_DIR)/badges/%.svg: badges/%.txt
+	$(V)echo "[WGET]" "$<"
+	$(V)mkdir -pv $(dir $@)
+	$(V)cat $< | xargs wget -O $@ 2> /dev/null
+	$(V)touch $@
+
+badges: $(BADGES_SVG)
+
+define badgerule
+$$(BUILD_DIR)/$(1).svg: $$(BUILD_DIR)/posts.yaml $$(RENDER) \
+							$(1).txt.jinja2
+	$$(V)echo "[WGET]" "$(1)"
+	$$(V)mkdir -pv $$(dir $$@)
+	$$(V)$$(RENDER) --data posts:$$< \
+		--template $(1).txt.jinja2 | xargs wget -O $$@ 2> /dev/null
+	$$(V)touch $$@
+
+badges: $$(BUILD_DIR)/$(1).svg
+
+endef
+
+$(foreach badge,$(BADGES_TEMPLATE:.txt.jinja2=),$(eval $(call badgerule,$(badge))))
+
+site: badges
+
 #################################
 # Template Dependency
 #################################
@@ -132,7 +165,7 @@ $$(BUILD_DIR)/indexpage-$(1)-page.yaml:
 
 $$(TARGET_DIR)/$(1)/index.html: $$(CONFIG) $$(BUILD_DIR)/posts.yaml \
 								$$(BUILD_DIR)/indexpage-$(1)-page.yaml \
-								$$(TEMPLATE_DIR)/index.html $$(RENDER) $$(CSS_TARGET)
+								$$(TEMPLATE_DIR)/index.html $$(RENDER) $$(CSS_TARGET) badges
 	$$(V)echo "[RENDER] Index" "$(1)"
 	$$(V)mkdir -pv $$(dir $$@)
 	$$(V)$(RENDER) --dir $(TEMPLATE_DIR) \
@@ -240,37 +273,6 @@ postrule_wrap=$(call postrule,$(1),$(shell grep "permalink:" "$(1)" | sed -e "s/
 
 $(foreach post,$(POSTS),$(eval $(call postrule_wrap,$(post))))
 
-################################
-# Badges
-################################
-
-BADGES = $(shell find badges -name "*.txt")
-BADGES_SVG = $(addprefix $(TARGET_DIR)/,$(BADGES:.txt=.svg))
-BADGES_TEMPLATE = $(shell find badges -name "*.txt.jinja2")
-
-$(TARGET_DIR)/badges/%.svg: badges/%.txt
-	$(V)echo "[WGET]" "$<"
-	$(V)mkdir -pv $(dir $@)
-	$(V)cat $< | xargs wget -O $@ 2> /dev/null
-	$(V)touch $@
-
-site: $(BADGES_SVG)
-
-define badgerule
-$$(TARGET_DIR)/$(1).svg: $$(BUILD_DIR)/posts.yaml $$(RENDER) \
-							$(1).txt.jinja2
-	$$(V)echo "[WGET]" "$(1)"
-	$$(V)mkdir -pv $$(dir $$@)
-	$$(V)$$(RENDER) --data posts:$$< \
-		--template $(1).txt.jinja2 | xargs wget -O $$@ 2> /dev/null
-	$$(V)touch $$@
-
-site: $$(TARGET_DIR)/$(1).svg
-
-endef
-
-$(foreach badge,$(BADGES_TEMPLATE:.txt.jinja2=),$(eval $(call badgerule,$(badge))))
-
 #################################
 # Other Rules
 #################################
@@ -289,4 +291,4 @@ love:
 
 .FORCE:
 
-.PHONY: site indexpages clean all love .FORCE
+.PHONY: site badges indexpages clean all love .FORCE

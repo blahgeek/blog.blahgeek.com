@@ -1,1 +1,1 @@
-https://img.shields.io/badge/Hosted%20in-Linode-brightgreen.svg
+https://img.shields.io/badge/Hosted%20in-Linode-brightgreen.svg?style=flat-square

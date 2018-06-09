@@ -19,11 +19,17 @@
     {% endif %}{% endfor %}
   </div>
   <div class="badges">
-    <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img src="/badges/license-cc-by.svg" /></a>
-    <a href="https://www.linode.com/?r=a4311b0f4ce32ca8872b534773d99547e2326463"><img src="/badges/hosted-in-linode.svg" /></a>
-    <a href="https://portal.qiniu.com/signup?code=3lift6tliwmz6"><img src="/badges/cdn-by-qiniu.svg" /></a>
-    <img src="/badges/posts-number.svg" />
-    <img src="/badges/updated-date.svg" />
-    <a href="/icp-beian/"><img src="/badges/icp.svg" /></a>
+    <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+        {% include "../build/badges/license-cc-by.svg" %}
+    </a>
+    <a href="https://www.linode.com/?r=a4311b0f4ce32ca8872b534773d99547e2326463">
+        {% include "../build/badges/hosted-in-linode.svg" %}
+    </a>
+    <a href="https://portal.qiniu.com/signup?code=3lift6tliwmz6">
+        {% include "../build/badges/cdn-by-qiniu.svg" %}
+    </a>
+    {% include "../build/badges/posts-number.svg" %}
+    {% include "../build/badges/updated-date.svg" %}
+    {% include "../build/badges/icp.svg" %}
   </div>
 {% endblock %}
