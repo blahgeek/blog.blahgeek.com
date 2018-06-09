@@ -138,7 +138,7 @@ $(TEMPLATE_DIR)/friends.html: $(TEMPLATE_DIR)/base.html
 #################################
 # Friends Page
 #################################
-$(TARGET_DIR)/friends/index.html: $(TEMPLATE_DIR)/friends.html friends.yaml $(CSS_TARGET)
+$(TARGET_DIR)/friends/index.html: $(TEMPLATE_DIR)/friends.html friends.yaml $(CSS_TARGET) badges
 	$(V)echo "[RENDER] Friends"
 	$(V)mkdir -pv $(dir $@)
 	$(V)$(RENDER) --dir $(TEMPLATE_DIR) \
@@ -196,7 +196,7 @@ site: indexpages
 
 
 define extrapagerule
-$$(TARGET_DIR)/$(1)/index.html: $$(TEMPLATE_DIR)/$(1).html $$(RENDER) $$(CONFIG) $$(CSS_TARGET)
+$$(TARGET_DIR)/$(1)/index.html: $$(TEMPLATE_DIR)/$(1).html $$(RENDER) $$(CONFIG) $$(CSS_TARGET) badges
 	$$(V)echo "[Render] Page" "$(1)"
 	$$(V)mkdir -pv $$(dir $$@)
 	$$(V)$$(RENDER) --dir $$(TEMPLATE_DIR) \
@@ -240,7 +240,7 @@ define postrule
 $$(TARGET_DIR)/$(2): $$(BUILD_DIR)/$(1).html \
 							$$(CONFIG) $$(BUILD_DIR)/$(3).yaml \
 							$$(TEMPLATE_DIR)/post.html \
-							$$(RENDER) $$(CSS_TARGET)
+							$$(RENDER) $$(CSS_TARGET) badges
 	$$(V)echo "[RENDER]" "$(2)"
 	$$(V)mkdir -pv $$(dir $$@)
 	$$(V)$$(RENDER) --dir $$(TEMPLATE_DIR) \

@@ -204,14 +204,14 @@ a:hover i.fa {
     line-height: 1.25;
     text-rendering: optimizeLegibility;
 }
+.badges {
+    text-align: center;
+    margin: 5px auto;
+}
+
 .mainpage .post-meta {
     color: #979797;
     text-decoration: none;
-}
-
-.mainpage .badges {
-    text-align: center;
-    margin: 25px auto 15px;
 }
 
 .mainpage .header .container {
