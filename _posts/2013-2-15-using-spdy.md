@@ -4,6 +4,7 @@ classification: misc
 layout: post
 title: 本站开始支持SPDY
 tags: spdy google http network
+expired: true
 ---
 
 ###什么是SPDY
