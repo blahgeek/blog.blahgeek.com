@@ -50,7 +50,7 @@ $(foreach folder,$(STATIC_FOLDERS),$(eval $(call staticrule,$(folder))))
 #################################
 CDN_FILTER = ./scripts/cdn_filter.py
 $(BUILD_DIR)/%.md.html: %.md $(CONFIG) $(CDN_FILTER)
-	$(V)echo "[PANDOC]" "$<"
+	$(V)echo "[MARKDOWN]" "$<"
 	$(V)mkdir -pv $(dir $@)
 	$(V)markdown2 -x metadata,fenced-code-blocks $< > $@
 	$(V)$(CDN_FILTER) $@ $(CONFIG) 2> /dev/null
@@ -197,13 +197,13 @@ site: indexpages
 
 define extrapagerule
 $$(TARGET_DIR)/$(1)/index.html: $$(TEMPLATE_DIR)/$(1).html $$(RENDER) $$(CONFIG) $$(CSS_TARGET) badges
-	$$(V)echo "[Render] Page" "$(1)"
+	$$(V)echo "[RENDER] Page" "$(1)"
 	$$(V)mkdir -pv $$(dir $$@)
 	$$(V)$$(RENDER) --dir $$(TEMPLATE_DIR) \
 		--data site:$$(CONFIG) $(1): --template $(1).html > $$@
 
 $$(TARGET_DIR)/_pjax/$(1)/index.html: $$(TEMPLATE_DIR)/$(1).html $$(RENDER) $$(CONFIG)
-	$$(V)echo "[Render PJAX] Page" "$(1)"
+	$$(V)echo "[RENDER PJAX] Page" "$(1)"
 	$$(V)mkdir -pv $$(dir $$@)
 	$$(V)$$(RENDER) --dir $$(TEMPLATE_DIR) \
 		--data site:$$(CONFIG) $(1): pjax: --template $(1).html > $$@
