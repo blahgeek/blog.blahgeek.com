@@ -48,12 +48,10 @@ $(foreach folder,$(STATIC_FOLDERS),$(eval $(call staticrule,$(folder))))
 #################################
 # Markdown to HTML
 #################################
-CDN_FILTER = ./scripts/cdn_filter.py
-$(BUILD_DIR)/%.md.html: %.md $(CONFIG) $(CDN_FILTER)
+$(BUILD_DIR)/%.md.html: %.md
 	$(V)echo "[MARKDOWN]" "$<"
 	$(V)mkdir -pv $(dir $@)
 	$(V)markdown2 -x code-friendly,metadata,fenced-code-blocks $< > $@
-	$(V)$(CDN_FILTER) $@ $(CONFIG) 2> /dev/null
 
 #################################
 # GPG Sign content

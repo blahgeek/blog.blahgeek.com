@@ -11,7 +11,3 @@ disqus:       blahgeekblog
 
 google_analytics: 'UA-37086826-2'
 google_custom_search: '011846152286000793128:qzx551smxb4'
-
-#cdn_domain: http://7u2t7h.com1.z0.glb.clouddn.com
-cdn_domain: https://oaz69kzb5.qnssl.com
-cdn_img_suffix: ?imageView2/2/w/800
