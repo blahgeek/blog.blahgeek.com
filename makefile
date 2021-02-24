@@ -51,7 +51,7 @@ $(foreach folder,$(STATIC_FOLDERS),$(eval $(call staticrule,$(folder))))
 $(BUILD_DIR)/%.md.html: %.md
 	$(V)echo "[MARKDOWN]" "$<"
 	$(V)mkdir -pv $(dir $@)
-	$(V)markdown2 -x code-friendly,metadata,fenced-code-blocks $< > $@
+	$(V)cat "$<" | sed -E 's/!\[([^]]*)\]\(images\//![\1](\/images\//' | markdown2 -x code-friendly,metadata,fenced-code-blocks > $@
 
 #################################
 # GPG Sign content
