@@ -14,8 +14,4 @@ permalink: diy-house/
 
 ![](images/diy-house-2.jpg)
 
-
-<video controls autoplay muted loop width="100%">
-<source src="http://7xkuyk.dl1.z0.glb.clouddn.com/blog/手工－来自星星的你.m4v" type="video/mp4">
-浏览器无法播放视频，请[点击下载](http://7xkuyk.dl1.z0.glb.clouddn.com/blog/手工－来自星星的你.m4v)
-</video>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/mKzOgmE4J4g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
