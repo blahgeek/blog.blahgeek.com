@@ -280,15 +280,10 @@ $(foreach post,$(POSTS),$(eval $(call postrule_wrap,$(post))))
 clean:
 	rm -rf $(BUILD_DIR) $(TARGET_DIR)
 
-SSH_PORT ?= 22
-SSH_USER ?= blahgeek
-SSH_HOST ?= blog.blahgeek.com
-SSH_TARGET_DIR ?= /srv/http/blog.blahgeek.com/
-
-love:
-	rsync -e "ssh -p $(SSH_PORT)" -P -rvz --delete $(TARGET_DIR) $(SSH_USER)@$(SSH_HOST):$(SSH_TARGET_DIR)
+upload:
+	rclone -v sync --transfers=16 site fastmail:/blog.blahgeek.com
 
 
 .FORCE:
 
-.PHONY: site indexpages clean all love .FORCE
+.PHONY: site indexpages clean all upload .FORCE
