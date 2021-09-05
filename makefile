@@ -91,9 +91,10 @@ $(BUILD_DIR)/%.yaml: $(BUILD_DIR)/posts.yaml
 # Badges
 ################################
 
-BADGES = $(shell find badges -name "*.txt")
-BADGES_SVG = $(addprefix $(BUILD_DIR)/,$(BADGES:.txt=.svg))
+BADGES_SIMPLE_TXT = $(shell find badges -name "*.txt")
+BADGES_SIMPLE_SVG = $(addprefix $(BUILD_DIR)/,$(BADGES_SIMPLE_TXT:.txt=.svg))
 BADGES_TEMPLATE = $(shell find badges -name "*.txt.jinja2")
+BADGES_DONE = $(BUILD_DIR)/badges.done
 
 $(BUILD_DIR)/badges/%.svg: badges/%.txt
 	$(V)echo "[WGET]" "$<"
@@ -101,9 +102,10 @@ $(BUILD_DIR)/badges/%.svg: badges/%.txt
 	$(V)cat $< | xargs wget -O $@ 2> /dev/null
 	$(V)touch $@
 
-badges: $(BADGES_SVG)
+$(BADGES_DONE): $(BADGES_SIMPLE_SVG)
+	touch $@
 
-define badgerule
+define badge_template_rule
 $$(BUILD_DIR)/$(1).svg: $$(BUILD_DIR)/posts.yaml $$(RENDER) \
 							$(1).txt.jinja2
 	$$(V)echo "[WGET]" "$(1)"
@@ -112,13 +114,11 @@ $$(BUILD_DIR)/$(1).svg: $$(BUILD_DIR)/posts.yaml $$(RENDER) \
 		--template $(1).txt.jinja2 | xargs wget -O $$@ 2> /dev/null
 	$$(V)touch $$@
 
-badges: $$(BUILD_DIR)/$(1).svg
+$(BADGES_DONE): $$(BUILD_DIR)/$(1).svg
 
 endef
 
-$(foreach badge,$(BADGES_TEMPLATE:.txt.jinja2=),$(eval $(call badgerule,$(badge))))
-
-site: badges
+$(foreach badge,$(BADGES_TEMPLATE:.txt.jinja2=),$(eval $(call badge_template_rule,$(badge))))
 
 #################################
 # Template Dependency
@@ -136,7 +136,7 @@ $(TEMPLATE_DIR)/friends.html: $(TEMPLATE_DIR)/base.html
 #################################
 # Friends Page
 #################################
-$(TARGET_DIR)/friends/index.html: $(TEMPLATE_DIR)/friends.html friends.yaml $(CSS_TARGET) badges
+$(TARGET_DIR)/friends/index.html: $(TEMPLATE_DIR)/friends.html friends.yaml $(CSS_TARGET) $(BADGES_DONE)
 	$(V)echo "[RENDER] Friends"
 	$(V)mkdir -pv $(dir $@)
 	$(V)$(RENDER) --dir $(TEMPLATE_DIR) \
@@ -163,7 +163,7 @@ $$(BUILD_DIR)/indexpage-$(1)-page.yaml:
 
 $$(TARGET_DIR)/$(1)/index.html: $$(CONFIG) $$(BUILD_DIR)/posts.yaml \
 								$$(BUILD_DIR)/indexpage-$(1)-page.yaml \
-								$$(TEMPLATE_DIR)/index.html $$(RENDER) $$(CSS_TARGET) badges
+								$$(TEMPLATE_DIR)/index.html $$(RENDER) $$(CSS_TARGET) $$(BADGES_DONE)
 	$$(V)echo "[RENDER] Index" "$(1)"
 	$$(V)mkdir -pv $$(dir $$@)
 	$$(V)$(RENDER) --dir $(TEMPLATE_DIR) \
@@ -194,7 +194,7 @@ site: indexpages
 
 
 define extrapagerule
-$$(TARGET_DIR)/$(1)/index.html: $$(TEMPLATE_DIR)/$(1).html $$(RENDER) $$(CONFIG) $$(CSS_TARGET) badges
+$$(TARGET_DIR)/$(1)/index.html: $$(TEMPLATE_DIR)/$(1).html $$(RENDER) $$(CONFIG) $$(CSS_TARGET) $$(BADGES_DONE)
 	$$(V)echo "[RENDER] Page" "$(1)"
 	$$(V)mkdir -pv $$(dir $$@)
 	$$(V)$$(RENDER) --dir $$(TEMPLATE_DIR) \
@@ -238,7 +238,7 @@ define postrule
 $$(TARGET_DIR)/$(2): $$(BUILD_DIR)/$(1).html \
 							$$(CONFIG) $$(BUILD_DIR)/$(3).yaml \
 							$$(TEMPLATE_DIR)/post.html \
-							$$(RENDER) $$(CSS_TARGET) badges
+							$$(RENDER) $$(CSS_TARGET) $$(BADGES_DONE)
 	$$(V)echo "[RENDER]" "$(2)"
 	$$(V)mkdir -pv $$(dir $$@)
 	$$(V)$$(RENDER) --dir $$(TEMPLATE_DIR) \
@@ -289,4 +289,4 @@ love:
 
 .FORCE:
 
-.PHONY: site badges indexpages clean all love .FORCE
+.PHONY: site indexpages clean all love .FORCE
