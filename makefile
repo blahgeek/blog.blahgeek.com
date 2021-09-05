@@ -136,7 +136,7 @@ $(TEMPLATE_DIR)/friends.html: $(TEMPLATE_DIR)/base.html
 #################################
 # Friends Page
 #################################
-$(TARGET_DIR)/friends/index.html: $(TEMPLATE_DIR)/friends.html friends.yaml $(CSS_TARGET) $(BADGES_DONE)
+$(TARGET_DIR)/friends/index.html: $(TEMPLATE_DIR)/friends.html friends.yaml $(BADGES_DONE)
 	$(V)echo "[RENDER] Friends"
 	$(V)mkdir -pv $(dir $@)
 	$(V)$(RENDER) --dir $(TEMPLATE_DIR) \
@@ -163,7 +163,7 @@ $$(BUILD_DIR)/indexpage-$(1)-page.yaml:
 
 $$(TARGET_DIR)/$(1)/index.html: $$(CONFIG) $$(BUILD_DIR)/posts.yaml \
 								$$(BUILD_DIR)/indexpage-$(1)-page.yaml \
-								$$(TEMPLATE_DIR)/index.html $$(RENDER) $$(CSS_TARGET) $$(BADGES_DONE)
+								$$(TEMPLATE_DIR)/index.html $$(RENDER) $$(BADGES_DONE)
 	$$(V)echo "[RENDER] Index" "$(1)"
 	$$(V)mkdir -pv $$(dir $$@)
 	$$(V)$(RENDER) --dir $(TEMPLATE_DIR) \
@@ -194,7 +194,7 @@ site: indexpages
 
 
 define extrapagerule
-$$(TARGET_DIR)/$(1)/index.html: $$(TEMPLATE_DIR)/$(1).html $$(RENDER) $$(CONFIG) $$(CSS_TARGET) $$(BADGES_DONE)
+$$(TARGET_DIR)/$(1)/index.html: $$(TEMPLATE_DIR)/$(1).html $$(RENDER) $$(CONFIG) $$(BADGES_DONE)
 	$$(V)echo "[RENDER] Page" "$(1)"
 	$$(V)mkdir -pv $$(dir $$@)
 	$$(V)$$(RENDER) --dir $$(TEMPLATE_DIR) \
@@ -238,7 +238,7 @@ define postrule
 $$(TARGET_DIR)/$(2): $$(BUILD_DIR)/$(1).html \
 							$$(CONFIG) $$(BUILD_DIR)/$(3).yaml \
 							$$(TEMPLATE_DIR)/post.html \
-							$$(RENDER) $$(CSS_TARGET) $$(BADGES_DONE)
+							$$(RENDER) $$(BADGES_DONE)
 	$$(V)echo "[RENDER]" "$(2)"
 	$$(V)mkdir -pv $$(dir $$@)
 	$$(V)$$(RENDER) --dir $$(TEMPLATE_DIR) \
