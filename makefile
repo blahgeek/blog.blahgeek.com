@@ -103,7 +103,8 @@ $(BUILD_DIR)/badges/%.svg: badges/%.txt
 	$(V)touch $@
 
 $(BADGES_DONE): $(BADGES_SIMPLE_SVG)
-	touch $@
+	$(V)touch $@
+	$(V)echo "[BADGES] Done"
 
 define badge_template_rule
 $$(BUILD_DIR)/$(1).svg: $$(BUILD_DIR)/posts.yaml $$(RENDER) \
