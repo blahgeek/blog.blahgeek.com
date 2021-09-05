@@ -53,7 +53,7 @@ def main():
     for data_f in args.data if args.data else []:
         key, filename = data_f.split(':')
         if filename:
-            context[key] = yaml.load(open(filename).read())
+            context[key] = yaml.load(open(filename).read(), Loader=yaml.FullLoader)
         else:
             context[key] = {'_': True}
     if args.body:
