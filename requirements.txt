@@ -1,6 +1,0 @@
-pyyaml
-beautifulsoup4
-jinja2
-csscompressor
-markdown2
-pygments
