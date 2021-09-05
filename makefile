@@ -9,7 +9,8 @@ TEMPLATE_DIR = template
 V ?= @
 
 CONFIG = site.yaml
-POSTS = $(shell find _posts -name "*.md")
+POSTS = $(shell find _posts -name "*.md" -and -not -name "*.disabled.md")
+POSTS_DIR = _posts   # list as dep so that the site will be updated after "disabling" some posts
 POSTS_MDHTML = $(POSTS_YAML:.yaml=.md.html)
 POSTS_DEP = $(POSTS_YAML:.yaml=.d)
 
@@ -80,7 +81,7 @@ $(BUILD_DIR)/%.yaml.raw: %.md $(BUILD_DIR)/%.md.html $(YAML_ADD_BODY)
 	$(V)sed -e '1d' -e '/---/q' "$<" | sed -e 's/---//' >> $@
 	$(V)$(YAML_ADD_BODY) $@ $(word 2,$^)
 
-$(BUILD_DIR)/posts.yaml: $(POSTS_YAML_RAW) $(YAML_CALC_RELATED)
+$(BUILD_DIR)/posts.yaml: $(POSTS_YAML_RAW) $(YAML_CALC_RELATED) $(POSTS_DIR)
 	$(V)echo "[YAML] All Posts"
 	$(V)$(YAML_CALC_RELATED) $(POSTS_YAML_RAW) > $(BUILD_DIR)/posts.yaml
 
