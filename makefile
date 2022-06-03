@@ -145,15 +145,7 @@ $(TARGET_DIR)/friends/index.html: $(TEMPLATE_DIR)/friends.html friends.yaml $(BA
 		--data site:$(CONFIG) friends:friends.yaml \
 		--template friends.html > $@
 
-$(TARGET_DIR)/_pjax/friends/index.html: $(TEMPLATE_DIR)/friends.html friends.yaml
-	$(V)echo "[RENDER PJAX] Friends"
-	$(V)mkdir -pv $(dir $@)
-	$(V)$(RENDER) --dir $(TEMPLATE_DIR) \
-		--data site:$(CONFIG) friends:friends.yaml pjax: \
-		--template friends.html > $@
-
 indexpages: $(TARGET_DIR)/friends/index.html
-indexpages: $(TARGET_DIR)/_pjax/friends/index.html
 
 #################################
 # Index Pages
@@ -173,17 +165,7 @@ $$(TARGET_DIR)/$(1)/index.html: $$(CONFIG) $$(BUILD_DIR)/posts.yaml \
 			page:$$(BUILD_DIR)/indexpage-$(1)-page.yaml \
 			--template index.html > $$@
 
-$$(TARGET_DIR)/_pjax/$(1)/index.html: $$(CONFIG) $$(BUILD_DIR)/posts.yaml \
-									$$(BUILD_DIR)/indexpage-$(1)-page.yaml \
-									$$(TEMPLATE_DIR)/index.html $$(RENDER)
-	$$(V)echo "[RENDER PJAX] Index" "$(1)"
-	$$(V)mkdir -pv $$(dir $$@)
-	$$(V)$(RENDER) --dir $(TEMPLATE_DIR) \
-			--data site:$$(CONFIG) posts:$$(BUILD_DIR)/posts.yaml \
-			page:$$(BUILD_DIR)/indexpage-$(1)-page.yaml pjax: \
-			--template index.html > $$@
-
-indexpages: $$(TARGET_DIR)/$(1)/index.html $$(TARGET_DIR)/_pjax/$(1)/index.html
+indexpages: $$(TARGET_DIR)/$(1)/index.html
 endef
 
 $(eval $(call indexpagerule,all))
@@ -202,16 +184,10 @@ $$(TARGET_DIR)/$(1)/index.html: $$(TEMPLATE_DIR)/$(1).html $$(RENDER) $$(CONFIG)
 	$$(V)$$(RENDER) --dir $$(TEMPLATE_DIR) \
 		--data site:$$(CONFIG) $(1): --template $(1).html > $$@
 
-$$(TARGET_DIR)/_pjax/$(1)/index.html: $$(TEMPLATE_DIR)/$(1).html $$(RENDER) $$(CONFIG)
-	$$(V)echo "[RENDER PJAX] Page" "$(1)"
-	$$(V)mkdir -pv $$(dir $$@)
-	$$(V)$$(RENDER) --dir $$(TEMPLATE_DIR) \
-		--data site:$$(CONFIG) $(1): pjax: --template $(1).html > $$@
-
 $$(TEMPLATE_DIR)/$(1).html: $$(TEMPLATE_DIR)/base.html
 	$$(V)touch $$@
 
-extrapages: $$(TARGET_DIR)/$(1)/index.html $$(TARGET_DIR)/_pjax/$(1)/index.html
+extrapages: $$(TARGET_DIR)/$(1)/index.html
 endef
 
 $(eval $(call extrapagerule,404))
@@ -256,16 +232,6 @@ $$(TARGET_DIR)/$(2): $$(BUILD_DIR)/$(1).html \
 		--data site:$$(CONFIG) page:$$(BUILD_DIR)/$(3).yaml \
 		--template post.html > $$@
 
-$$(TARGET_DIR)/_pjax/$(2): $$(BUILD_DIR)/$(1).html \
-							$$(CONFIG) $$(BUILD_DIR)/$(3).yaml \
-							$$(TEMPLATE_DIR)/post.html \
-							$$(RENDER)
-	$$(V)echo "[RENDER PJAX]" "$(2)"
-	$$(V)mkdir -pv $$(dir $$@)
-	$$(V)$$(RENDER) --dir $$(TEMPLATE_DIR) \
-		--data site:$$(CONFIG) page:$$(BUILD_DIR)/$(3).yaml pjax: \
-		--template post.html > $$@
-
 $$(TARGET_DIR)/_sig/$(2): $$(BUILD_DIR)/$(1).asc \
 							$$(TEMPLATE_DIR)/sig.html \
 							$$(RENDER)
@@ -274,7 +240,7 @@ $$(TARGET_DIR)/_sig/$(2): $$(BUILD_DIR)/$(1).asc \
 	$$(V)$$(RENDER) --dir $$(TEMPLATE_DIR) \
 		--body $$< --template sig.html > $$@
 
-site: $$(TARGET_DIR)/$(2) $$(TARGET_DIR)/_pjax/$(2) $$(TARGET_DIR)/_sig/$(2)
+site: $$(TARGET_DIR)/$(2) $$(TARGET_DIR)/_sig/$(2)
 
 endef
 
