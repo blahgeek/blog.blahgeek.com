@@ -9,7 +9,7 @@ from collections import defaultdict
 ret = list()
 
 for yaml_file in sys.argv[1:]:
-    yaml_data = yaml.load(open(yaml_file).read())
+    yaml_data = yaml.load(open(yaml_file).read(), Loader=yaml.FullLoader)
     ret.append(yaml_data)
 
 
