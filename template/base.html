@@ -14,28 +14,25 @@
     {% endif %}
   </head>
   <body>
-  {% if not pjax %}
+{% if not pjax %}
   <!--[if lt IE 9]>
      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
 
+{% block toppage %}
   <div class="toppage" id="toppage">
     <div class="container">
       <div class="logo">
       <a href="/"><img src="/images/gravatar.jpeg"></a>
       </div>
       <div class="main-text">
-        <p>I'm 赵一开/blahgeek, I am a developer.</p>
+        <p>I'm 赵一开, a developer. </p>
         <p>Get in touch:
           <a href="mailto:yikai@z1k.dev?subject=Hello"><i class="fa fa-envelope-o"></i></a>
           <a target="_blank" href="https://github.com/blahgeek"><i class="fa fa-github"></i></a>
           <a target="_blank" href="https://twitter.com/blahgeek"><i class="fa fa-twitter"></i></a>
           <a id="weixin-btn" href="#"><i class="fa fa-wechat"></i></a>
           <a target="_blank" href="https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xa74af69a8cc3b7f228fa30746d7ec222c6de82bf"><i class="fa fa-key"></i></a>
-          &nbsp;
-          See more:
-          <a href="/feeds/all.rss.xml" data-no-instant><i class="fa fa-rss"></i></a>
-          <a href="/friends/"><i class="fa fa-users"></i></a>
         </p>
         <p><img id="weixin" src="/images/weixin-qr.png" class="hidden"></p>
         <script>
@@ -59,7 +56,8 @@
       </div>
     </div>
   </div>
-  {% endif %}
+{% endblock %}
+{% endif %}
 
 {% block body %}
 <div class="mainpage">
@@ -67,7 +65,7 @@
   {% block navbar %}
     <div class="navbar"> <ul>
       <li><a href="/search/"{% if search %} class="active" {% endif %}data-no-instant><i class="fa fa-search"></i></a></li>
-      <li><a href="/"{% if page and not page.classification %} class="active" {% endif %}>All</a></li>
+      <li><a href="/all/"{% if page and not page.classification %} class="active" {% endif %}>All</a></li>
       <li><a href="/tech/"{% if page and page.classification == "tech" %} class="active" {% endif %}>Tech</a></li>
       <li><a href="/misc/"{% if page and page.classification == "misc" %} class="active" {% endif %}>Misc</a></li>
       <li><a href="/project/"{% if page and page.classification == "project" %} class="active" {% endif %}>Project</a></li>

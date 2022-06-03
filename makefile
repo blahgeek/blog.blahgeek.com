@@ -186,7 +186,7 @@ $$(TARGET_DIR)/_pjax/$(1)/index.html: $$(CONFIG) $$(BUILD_DIR)/posts.yaml \
 indexpages: $$(TARGET_DIR)/$(1)/index.html $$(TARGET_DIR)/_pjax/$(1)/index.html
 endef
 
-$(eval $(call indexpagerule,))  # All
+$(eval $(call indexpagerule,all))
 $(eval $(call indexpagerule,tech))
 $(eval $(call indexpagerule,misc))
 $(eval $(call indexpagerule,project))
@@ -217,7 +217,16 @@ endef
 $(eval $(call extrapagerule,404))
 $(eval $(call extrapagerule,search))
 
-site: extrapages
+
+$(TARGET_DIR)/index.html: $(TEMPLATE_DIR)/main.html $(BUILD_DIR)/_specials/main.yaml.raw $(RENDER) $(CONFIG) $(BADGES_DONE)
+	$(V)echo "[RENDER] Page Main"
+	$(V)mkdir -pv $(dir $@)
+	$(V)$(RENDER) --dir $(TEMPLATE_DIR) \
+		--data site:$(CONFIG) page:$(BUILD_DIR)/_specials/main.yaml.raw \
+		--template main.html > $@
+
+
+site: extrapages $(TARGET_DIR)/index.html
 
 #################################
 # Feed XML

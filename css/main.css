@@ -232,6 +232,14 @@ a:hover i.fa {
     color: #50E3C2;
 }
 
+.mainpage.specialpage a, a:hover {
+    text-decoration: underline;
+}
+
+.mainpage.specialpage {
+    margin-top: 40px;
+}
+
 .header {
     width: 100%;
     background-color: rgb(255, 255, 255);
